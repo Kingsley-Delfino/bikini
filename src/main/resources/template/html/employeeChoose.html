@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head  runat="server">
+<head runat="server">
     <meta charset="utf-8">
     <title>职位搜索</title>
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
-    <link rel="stylesheet" th:href="@{/css/bootstrap-theme.min.css}" />
-    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap-theme.min.css}"/>
+    <script src="../../static/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="shortcut icon" href="../../static/photo/others/5.jpg" />
+    <script type="text/javascript" src="../../static/js/jquery.cookie.js"></script>
+    <link rel="shortcut icon" href="../../static/photo/others/5.jpg"/>
     <style>
         .myStyle_1 {
             width: 1000px;
@@ -78,6 +79,12 @@
         }
     </style>
     <script>
+        function autoLoad() {
+            var b = $.cookie("job");
+            document.getElementById("search").value = b;
+            console.log(b);
+        }
+
         function showExperience(a) {
             $('.experience').text(a)
         }
@@ -93,12 +100,17 @@
         function showJob(a) {
             $('.job').text(a)
         }
+
         function show() {
-            window.location.href='/bikini/employee/employeeShow';
+            window.location.href = '/bikini/employee/employeeShow';
+        }
+
+        function search() {
+            window.location.href = '/bikini/employee/employeeShow';
         }
     </script>
 </head>
-<body>
+<body onload="autoLoad()">
 <div class="jumbotron text-center" style="margin-bottom:0; height: 150px; background:#FFFFFF">
     <div class="row">
         <div class="col-sm-1" style="padding-left: 100px">
@@ -108,23 +120,21 @@
             <img src="../../static/photo/others/3.jpg" style="margin-top:-25px; height: 100px">
         </div>
         <div>
-            <form class="bs-example bs-example-form" role="form">
-                <div class="col-lg-6">
-                    <div class="input-group  input-group-lg">
-                        <div class="input-group-btn">
-                            <button class="btn btn-info dropdown-toggle" data-toggle="dropdown" type="button">职位
-                            </button>
-                        </div>
-                        <label for="search"></label><input type="text" id="search" class="form-control"
-                                                           placeholder="请输入关键词，如：JAVA、销售代表、行政助理等" required autofocus>
-                        <span class="input-group-btn">
-						<button class="btn btn-info" type="button">
+            <div class="col-lg-6">
+                <div class="input-group  input-group-lg">
+                    <div class="input-group-btn">
+                        <button class="btn btn-info dropdown-toggle" data-toggle="dropdown" type="button">职位
+                        </button>
+                    </div>
+                    <label for="search"></label><input type="text" id="search" class="form-control" value=""
+                                                       placeholder="请输入关键词，如：JAVA、销售代表、行政助理等" required autofocus>
+                    <span class="input-group-btn">
+						<button class="btn btn-info" type="button" onclick="search()">
                             <span class="glyphicon glyphicon-search"></span>
                         </button>
 					</span>
-                    </div>
                 </div>
-            </form>
+            </div>
         </div>
         <div class="col-sm-2">
             <img src="../../static/photo/others/6.jpg" style="margin-top:-25px; height: 100px">

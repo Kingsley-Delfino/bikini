@@ -1,59 +1,72 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head  runat="server">
+<head runat="server">
     <meta charset="utf-8">
     <title>找工作</title>
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
-    <link rel="stylesheet" th:href="@{/css/bootstrap-theme.min.css}" />
-    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap-theme.min.css}"/>
+    <script src="../../static/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="shortcut icon" href="../../static/photo/others/5.jpg" />
+    <script type="text/javascript" src="../../static/js/jquery.cookie.js"></script>
+    <link rel="shortcut icon" href="../../static/photo/others/5.jpg"/>
     <style>
         .myStyle_1 {
             height: 30px;
             background: #aaa;
         }
+
         .myStyle_2 {
             height: 560px;
             background: #aaa;
         }
+
         .myStyle_3 {
             margin-left: 10px;
             height: 500px;
             width: 200px;
             background: #FFFFFF;
         }
+
         .myStyle_4 {
             margin-left: 10px;
             height: 500px;
             width: 665px;
             background: #FFFFFF;
         }
+
         .myStyle_6 {
             height: 300px;
             background: #FFFFFF;
         }
+
         .myStyle_7 {
             height: 70px;
             background: #aaa;
         }
+
         .myStyle_8 {
             padding-left: 0;
             padding-right: 0;
         }
     </style>
-
     <script>
         function main() {
-            window.location.href='/bikini/employee/main';
+            window.location.href = '/bikini/employee/main';
         }
+
         function search() {
-            window.location.href='/bikini/employee/employeeSearch';
+            window.location.href = '/bikini/employee/employeeSearch';
         }
+
         function employee() {
-            window.location.href='/bikini/employee/employee';
+            window.location.href = '/bikini/employee/employee';
+        }
+
+        function jump(a) {
+            $.cookie("job", a);
+            window.location.href = 'employeeChoose.html';
         }
     </script>
 </head>
@@ -67,21 +80,20 @@
             <img src="../../static/photo/others/3.jpg" style="margin-top:-25px; height: 100px">
         </div>
         <div>
-            <form class="bs-example bs-example-form" role="form">
-                <div class="col-lg-6">
-                    <div class="input-group  input-group-lg">
-                        <div class="input-group-btn">
-                            <button class="btn btn-info dropdown-toggle" data-toggle="dropdown" type="button">职位</button>
-                        </div>
-                        <label for="search"></label><input type="text" id="search" class="form-control" placeholder="请输入关键词，如：JAVA、销售代表、行政助理等" required autofocus>
-                        <span class="input-group-btn">
+            <div class="col-lg-6">
+                <div class="input-group  input-group-lg">
+                    <div class="input-group-btn">
+                        <button class="btn btn-info dropdown-toggle" data-toggle="dropdown" type="button">职位</button>
+                    </div>
+                    <label for="search"></label><input type="text" id="search" class="form-control"
+                                                       placeholder="请输入关键词，如：JAVA、销售代表、行政助理等" required autofocus>
+                    <span class="input-group-btn">
 						<button class="btn btn-info" type="button">
                             <span class="glyphicon glyphicon-search"></span>
                         </button>
 					</span>
-                    </div>
                 </div>
-            </form>
+            </div>
         </div>
         <div class="col-sm-2">
             <img src="../../static/photo/others/6.jpg" style="margin-top:-25px; height: 100px">
@@ -101,7 +113,8 @@
                     <li role="presentation"><a href="#tab6" role="tab" data-toggle="tab"><h5>服务业</h5></a></li>
                     <li role="presentation"><a href="#tab7" role="tab" data-toggle="tab"><h5>市场/销售</h5></a></li>
                     <li role="presentation"><a href="#tab8" role="tab" data-toggle="tab"><h5>人事/财务/行政</h5></a></li>
-                    <li role="presentation" class="active"><a href="#tab9" role="tab" data-toggle="tab"><h5>全部职类</h5></a></li>
+                    <li role="presentation" class="active"><a href="#tab9" role="tab" data-toggle="tab"><h5>全部职类</h5>
+                    </a></li>
                 </ul>
             </div>
         </div>
@@ -112,70 +125,70 @@
                     <br>
                     <div class="row">
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">Java开发</button>
-                            <button type="button" class="btn btn-link">Python</button>
-                            <button type="button" class="btn btn-link">算法工程师</button>
-                            <button type="button" class="btn btn-link">数据分析师</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">Java开发</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">Python</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">算法工程师</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">数据分析师</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">UI设计师</button>
-                            <button type="button" class="btn btn-link">Android</button>
-                            <button type="button" class="btn btn-link">Hadoop</button>
-                            <button type="button" class="btn btn-link">数据架构</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">UI设计师</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">Android</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">Hadoop</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">数据架构</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">Web前端</button>
-                            <button type="button" class="btn btn-link">前端美工</button>
-                            <button type="button" class="btn btn-link">Node.js</button>
-                            <button type="button" class="btn btn-link">人工智能</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">Web前端</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">前端美工</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">Node.js</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">人工智能</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">PHP</button>
-                            <button type="button" class="btn btn-link">深度学习</button>
-                            <button type="button" class="btn btn-link">数据开发</button>
-                            <button type="button" class="btn btn-link">区块链</button>
-                        </div>
-                    </div>
-                    <br>
-                    <br>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <button type="button" class="btn btn-link">电器工程师</button>
-                            <button type="button" class="btn btn-link">设备工程师</button>
-                        </div>
-                        <div class="col-md-3">
-                            <button type="button" class="btn btn-link">电子工程师</button>
-                            <button type="button" class="btn btn-link">硬件工程师</button>
-                        </div>
-                        <div class="col-md-3">
-                            <button type="button" class="btn btn-link">PLC</button>
-                            <button type="button" class="btn btn-link">结构工程师</button>
-                        </div>
-                        <div class="col-md-3">
-                            <button type="button" class="btn btn-link">测试工程师</button>
-                            <button type="button" class="btn btn-link">工艺工程师</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">PHP</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">深度学习</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">数据开发</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">区块链</button>
                         </div>
                     </div>
                     <br>
                     <br>
                     <div class="row">
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">产品经理</button>
-                            <button type="button" class="btn btn-link">天猫运营</button>
-                            <button type="button" class="btn btn-link">游戏运营</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">电器工程师</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">设备工程师</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">新媒体运营</button>
-                            <button type="button" class="btn btn-link">产品助理</button>
-                            <button type="button" class="btn btn-link">产品编辑</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">电子工程师</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">硬件工程师</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">运营专员</button>
-                            <button type="button" class="btn btn-link">产品运营</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">PLC</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">结构工程师</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">淘宝运营</button>
-                            <button type="button" class="btn btn-link">淘宝客服</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">测试工程师</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">工艺工程师</button>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">产品经理</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">天猫运营</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">游戏运营</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">新媒体运营</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">产品助理</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">产品编辑</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">运营专员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">产品运营</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">淘宝运营</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">淘宝客服</button>
                         </div>
                     </div>
                 </div>
@@ -184,68 +197,68 @@
                     <br>
                     <div class="row">
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">投资经理</button>
-                            <button type="button" class="btn btn-link">银行销售</button>
-                            <button type="button" class="btn btn-link">金融产品</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">投资经理</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">银行销售</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">金融产品</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">风险控制</button>
-                            <button type="button" class="btn btn-link">信用评审</button>
-                            <button type="button" class="btn btn-link">汽车金融</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">风险控制</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">信用评审</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">汽车金融</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">业务催收</button>
-                            <button type="button" class="btn btn-link">信用卡</button>
-                            <button type="button" class="btn btn-link">金融研究</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">业务催收</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">信用卡</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">金融研究</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">银行柜员</button>
-                            <button type="button" class="btn btn-link">贷款申请</button>
-                        </div>
-                    </div>
-                    <br>
-                    <br>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <button type="button" class="btn btn-link">证券交易</button>
-                            <button type="button" class="btn btn-link">操盘手</button>
-                            <button type="button" class="btn btn-link">信用托售</button>
-                            <button type="button" class="btn btn-link">权证交易</button>
-                        </div>
-                        <div class="col-md-3">
-                            <button type="button" class="btn btn-link">交易员</button>
-                            <button type="button" class="btn btn-link">基金管理</button>
-                            <button type="button" class="btn btn-link">典当管理</button>
-                        </div>
-                        <div class="col-md-3">
-                            <button type="button" class="btn btn-link">投资经理</button>
-                            <button type="button" class="btn btn-link">股票经理</button>
-                            <button type="button" class="btn btn-link">担保员</button>
-                        </div>
-                        <div class="col-md-3">
-                            <button type="button" class="btn btn-link">期贷员</button>
-                            <button type="button" class="btn btn-link">投资顾问</button>
-                            <button type="button" class="btn btn-link">信贷员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">银行柜员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">贷款申请</button>
                         </div>
                     </div>
                     <br>
                     <br>
                     <div class="row">
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">财产保险</button>
-                            <button type="button" class="btn btn-link">保险销售</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">证券交易</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">操盘手</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">信用托售</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">权证交易</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">保险内勤</button>
-                            <button type="button" class="btn btn-link">理财顾问</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">交易员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">基金管理</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">典当管理</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">理赔顾问</button>
-                            <button type="button" class="btn btn-link">查勘定损</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">投资经理</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">股票经理</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">担保员</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">精算师</button>
-                            <button type="button" class="btn btn-link">车险顾问</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">期贷员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">投资顾问</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">信贷员</button>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">财产保险</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">保险销售</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">保险内勤</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">理财顾问</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">理赔顾问</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">查勘定损</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">精算师</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">车险顾问</button>
                         </div>
                     </div>
                 </div>
@@ -254,70 +267,70 @@
                     <br>
                     <div class="row">
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">土建工程师</button>
-                            <button type="button" class="btn btn-link">造价员</button>
-                            <button type="button" class="btn btn-link">暖通工程师</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">土建工程师</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">造价员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">暖通工程师</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">施工员</button>
-                            <button type="button" class="btn btn-link">一级建造师</button>
-                            <button type="button" class="btn btn-link">项目经理</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">施工员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">一级建造师</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">项目经理</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">资料员</button>
-                            <button type="button" class="btn btn-link">室内设计员</button>
-                            <button type="button" class="btn btn-link">电气工程师</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">资料员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">室内设计员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">电气工程师</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">预算员</button>
-                            <button type="button" class="btn btn-link">建筑设计</button>
-                            <button type="button" class="btn btn-link">土建员</button>
-                        </div>
-                    </div>
-                    <br>
-                    <br>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <button type="button" class="btn btn-link">营业顾问</button>
-                            <button type="button" class="btn btn-link">房地产策划</button>
-                        </div>
-                        <div class="col-md-3">
-                            <button type="button" class="btn btn-link">房地产销售</button>
-                            <button type="button" class="btn btn-link">房地产开发</button>
-                        </div>
-                        <div class="col-md-3">
-                            <button type="button" class="btn btn-link">房地产招商</button>
-                            <button type="button" class="btn btn-link">房地产评估</button>
-                        </div>
-                        <div class="col-md-3">
-                            <button type="button" class="btn btn-link">开发报建</button>
-                            <button type="button" class="btn btn-link">地产经纪</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">预算员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">建筑设计</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">土建员</button>
                         </div>
                     </div>
                     <br>
                     <br>
                     <div class="row">
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">房产物业</button>
-                            <button type="button" class="btn btn-link">物业管理</button>
-                            <button type="button" class="btn btn-link">物业维修</button>
-                            <button type="button" class="btn btn-link">文件员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">营业顾问</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">房地产策划</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">物业经理</button>
-                            <button type="button" class="btn btn-link">物业客服</button>
-                            <button type="button" class="btn btn-link">消防员</button>
-                            <button type="button" class="btn btn-link">物业项目经理</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">房地产销售</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">房地产开发</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">物业保安</button>
-                            <button type="button" class="btn btn-link">物业电工</button>
-                            <button type="button" class="btn btn-link">客服主管</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">房地产招商</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">房地产评估</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">客服员</button>
-                            <button type="button" class="btn btn-link">物业主管</button>
-                            <button type="button" class="btn btn-link">前台人员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">开发报建</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">地产经纪</button>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">房产物业</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">物业管理</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">物业维修</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">文件员</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">物业经理</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">物业客服</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">消防员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">物业项目经理</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">物业保安</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">物业电工</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">客服主管</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">客服员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">物业主管</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">前台人员</button>
                         </div>
                     </div>
                 </div>
@@ -326,67 +339,67 @@
                     <br>
                     <div class="row">
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">采购员</button>
-                            <button type="button" class="btn btn-link">采购助理</button>
-                            <button type="button" class="btn btn-link">外贸助理</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">采购员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">采购助理</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">外贸助理</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">外贸员</button>
-                            <button type="button" class="btn btn-link">外贸日语</button>
-                            <button type="button" class="btn btn-link">采购经理</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">外贸员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">外贸日语</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">采购经理</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">外贸业务员</button>
-                            <button type="button" class="btn btn-link">采购专员</button>
-                            <button type="button" class="btn btn-link">专业买手</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">外贸业务员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">采购专员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">专业买手</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">外贸跟单</button>
-                            <button type="button" class="btn btn-link">外贸英语</button>
-                        </div>
-                    </div>
-                    <br>
-                    <br>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <button type="button" class="btn btn-link">理货员</button>
-                            <button type="button" class="btn btn-link">导购经理</button>
-                            <button type="button" class="btn btn-link">销售员</button>
-                        </div>
-                        <div class="col-md-3">
-                            <button type="button" class="btn btn-link">营业员</button>
-                            <button type="button" class="btn btn-link">新零售产品</button>
-                            <button type="button" class="btn btn-link">导购员</button>
-                        </div>
-                        <div class="col-md-3">
-                            <button type="button" class="btn btn-link">营业店长</button>
-                            <button type="button" class="btn btn-link">客服员</button>
-                        </div>
-                        <div class="col-md-3">
-                            <button type="button" class="btn btn-link">收银员</button>
-                            <button type="button" class="btn btn-link">营业督导</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">外贸跟单</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">外贸英语</button>
                         </div>
                     </div>
                     <br>
                     <br>
                     <div class="row">
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">供应链</button>
-                            <button type="button" class="btn btn-link">物流跟单</button>
-                            <button type="button" class="btn btn-link">报检报关</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">理货员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">导购经理</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">销售员</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">物流专员</button>
-                            <button type="button" class="btn btn-link">物流管理</button>
-                            <button type="button" class="btn btn-link">仓储管理</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">营业员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">新零售产品</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">导购员</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">物流经理</button>
-                            <button type="button" class="btn btn-link">物仓调度</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">营业店长</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">客服员</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">物流运营</button>
-                            <button type="button" class="btn btn-link">贷运代理</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">收银员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">营业督导</button>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">供应链</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">物流跟单</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">报检报关</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">物流专员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">物流管理</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">仓储管理</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">物流经理</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">物仓调度</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">物流运营</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">贷运代理</button>
                         </div>
                     </div>
                 </div>
@@ -395,67 +408,67 @@
                     <br>
                     <div class="row">
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">教务员</button>
-                            <button type="button" class="btn btn-link">专业教师</button>
-                            <button type="button" class="btn btn-link">班主任</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">教务员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">专业教师</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">班主任</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">英语老师</button>
-                            <button type="button" class="btn btn-link">美术老师</button>
-                            <button type="button" class="btn btn-link">助教员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">英语老师</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">美术老师</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">助教员</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">课程顾问</button>
-                            <button type="button" class="btn btn-link">幼儿教师</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">课程顾问</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">幼儿教师</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">专业英语</button>
-                            <button type="button" class="btn btn-link">小学教师</button>
-                        </div>
-                    </div>
-                    <br>
-                    <br>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <button type="button" class="btn btn-link">编导员</button>
-                            <button type="button" class="btn btn-link">后期制作</button>
-                            <button type="button" class="btn btn-link">化妆师</button>
-                        </div>
-                        <div class="col-md-3">
-                            <button type="button" class="btn btn-link">摄影师</button>
-                            <button type="button" class="btn btn-link">专业制片</button>
-                        </div>
-                        <div class="col-md-3">
-                            <button type="button" class="btn btn-link">编剧人员</button>
-                            <button type="button" class="btn btn-link">传媒记者</button>
-                        </div>
-                        <div class="col-md-3">
-                            <button type="button" class="btn btn-link">摄影员</button>
-                            <button type="button" class="btn btn-link">后期剪辑员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">专业英语</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">小学教师</button>
                         </div>
                     </div>
                     <br>
                     <br>
                     <div class="row">
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">广告创意</button>
-                            <button type="button" class="btn btn-link">广告制作</button>
-                            <button type="button" class="btn btn-link">网页设计</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">编导员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">后期制作</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">化妆师</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">美术指导</button>
-                            <button type="button" class="btn btn-link">媒介员</button>
-                            <button type="button" class="btn btn-link">插画画师</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">摄影师</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">专业制片</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">策划经理</button>
-                            <button type="button" class="btn btn-link">广告审核</button>
-                            <button type="button" class="btn btn-link">工业设计</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">编剧人员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">传媒记者</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">文案编辑</button>
-                            <button type="button" class="btn btn-link">平面设计</button>
-                            <button type="button" class="btn btn-link">视觉设计</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">摄影员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">后期剪辑员</button>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">广告创意</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">广告制作</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">网页设计</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">美术指导</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">媒介员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">插画画师</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">策划经理</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">广告审核</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">工业设计</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">文案编辑</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">平面设计</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">视觉设计</button>
                         </div>
                     </div>
                 </div>
@@ -464,65 +477,65 @@
                     <br>
                     <div class="row">
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">美容师</button>
-                            <button type="button" class="btn btn-link">西医美容</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">美容师</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">西医美容</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">美容学徒</button>
-                            <button type="button" class="btn btn-link">美甲师</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">美容学徒</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">美甲师</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">美容导师</button>
-                            <button type="button" class="btn btn-link">健身教练</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">美容导师</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">健身教练</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">纹绣师</button>
-                        </div>
-                    </div>
-                    <br>
-                    <br>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <button type="button" class="btn btn-link">旅游导游</button>
-                            <button type="button" class="btn btn-link">旅游销售</button>
-                            <button type="button" class="btn btn-link">门店店长</button>
-                            <button type="button" class="btn btn-link">酒店收银员</button>
-                        </div>
-                        <div class="col-md-3">
-                            <button type="button" class="btn btn-link">旅游顾问</button>
-                            <button type="button" class="btn btn-link">票务员</button>
-                            <button type="button" class="btn btn-link">酒店前台</button>
-                        </div>
-                        <div class="col-md-3">
-                            <button type="button" class="btn btn-link">旅游计调</button>
-                            <button type="button" class="btn btn-link">服务员</button>
-                            <button type="button" class="btn btn-link">酒店管理</button>
-                        </div>
-                        <div class="col-md-3">
-                            <button type="button" class="btn btn-link">签证办理员</button>
-                            <button type="button" class="btn btn-link">收银员</button>
-                            <button type="button" class="btn btn-link">餐饮管理</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">纹绣师</button>
                         </div>
                     </div>
                     <br>
                     <br>
                     <div class="row">
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">场所保安</button>
-                            <button type="button" class="btn btn-link">家政员</button>
-                            <button type="button" class="btn btn-link">全职司机</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">旅游导游</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">旅游销售</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">门店店长</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">酒店收银员</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">酒店保洁</button>
-                            <button type="button" class="btn btn-link">婚礼策划</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">旅游顾问</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">票务员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">酒店前台</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">全职月嫂</button>
-                            <button type="button" class="btn btn-link">育婴师</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">旅游计调</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">服务员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">酒店管理</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">全职保姆</button>
-                            <button type="button" class="btn btn-link">催乳师</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">签证办理员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">收银员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">餐饮管理</button>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">场所保安</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">家政员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">全职司机</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">酒店保洁</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">婚礼策划</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">全职月嫂</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">育婴师</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">全职保姆</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">催乳师</button>
                         </div>
                     </div>
                 </div>
@@ -531,53 +544,53 @@
                     <br>
                     <div class="row">
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">市场营销</button>
-                            <button type="button" class="btn btn-link">市场推广</button>
-                            <button type="button" class="btn btn-link">上午渠道</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">市场营销</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">市场推广</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">上午渠道</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">市场策划</button>
-                            <button type="button" class="btn btn-link">SEO</button>
-                            <button type="button" class="btn btn-link">网络营销员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">市场策划</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">SEO</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">网络营销员</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">市场顾问</button>
-                            <button type="button" class="btn btn-link">品牌经理</button>
-                            <button type="button" class="btn btn-link">活动策划</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">市场顾问</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">品牌经理</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">活动策划</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">市场总监</button>
-                            <button type="button" class="btn btn-link">SEM</button>
-                            <button type="button" class="btn btn-link">APP市场推广</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">市场总监</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">SEM</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">APP市场推广</button>
                         </div>
                     </div>
                     <br>
                     <br>
                     <div class="row">
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">销售专员</button>
-                            <button type="button" class="btn btn-link">BD经理</button>
-                            <button type="button" class="btn btn-link">电话销售</button>
-                            <button type="button" class="btn btn-link">网络营销</button>
-                            <button type="button" class="btn btn-link">城市经理</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">销售专员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">BD经理</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">电话销售</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">网络营销</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">城市经理</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">销售经理</button>
-                            <button type="button" class="btn btn-link">大客户销售</button>
-                            <button type="button" class="btn btn-link">销售顾问</button>
-                            <button type="button" class="btn btn-link">销售主管</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">销售经理</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">大客户销售</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">销售顾问</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">销售主管</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">客户代表</button>
-                            <button type="button" class="btn btn-link">渠道销售</button>
-                            <button type="button" class="btn btn-link">商品经理</button>
-                            <button type="button" class="btn btn-link">销售总监</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">客户代表</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">渠道销售</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">商品经理</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">销售总监</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">销售代表</button>
-                            <button type="button" class="btn btn-link">销售助理</button>
-                            <button type="button" class="btn btn-link">广告销售</button>
-                            <button type="button" class="btn btn-link">商务总监</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">销售代表</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">销售助理</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">广告销售</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">商务总监</button>
                         </div>
                     </div>
                 </div>
@@ -586,68 +599,68 @@
                     <br>
                     <div class="row">
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">人力资源主管</button>
-                            <button type="button" class="btn btn-link">培训员</button>
-                            <button type="button" class="btn btn-link">人力资源总监</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">人力资源主管</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">培训员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">人力资源总监</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">招聘员</button>
-                            <button type="button" class="btn btn-link">薪资福利</button>
-                            <button type="button" class="btn btn-link">员工关系</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">招聘员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">薪资福利</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">员工关系</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">HRBP</button>
-                            <button type="button" class="btn btn-link">绩效考核</button>
-                            <button type="button" class="btn btn-link">组织发展</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">HRBP</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">绩效考核</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">组织发展</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">人力资源专员</button>
-                            <button type="button" class="btn btn-link">人力资源经理</button>
-                        </div>
-                    </div>
-                    <br>
-                    <br>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <button type="button" class="btn btn-link">会计人员</button>
-                            <button type="button" class="btn btn-link">税务人员</button>
-                            <button type="button" class="btn btn-link">财务分析</button>
-                            <button type="button" class="btn btn-link">法务主管</button>
-                        </div>
-                        <div class="col-md-3">
-                            <button type="button" class="btn btn-link">出纳人员</button>
-                            <button type="button" class="btn btn-link">风险控制员</button>
-                            <button type="button" class="btn btn-link">法务专员</button>
-                        </div>
-                        <div class="col-md-3">
-                            <button type="button" class="btn btn-link">财务顾问</button>
-                            <button type="button" class="btn btn-link">财务经理</button>
-                            <button type="button" class="btn btn-link">律师顾问</button>
-                        </div>
-                        <div class="col-md-3">
-                            <button type="button" class="btn btn-link">结算员</button>
-                            <button type="button" class="btn btn-link">财务主管</button>
-                            <button type="button" class="btn btn-link">法律顾问</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">人力资源专员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">人力资源经理</button>
                         </div>
                     </div>
                     <br>
                     <br>
                     <div class="row">
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">行政专员</button>
-                            <button type="button" class="btn btn-link">后勤员工</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">会计人员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">税务人员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">财务分析</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">法务主管</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">前台销售</button>
-                            <button type="button" class="btn btn-link">全职司机</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">出纳人员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">风险控制员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">法务专员</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">行政主管</button>
-                            <button type="button" class="btn btn-link">行政经理</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">财务顾问</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">财务经理</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">律师顾问</button>
                         </div>
                         <div class="col-md-3">
-                            <button type="button" class="btn btn-link">经理助理</button>
-                            <button type="button" class="btn btn-link">行政总监</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">结算员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">财务主管</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">法律顾问</button>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">行政专员</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">后勤员工</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">前台销售</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">全职司机</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">行政主管</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">行政经理</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">经理助理</button>
+                            <button type="button" class="btn btn-link" onclick="jump($(this).text())">行政总监</button>
                         </div>
                     </div>
                 </div>
@@ -659,7 +672,8 @@
         <div class="myStyle_3 col-md-1 col-lg-push-2 myStyle_8">
             <div style="padding: 25px">
                 <!--从数据库查询当前用户头像地址，然后把图片11.jpg替换掉-->
-                <img class="img-circle" src="../../static/photo/others/11.jpg" width="150" height="150" onclick="employee()"/>
+                <img class="img-circle" src="../../static/photo/others/11.jpg" width="150" height="150"
+                     onclick="employee()"/>
             </div>
             <div class="text-center">
                 <div><h4>HELLO</h4></div>
