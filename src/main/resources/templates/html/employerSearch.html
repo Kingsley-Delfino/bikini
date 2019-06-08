@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <meta charset="utf-8">
+    <title>我发布的职位</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../css/bootstrap-theme.min.css" rel="stylesheet"/>
+    <script src="../js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="../../photo/others/5.jpg" rel="shortcut icon"/>
+    <style>
+        .myStyle_1 {
+            width: 1000px;
+            height: 60px;
+            background: #FFFFFF;
+        }
+
+        .myStyle_2 {
+            height: auto;
+            background: #aaa;
+        }
+
+        .myStyle_2::after {
+            clear: both;
+        }
+
+        .myStyle_3 {
+            height: 150px;
+            width: 1000px;
+            background: #FFFFFF;
+        }
+
+        .myStyle_5 {
+            height: 30px;
+            width: 65px;
+            background: #FFFFFF;
+        }
+
+        .myStyle_6 {
+            height: 300px;
+            background: #FFFFFF;
+        }
+
+        .myStyle_7 {
+            height: 70px;
+            background: #aaa;
+        }
+
+        .myStyle_8 {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .myStyle_9 {
+            width: 1000px;
+            height: 150px;
+            background: #FFFFFF;
+        }
+
+        .myStyle_10 {
+            width: 1000px;
+            height: 1px;
+            background: #aaa;
+        }
+
+        .myStyle_11 {
+            color: #FF0000;
+        }
+
+        .myStyle_12 {
+            color: #00BFFF;
+        }
+
+        .myStyle_13 {
+            color: #aaa;
+        }
+    </style>
+    <script>
+        function showExperience(a) {
+            $('.experience').text(a)
+        }
+
+        function showEducaion(a) {
+            $('.education').text(a)
+        }
+
+        function showCompany(a) {
+            $('.company').text(a)
+        }
+
+        function showJob(a) {
+            $('.job').text(a)
+        }
+    </script>
+</head>
+<body>
+<div class="jumbotron text-center" style="margin-bottom:0; height: 30px; background:#FFFFFF">
+    <div class="row" style="margin-top:-1.3%">
+        <div class="col-sm-2 col-lg-push-4">
+            <img src="../../photo/others/3.jpg" style="height: 50px">
+        </div>
+        <div class="col-sm-2 col-lg-push-3">
+            <h5>我发布的职位</h5>
+        </div>
+        <div class="col-sm-2 col-lg-push-2">
+            <img src="../../photo/others/6.jpg" style="height: 50px">
+        </div>
+    </div>
+</div>
+<div class="myStyle_2" style="padding-top: 30px; padding-bottom: 30px; padding-left: 300px">
+    <div class="myStyle_1 text-center" style="padding-top: 1px">
+        <div><h3 class="text-primary">我发布的职位</h3></div>
+    </div>
+    <!--搜索结果，循环显示form即可，其中各项内容需从数据库中查询，并替换-->
+    <form>
+        <div class="myStyle_10"></div>
+        <div class="myStyle_9 myStyle_8"
+             style="padding-left: 30px; padding-right: 30px; padding-top: 10px; padding-bottom: 10px">
+            <div class="row">
+                <!--职位名-->
+                <div class="text-left col-md-6">
+                    <h4 class="myStyle_12">智能交通工程中心-Java开发工程师</h4>
+                </div>
+                <!--企业名-->
+                <div class="text-right col-md-6">
+                    <h4>上海产业技术研究院</h4>
+                </div>
+            </div>
+            <div class="row">
+                <!--职位月薪-->
+                <div class="text-left col-md-2">
+                    <h4 class="myStyle_11">8000-16000元</h4>
+                </div>
+                <!--职位要求，三类必填，即使是“不限”也要显示出来-->
+                <div class="text-left col-md-6">
+                    <h5 class="myStyle_13">经验不限&nbsp&nbsp&nbsp本科&nbsp&nbsp&nbsp全职</h5>
+                </div>
+                <!--企业类型-->
+                <div class="text-right col-md-4">
+                    <h5>外商独资&nbsp&nbsp&nbsp100-300人</h5>
+                </div>
+            </div>
+            <div class="text-right">
+                <button class="btn btn-info btn-lg" data-toggle="dropdown" type="button">删除职位</button>
+            </div>
+        </div>
+    </form>
+    <form>
+        <div class="myStyle_10"></div>
+        <div class="myStyle_9 myStyle_8"
+             style="padding-left: 30px; padding-right: 30px; padding-top: 10px; padding-bottom: 10px">
+            <div class="row">
+                <!--职位名-->
+                <div class="text-left col-md-6">
+                    <h4 class="myStyle_12">智能交通工程中心-Java开发工程师</h4>
+                </div>
+                <!--企业名-->
+                <div class="text-right col-md-6">
+                    <h4>上海产业技术研究院</h4>
+                </div>
+            </div>
+            <div class="row">
+                <!--职位月薪-->
+                <div class="text-left col-md-2">
+                    <h4 class="myStyle_11">8000-16000元</h4>
+                </div>
+                <!--职位要求，三类必填，即使是“不限”也要显示出来-->
+                <div class="text-left col-md-6">
+                    <h5 class="myStyle_13">经验不限&nbsp&nbsp&nbsp本科&nbsp&nbsp&nbsp全职</h5>
+                </div>
+                <!--企业类型-->
+                <div class="text-right col-md-4">
+                    <h5>外商独资&nbsp&nbsp&nbsp100-300人</h5>
+                </div>
+            </div>
+            <div class="text-right">
+                <button class="btn btn-info btn-lg" data-toggle="dropdown" type="button">删除职位</button>
+            </div>
+        </div>
+    </form>
+    <form>
+        <div class="myStyle_10"></div>
+        <div class="myStyle_9 myStyle_8"
+             style="padding-left: 30px; padding-right: 30px; padding-top: 10px; padding-bottom: 10px">
+            <div class="row">
+                <!--职位名-->
+                <div class="text-left col-md-6">
+                    <h4 class="myStyle_12">智能交通工程中心-Java开发工程师</h4>
+                </div>
+                <!--企业名-->
+                <div class="text-right col-md-6">
+                    <h4>上海产业技术研究院</h4>
+                </div>
+            </div>
+            <div class="row">
+                <!--职位月薪-->
+                <div class="text-left col-md-2">
+                    <h4 class="myStyle_11">8000-16000元</h4>
+                </div>
+                <!--职位要求，三类必填，即使是“不限”也要显示出来-->
+                <div class="text-left col-md-6">
+                    <h5 class="myStyle_13">经验不限&nbsp&nbsp&nbsp本科&nbsp&nbsp&nbsp全职</h5>
+                </div>
+                <!--企业类型-->
+                <div class="text-right col-md-4">
+                    <h5>外商独资&nbsp&nbsp&nbsp100-300人</h5>
+                </div>
+            </div>
+            <div class="text-right">
+                <button class="btn btn-info btn-lg" data-toggle="dropdown" type="button">删除职位</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="myStyle_6"></div>
+<div class="myStyle_7"></div>
+<div class="jumbotron text-center" style="margin-bottom:0">
+    <h6 class="text-danger">RightCopy@Bikini</h6>
+    <h5 class="text-info">解释权归Bikini所有，如有任何意见或建议请联系我们</h5>
+    <p><h5><span class="glyphicon glyphicon-phone-alt">：68221932</span></h5></p>
+    <p><h5><span class="glyphicon glyphicon-earphone">：18302161037</span></h5></p>
+    <p><h5><span class="glyphicon glyphicon-envelope"></span>：161310614@mail.dhu.edu.cn</h5></p>
+    <p><h6><span class="glyphicon glyphicon-magnet"></span>
+    <span class="glyphicon glyphicon-bell"></span>
+    <span class="glyphicon glyphicon-globe"></span>
+    <span class="glyphicon glyphicon-tree-deciduous"></span></h6></p>
+</div>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head  runat="server">
+    <meta charset="utf-8">
+    <title>公司绑定</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../css/bootstrap-theme.min.css" />
+    <script src="../js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="shortcut icon" href="../../../photo/others/5.jpg" />
+    <style>
+        .myStyle_2 {
+            height: auto;
+            background: #aaa;
+        }
+        .myStyle_2::after {
+            clear: both;
+        }
+        .myStyle_3 {
+            margin-right: auto;
+            margin-left: auto;
+            height: auto;
+            width: 500px;
+            background: #FFFFFF;
+        }
+        .myStyle_3::after {
+            clear: both;
+        }
+        .myStyle_4 {
+            margin-right: auto;
+            margin-left: auto;
+            height: auto;
+            width: 400px;
+            background: #FFFFFF;
+        }
+        .myStyle_4::after {
+            clear: both;
+        }
+        .myStyle_5 {
+            text-align: left;
+            color: #9d9d9d;
+        }
+        .myStyle_6 {
+            height: 300px;
+            background: #FFFFFF;
+        }
+        .myStyle_7 {
+            height: 70px;
+            background: #aaa;
+        }
+    </style>
+
+    <script>
+        function showCompany(a) {
+            $('.companyType').text(a)
+        }
+    </script>
+</head>
+<body>
+<div class="jumbotron text-center" style="margin-bottom:0; height: 30px; background:#FFFFFF">
+    <div class="row" style="margin-top:-1.3%">
+        <div class="col-sm-2 col-lg-push-4">
+            <img src="../../../photo/others/3.jpg" style="height: 50px">
+        </div>
+        <div class="col-sm-2 col-lg-push-3">
+            <h5>公司绑定</h5>
+        </div>
+        <div class="col-sm-2 col-lg-push-2">
+            <img src="../../../photo/others/6.jpg" style="height: 50px">
+        </div>
+    </div>
+</div>
+
+<div class="myStyle_2" style="padding-top: 30px; padding-bottom: 30px">
+    <form>
+        <div class="myStyle_3" style="padding-top: 100px; padding-bottom: 100px">
+            <div class="myStyle_4">
+                <input type="text" id="companyName" class="form-control" placeholder="公司名称" required autofocus>
+                <br>
+                <input type="text" id="companyStaffNum" class="form-control" placeholder="公司员工数量" required>
+                <br>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default dropdown-toggle myStyle_5" data-toggle="dropdown"
+                            style="background: #FFFFFF; width: 400px">
+                        <span class="companyType">公司性质</span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="#" onclick="showCompany($(this).text())">不限</a></li>
+                        <li><a href="#" onclick="showCompany($(this).text())">国企</a></li>
+                        <li><a href="#" onclick="showCompany($(this).text())">外商独资</a></li>
+                        <li><a href="#" onclick="showCompany($(this).text())">代表处</a></li>
+                        <li><a href="#" onclick="showCompany($(this).text())">合资</a></li>
+                        <li><a href="#" onclick="showCompany($(this).text())">股份制企业</a></li>
+                        <li><a href="#" onclick="showCompany($(this).text())">上市公司</a></li>
+                        <li><a href="#" onclick="showCompany($(this).text())">国家机关</a></li>
+                        <li><a href="#" onclick="showCompany($(this).text())">事业单位</a></li>
+                        <li><a href="#" onclick="showCompany($(this).text())">银行</a></li>
+                        <li><a href="#" onclick="showCompany($(this).text())">医院</a></li>
+                        <li><a href="#" onclick="showCompany($(this).text())">学校/下级学院</a></li>
+                        <li><a href="#" onclick="showCompany($(this).text())">律师事务所</a></li>
+                        <li><a href="#" onclick="showCompany($(this).text())">社会团体</a></li>
+                        <li><a href="#" onclick="showCompany($(this).text())">港澳台公司</a></li>
+                        <li><a href="#" onclick="showCompany($(this).text())">其它</a></li>
+                    </ul>
+                </div>
+                <br>
+                <br>
+                <textarea class="form-control" id="companyAdress" rows="3" style="min-width: 90%" placeholder="公司地址" required></textarea>
+                <br>
+                <textarea class="form-control" id="companyDescription" rows="5" style="min-width: 90%" placeholder="公司描述" required></textarea>
+                <br>
+                <button class="btn btn-lg btn-info btn-block" type="submit">确认绑定</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="myStyle_6"></div>
+<div class="myStyle_7"></div>
+<div class="jumbotron text-center" style="margin-bottom:0">
+    <h6 class="text-danger">RightCopy@Bikini</h6>
+    <h5 class="text-info">解释权归Bikini所有，如有任何意见或建议请联系我们</h5>
+    <p><h5><span class="glyphicon glyphicon-phone-alt">：68221932</span></h5></p>
+    <p><h5><span class="glyphicon glyphicon-earphone">：18302161037</span></h5></p>
+    <p><h5><span class="glyphicon glyphicon-envelope"></span>：161310614@mail.dhu.edu.cn</h5></p>
+    <p><h6><span class="glyphicon glyphicon-magnet"></span>
+    <span class="glyphicon glyphicon-bell"></span>
+    <span class="glyphicon glyphicon-globe"></span>
+    <span class="glyphicon glyphicon-tree-deciduous"></span></h6></p>
+</div>
+</body>
+</html>

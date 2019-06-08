@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <meta charset="utf-8">
+    <title>找工作</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../css/bootstrap-theme.min.css" rel="stylesheet"/>
+    <script src="../js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="../../../photo/others/5.jpg" rel="shortcut icon"/>
+    <style>
+        .myStyle_1 {
+            height: 30px;
+            background: #aaa;
+        }
+        .myStyle_2 {
+            height: 560px;
+            background: #aaa;
+        }
+        .myStyle_3 {
+            margin-left: 10px;
+            height: 500px;
+            width: 200px;
+            background: #FFFFFF;
+        }
+        .myStyle_4 {
+            margin-left: 10px;
+            height: 500px;
+            width: 665px;
+            background: #FFFFFF;
+        }
+        .myStyle_6 {
+            height: 300px;
+            background: #FFFFFF;
+        }
+        .myStyle_7 {
+            height: 70px;
+            background: #aaa;
+        }
+        .myStyle_8 {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    </style>
+
+</head>
+<body>
+<div class="jumbotron text-center" style="margin-bottom:0; height: 150px; background:#FFFFFF">
+    <div class="row">
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm-2">
+            <img src="../../../photo/others/3.jpg" style="margin-top:-25px; height: 100px">
+        </div>
+        <div>
+            <form class="bs-example bs-example-form" role="form">
+                <div class="col-lg-6">
+                    <div class="input-group  input-group-lg">
+                        <div class="input-group-btn">
+                            <button class="btn btn-info dropdown-toggle" data-toggle="dropdown" type="button">职位</button>
+                        </div>
+                        <label for="search"></label><input type="text" id="search" class="form-control" placeholder="请输入关键词，如：JAVA、销售代表、行政助理等" required autofocus>
+                        <span class="input-group-btn">
+						<button class="btn btn-info" type="button">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+					</span>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-2">
+            <img src="../../../photo/others/6.jpg" style="margin-top:-25px; height: 100px">
+        </div>
+    </div>
+</div>
+<div class="myStyle_2" style="padding-top: 30px">
+    <div class="row">
+        <div class="myStyle_3 col-md-1 col-lg-push-2 myStyle_8">
+            <div>
+                <ul class="nav nav-tab vertical-tab" role="tablist" id="vtab">
+                    <li role="presentation"><a href="#tab1" role="tab" data-toggle="tab"><h5>互联网IT</h5></a></li>
+                    <li role="presentation"><a href="#tab2" role="tab" data-toggle="tab"><h5>金融</h5></a></li>
+                    <li role="presentation"><a href="#tab3" role="tab" data-toggle="tab"><h5>房地产/建筑</h5></a></li>
+                    <li role="presentation"><a href="#tab4" role="tab" data-toggle="tab"><h5>贸易/零售/物流</h5></a></li>
+                    <li role="presentation"><a href="#tab5" role="tab" data-toggle="tab"><h5>教育/传媒/广告</h5></a></li>
+                    <li role="presentation"><a href="#tab6" role="tab" data-toggle="tab"><h5>服务业</h5></a></li>
+                    <li role="presentation"><a href="#tab7" role="tab" data-toggle="tab"><h5>市场/销售</h5></a></li>
+                    <li role="presentation"><a href="#tab8" role="tab" data-toggle="tab"><h5>人事/财务/行政</h5></a></li>
+                    <li role="presentation" class="active"><a href="#tab9" role="tab" data-toggle="tab"><h5>全部职类</h5></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="myStyle_4 col-md-1 col-lg-push-2 myStyle_8">
+            <div class="tab-content vertical-tab-content">
+                <div role="tabpanel" class="tab-pane" id="tab1" style="padding-left: 15px;">
+                    <div><h3>互联网IT</h3></div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">Java开发</button>
+                            <button type="button" class="btn btn-link">Python</button>
+                            <button type="button" class="btn btn-link">算法工程师</button>
+                            <button type="button" class="btn btn-link">数据分析师</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">UI设计师</button>
+                            <button type="button" class="btn btn-link">Android</button>
+                            <button type="button" class="btn btn-link">Hadoop</button>
+                            <button type="button" class="btn btn-link">数据架构</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">Web前端</button>
+                            <button type="button" class="btn btn-link">前端美工</button>
+                            <button type="button" class="btn btn-link">Node.js</button>
+                            <button type="button" class="btn btn-link">人工智能</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">PHP</button>
+                            <button type="button" class="btn btn-link">深度学习</button>
+                            <button type="button" class="btn btn-link">数据开发</button>
+                            <button type="button" class="btn btn-link">区块链</button>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">电器工程师</button>
+                            <button type="button" class="btn btn-link">设备工程师</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">电子工程师</button>
+                            <button type="button" class="btn btn-link">硬件工程师</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">PLC</button>
+                            <button type="button" class="btn btn-link">结构工程师</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">测试工程师</button>
+                            <button type="button" class="btn btn-link">工艺工程师</button>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">产品经理</button>
+                            <button type="button" class="btn btn-link">天猫运营</button>
+                            <button type="button" class="btn btn-link">游戏运营</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">新媒体运营</button>
+                            <button type="button" class="btn btn-link">产品助理</button>
+                            <button type="button" class="btn btn-link">产品编辑</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">运营专员</button>
+                            <button type="button" class="btn btn-link">产品运营</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">淘宝运营</button>
+                            <button type="button" class="btn btn-link">淘宝客服</button>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="tab2" style="padding-left: 15px;">
+                    <div><h3>金融</h3></div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">投资经理</button>
+                            <button type="button" class="btn btn-link">银行销售</button>
+                            <button type="button" class="btn btn-link">金融产品</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">风险控制</button>
+                            <button type="button" class="btn btn-link">信用评审</button>
+                            <button type="button" class="btn btn-link">汽车金融</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">业务催收</button>
+                            <button type="button" class="btn btn-link">信用卡</button>
+                            <button type="button" class="btn btn-link">金融研究</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">银行柜员</button>
+                            <button type="button" class="btn btn-link">贷款申请</button>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">证券交易</button>
+                            <button type="button" class="btn btn-link">操盘手</button>
+                            <button type="button" class="btn btn-link">信用托售</button>
+                            <button type="button" class="btn btn-link">权证交易</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">交易员</button>
+                            <button type="button" class="btn btn-link">基金管理</button>
+                            <button type="button" class="btn btn-link">典当管理</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">投资经理</button>
+                            <button type="button" class="btn btn-link">股票经理</button>
+                            <button type="button" class="btn btn-link">担保员</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">期贷员</button>
+                            <button type="button" class="btn btn-link">投资顾问</button>
+                            <button type="button" class="btn btn-link">信贷员</button>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">财产保险</button>
+                            <button type="button" class="btn btn-link">保险销售</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">保险内勤</button>
+                            <button type="button" class="btn btn-link">理财顾问</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">理赔顾问</button>
+                            <button type="button" class="btn btn-link">查勘定损</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">精算师</button>
+                            <button type="button" class="btn btn-link">车险顾问</button>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="tab3" style="padding-left: 15px;">
+                    <div><h3>房地产/建筑</h3></div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">土建工程师</button>
+                            <button type="button" class="btn btn-link">造价员</button>
+                            <button type="button" class="btn btn-link">暖通工程师</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">施工员</button>
+                            <button type="button" class="btn btn-link">一级建造师</button>
+                            <button type="button" class="btn btn-link">项目经理</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">资料员</button>
+                            <button type="button" class="btn btn-link">室内设计员</button>
+                            <button type="button" class="btn btn-link">电气工程师</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">预算员</button>
+                            <button type="button" class="btn btn-link">建筑设计</button>
+                            <button type="button" class="btn btn-link">土建员</button>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">营业顾问</button>
+                            <button type="button" class="btn btn-link">房地产策划</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">房地产销售</button>
+                            <button type="button" class="btn btn-link">房地产开发</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">房地产招商</button>
+                            <button type="button" class="btn btn-link">房地产评估</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">开发报建</button>
+                            <button type="button" class="btn btn-link">地产经纪</button>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">房产物业</button>
+                            <button type="button" class="btn btn-link">物业管理</button>
+                            <button type="button" class="btn btn-link">物业维修</button>
+                            <button type="button" class="btn btn-link">文件员</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">物业经理</button>
+                            <button type="button" class="btn btn-link">物业客服</button>
+                            <button type="button" class="btn btn-link">消防员</button>
+                            <button type="button" class="btn btn-link">物业项目经理</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">物业保安</button>
+                            <button type="button" class="btn btn-link">物业电工</button>
+                            <button type="button" class="btn btn-link">客服主管</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">客服员</button>
+                            <button type="button" class="btn btn-link">物业主管</button>
+                            <button type="button" class="btn btn-link">前台人员</button>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="tab4" style="padding-left: 15px;">
+                    <div><h3>贸易/零售/物流</h3></div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">采购员</button>
+                            <button type="button" class="btn btn-link">采购助理</button>
+                            <button type="button" class="btn btn-link">外贸助理</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">外贸员</button>
+                            <button type="button" class="btn btn-link">外贸日语</button>
+                            <button type="button" class="btn btn-link">采购经理</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">外贸业务员</button>
+                            <button type="button" class="btn btn-link">采购专员</button>
+                            <button type="button" class="btn btn-link">专业买手</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">外贸跟单</button>
+                            <button type="button" class="btn btn-link">外贸英语</button>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">理货员</button>
+                            <button type="button" class="btn btn-link">导购经理</button>
+                            <button type="button" class="btn btn-link">销售员</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">营业员</button>
+                            <button type="button" class="btn btn-link">新零售产品</button>
+                            <button type="button" class="btn btn-link">导购员</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">营业店长</button>
+                            <button type="button" class="btn btn-link">客服员</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">收银员</button>
+                            <button type="button" class="btn btn-link">营业督导</button>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">供应链</button>
+                            <button type="button" class="btn btn-link">物流跟单</button>
+                            <button type="button" class="btn btn-link">报检报关</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">物流专员</button>
+                            <button type="button" class="btn btn-link">物流管理</button>
+                            <button type="button" class="btn btn-link">仓储管理</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">物流经理</button>
+                            <button type="button" class="btn btn-link">物仓调度</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">物流运营</button>
+                            <button type="button" class="btn btn-link">贷运代理</button>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="tab5" style="padding-left: 15px;">
+                    <div><h3>教育/传媒/广告</h3></div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">教务员</button>
+                            <button type="button" class="btn btn-link">专业教师</button>
+                            <button type="button" class="btn btn-link">班主任</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">英语老师</button>
+                            <button type="button" class="btn btn-link">美术老师</button>
+                            <button type="button" class="btn btn-link">助教员</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">课程顾问</button>
+                            <button type="button" class="btn btn-link">幼儿教师</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">专业英语</button>
+                            <button type="button" class="btn btn-link">小学教师</button>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">编导员</button>
+                            <button type="button" class="btn btn-link">后期制作</button>
+                            <button type="button" class="btn btn-link">化妆师</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">摄影师</button>
+                            <button type="button" class="btn btn-link">专业制片</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">编剧人员</button>
+                            <button type="button" class="btn btn-link">传媒记者</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">摄影员</button>
+                            <button type="button" class="btn btn-link">后期剪辑员</button>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">广告创意</button>
+                            <button type="button" class="btn btn-link">广告制作</button>
+                            <button type="button" class="btn btn-link">网页设计</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">美术指导</button>
+                            <button type="button" class="btn btn-link">媒介员</button>
+                            <button type="button" class="btn btn-link">插画画师</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">策划经理</button>
+                            <button type="button" class="btn btn-link">广告审核</button>
+                            <button type="button" class="btn btn-link">工业设计</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">文案编辑</button>
+                            <button type="button" class="btn btn-link">平面设计</button>
+                            <button type="button" class="btn btn-link">视觉设计</button>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="tab6" style="padding-left: 15px;">
+                    <div><h3>服务业</h3></div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">美容师</button>
+                            <button type="button" class="btn btn-link">西医美容</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">美容学徒</button>
+                            <button type="button" class="btn btn-link">美甲师</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">美容导师</button>
+                            <button type="button" class="btn btn-link">健身教练</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">纹绣师</button>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">旅游导游</button>
+                            <button type="button" class="btn btn-link">旅游销售</button>
+                            <button type="button" class="btn btn-link">门店店长</button>
+                            <button type="button" class="btn btn-link">酒店收银员</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">旅游顾问</button>
+                            <button type="button" class="btn btn-link">票务员</button>
+                            <button type="button" class="btn btn-link">酒店前台</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">旅游计调</button>
+                            <button type="button" class="btn btn-link">服务员</button>
+                            <button type="button" class="btn btn-link">酒店管理</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">签证办理员</button>
+                            <button type="button" class="btn btn-link">收银员</button>
+                            <button type="button" class="btn btn-link">餐饮管理</button>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">场所保安</button>
+                            <button type="button" class="btn btn-link">家政员</button>
+                            <button type="button" class="btn btn-link">全职司机</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">酒店保洁</button>
+                            <button type="button" class="btn btn-link">婚礼策划</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">全职月嫂</button>
+                            <button type="button" class="btn btn-link">育婴师</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">全职保姆</button>
+                            <button type="button" class="btn btn-link">催乳师</button>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="tab7" style="padding-left: 15px;">
+                    <div><h3>市场/销售</h3></div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">市场营销</button>
+                            <button type="button" class="btn btn-link">市场推广</button>
+                            <button type="button" class="btn btn-link">上午渠道</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">市场策划</button>
+                            <button type="button" class="btn btn-link">SEO</button>
+                            <button type="button" class="btn btn-link">网络营销员</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">市场顾问</button>
+                            <button type="button" class="btn btn-link">品牌经理</button>
+                            <button type="button" class="btn btn-link">活动策划</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">市场总监</button>
+                            <button type="button" class="btn btn-link">SEM</button>
+                            <button type="button" class="btn btn-link">APP市场推广</button>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">销售专员</button>
+                            <button type="button" class="btn btn-link">BD经理</button>
+                            <button type="button" class="btn btn-link">电话销售</button>
+                            <button type="button" class="btn btn-link">网络营销</button>
+                            <button type="button" class="btn btn-link">城市经理</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">销售经理</button>
+                            <button type="button" class="btn btn-link">大客户销售</button>
+                            <button type="button" class="btn btn-link">销售顾问</button>
+                            <button type="button" class="btn btn-link">销售主管</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">客户代表</button>
+                            <button type="button" class="btn btn-link">渠道销售</button>
+                            <button type="button" class="btn btn-link">商品经理</button>
+                            <button type="button" class="btn btn-link">销售总监</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">销售代表</button>
+                            <button type="button" class="btn btn-link">销售助理</button>
+                            <button type="button" class="btn btn-link">广告销售</button>
+                            <button type="button" class="btn btn-link">商务总监</button>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="tab8" style="padding-left: 15px;">
+                    <div><h3>人事/财务/行政</h3></div>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">人力资源主管</button>
+                            <button type="button" class="btn btn-link">培训员</button>
+                            <button type="button" class="btn btn-link">人力资源总监</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">招聘员</button>
+                            <button type="button" class="btn btn-link">薪资福利</button>
+                            <button type="button" class="btn btn-link">员工关系</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">HRBP</button>
+                            <button type="button" class="btn btn-link">绩效考核</button>
+                            <button type="button" class="btn btn-link">组织发展</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">人力资源专员</button>
+                            <button type="button" class="btn btn-link">人力资源经理</button>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">会计人员</button>
+                            <button type="button" class="btn btn-link">税务人员</button>
+                            <button type="button" class="btn btn-link">财务分析</button>
+                            <button type="button" class="btn btn-link">法务主管</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">出纳人员</button>
+                            <button type="button" class="btn btn-link">风险控制员</button>
+                            <button type="button" class="btn btn-link">法务专员</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">财务顾问</button>
+                            <button type="button" class="btn btn-link">财务经理</button>
+                            <button type="button" class="btn btn-link">律师顾问</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">结算员</button>
+                            <button type="button" class="btn btn-link">财务主管</button>
+                            <button type="button" class="btn btn-link">法律顾问</button>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">行政专员</button>
+                            <button type="button" class="btn btn-link">后勤员工</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">前台销售</button>
+                            <button type="button" class="btn btn-link">全职司机</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">行政主管</button>
+                            <button type="button" class="btn btn-link">行政经理</button>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" class="btn btn-link">经理助理</button>
+                            <button type="button" class="btn btn-link">行政总监</button>
+                        </div>
+                    </div>
+                </div>
+                <div role="tabpanel" class="tab-pane active" id="tab9">
+                    <img src="../../photo/others/8.jpg" width="665" height="500"/>
+                </div>
+            </div>
+        </div>
+        <div class="myStyle_3 col-md-1 col-lg-push-2 myStyle_8">
+            <div style="padding: 25px">
+                <!--从数据库查询当前用户头像地址，然后把图片11.jpg替换掉-->
+                <img class="img-circle" src="../../photo/others/11.jpg" width="150" height="150"/>
+            </div>
+            <div class="text-center">
+                <div><h4>HELLO</h4></div>
+                <!--从数据库查询当前用户姓名，然后把“章鱼哥”替换掉-->
+                <div><h3>章鱼哥</h3></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="myStyle_6"></div>
+<div class="myStyle_7"></div>
+<div class="jumbotron text-center" style="margin-bottom:0">
+        <h6 class="text-danger">RightCopy@Bikini</h6>
+        <h5 class="text-info">解释权归Bikini所有，如有任何意见或建议请联系我们</h5>
+        <p><h5><span class="glyphicon glyphicon-phone-alt">：68221932</span></h5></p>
+        <p><h5><span class="glyphicon glyphicon-earphone">：18302161037</span></h5></p>
+        <p><h5><span class="glyphicon glyphicon-envelope"></span>：161310614@mail.dhu.edu.cn</h5></p>
+        <p><h6><span class="glyphicon glyphicon-magnet"></span>
+        <span class="glyphicon glyphicon-bell"></span>
+        <span class="glyphicon glyphicon-globe"></span>
+        <span class="glyphicon glyphicon-tree-deciduous"></span></h6></p>
+</div>
+</body>
+</html>

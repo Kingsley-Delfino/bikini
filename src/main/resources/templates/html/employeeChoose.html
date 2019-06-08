@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <meta charset="utf-8">
+    <title>应聘者注册</title>
+    <link href="../css/bootstrap.min.css" rel="stylesheet"/>
+    <link href="../css/bootstrap-theme.min.css" rel="stylesheet"/>
+    <script src="../js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="../../../photo/others/5.jpg" rel="shortcut icon"/>
+    <style>
+        .myStyle_1 {
+            width: 1000px;
+            height: 60px;
+            background: #FFFFFF;
+        }
+
+        .myStyle_2 {
+            height: auto;
+            background: #aaa;
+        }
+
+        .myStyle_2::after {
+            clear: both;
+        }
+
+        .myStyle_3 {
+            height: 150px;
+            width: 1000px;
+            background: #FFFFFF;
+        }
+
+        .myStyle_5 {
+            height: 30px;
+            width: 65px;
+            background: #FFFFFF;
+        }
+
+        .myStyle_6 {
+            height: 300px;
+            background: #FFFFFF;
+        }
+
+        .myStyle_7 {
+            height: 70px;
+            background: #aaa;
+        }
+
+        .myStyle_8 {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .myStyle_9 {
+            width: 1000px;
+            height: 150px;
+            background: #FFFFFF;
+        }
+
+        .myStyle_10 {
+            width: 1000px;
+            height: 1px;
+            background: #aaa;
+        }
+
+        .myStyle_11 {
+            color: #FF0000;
+        }
+
+        .myStyle_12 {
+            color: #00BFFF;
+        }
+
+        .myStyle_13 {
+            color: #aaa;
+        }
+    </style>
+    <script>
+        function showExperience(a) {
+            $('.experience').text(a)
+        }
+
+        function showEducaion(a) {
+            $('.education').text(a)
+        }
+
+        function showCompany(a) {
+            $('.company').text(a)
+        }
+
+        function showJob(a) {
+            $('.job').text(a)
+        }
+    </script>
+</head>
+<body>
+<div class="jumbotron text-center" style="margin-bottom:0; height: 150px; background:#FFFFFF">
+    <div class="row">
+        <div class="col-sm-1">
+        </div>
+        <div class="col-sm-2">
+            <img src="../../../photo/others/3.jpg" style="margin-top:-25px; height: 100px">
+        </div>
+        <div>
+            <form class="bs-example bs-example-form" role="form">
+                <div class="col-lg-6">
+                    <div class="input-group  input-group-lg">
+                        <div class="input-group-btn">
+                            <button class="btn btn-info dropdown-toggle" data-toggle="dropdown" type="button">职位
+                            </button>
+                        </div>
+                        <label for="search"></label><input type="text" id="search" class="form-control"
+                                                           placeholder="请输入关键词，如：JAVA、销售代表、行政助理等" required autofocus>
+                        <span class="input-group-btn">
+						<button class="btn btn-info" type="button">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+					</span>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-sm-2">
+            <img src="../../../photo/others/6.jpg" style="margin-top:-25px; height: 100px">
+        </div>
+    </div>
+</div>
+<div class="myStyle_2" style="padding-top: 30px; padding-bottom: 30px; padding-left: 300px">
+    <div class="myStyle_3" style="padding-left: 30px">
+        <div class="row" style="padding-top: 30px">
+            <div class="col-md-2"><h4>月薪：</h4></div>
+            <div class="col-md-3 col-lg-pull-1 myStyle_8" style="padding-top: 10px">
+                <label class="radio-inline">
+                    <input type="radio" name="optionsRadiosinline" id="optionsRadios1" value="option1" checked>不限
+                </label>
+            </div>
+            <div class="col-md-1 myStyle_8" style="padding-top: 10px">
+                <label class="radio-inline">
+                    <input type="radio" name="optionsRadiosinline" id="optionsRadios2" value="option2">自定义
+                </label>
+            </div>
+            <div class="col-md-3 myStyle_8">
+                <input type="text" id="minWages" class="form-control" placeholder="最低月薪" style="width: 200px">
+            </div>
+            <div class="col-md-3 myStyle_8">
+                <input type="text" id="maxWages" class="form-control" placeholder="最高月薪" style="width: 200px">
+            </div>
+        </div>
+        <div class="row" style="padding-top: 20px">
+            <div class="col-md-2"><h4>其它：</h4></div>
+            <div class="btn-group col-md-2 col-lg-pull-1 myStyle_8">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                        style="background: #f7f7f7; width: 170px">
+                    <span class="education">学历要求</span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#" onclick="showEducaion($(this).text())">不限</a></li>
+                    <li><a href="#" onclick="showEducaion($(this).text())">高中/中专/中技及以下</a></li>
+                    <li><a href="#" onclick="showEducaion($(this).text())">大专及同等学历</a></li>
+                    <li><a href="#" onclick="showEducaion($(this).text())">本科/学士及同等学历</a></li>
+                    <li><a href="#" onclick="showEducaion($(this).text())">硕士/研究生及同等学历</a></li>
+                    <li><a href="#" onclick="showEducaion($(this).text())">博士及以上</a></li>
+                    <li><a href="#" onclick="showEducaion($(this).text())">其它</a></li>
+                </ul>
+            </div>
+            <div class="myStyle_5 col-md-2"></div>
+            <div class="btn-group col-md-2 col-lg-pull-1 myStyle_8">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                        style="background: #f7f7f7; width: 170px">
+                    <span class="experience">工作经验</span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#" onclick="showExperience($(this).text())">不限</a></li>
+                    <li><a href="#" onclick="showExperience($(this).text())">无经验</a></li>
+                    <li><a href="#" onclick="showExperience($(this).text())">1年以下</a></li>
+                    <li><a href="#" onclick="showExperience($(this).text())">1-3年</a></li>
+                    <li><a href="#" onclick="showExperience($(this).text())">3-5年</a></li>
+                    <li><a href="#" onclick="showExperience($(this).text())">5-10年</a></li>
+                    <li><a href="#" onclick="showExperience($(this).text())">10年以上</a></li>
+                </ul>
+            </div>
+            <div class="myStyle_5 col-md-2"></div>
+            <div class="btn-group col-md-2 col-lg-pull-1 myStyle_8">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                        style="background: #f7f7f7; width: 170px">
+                    <span class="company">公司性质</span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#" onclick="showCompany($(this).text())">不限</a></li>
+                    <li><a href="#" onclick="showCompany($(this).text())">国企</a></li>
+                    <li><a href="#" onclick="showCompany($(this).text())">外商独资</a></li>
+                    <li><a href="#" onclick="showCompany($(this).text())">代表处</a></li>
+                    <li><a href="#" onclick="showCompany($(this).text())">合资</a></li>
+                    <li><a href="#" onclick="showCompany($(this).text())">股份制企业</a></li>
+                    <li><a href="#" onclick="showCompany($(this).text())">上市公司</a></li>
+                    <li><a href="#" onclick="showCompany($(this).text())">国家机关</a></li>
+                    <li><a href="#" onclick="showCompany($(this).text())">事业单位</a></li>
+                    <li><a href="#" onclick="showCompany($(this).text())">银行</a></li>
+                    <li><a href="#" onclick="showCompany($(this).text())">医院</a></li>
+                    <li><a href="#" onclick="showCompany($(this).text())">学校/下级学院</a></li>
+                    <li><a href="#" onclick="showCompany($(this).text())">律师事务所</a></li>
+                    <li><a href="#" onclick="showCompany($(this).text())">社会团体</a></li>
+                    <li><a href="#" onclick="showCompany($(this).text())">港澳台公司</a></li>
+                    <li><a href="#" onclick="showCompany($(this).text())">其它</a></li>
+                </ul>
+            </div>
+            <div class="myStyle_5 col-md-2"></div>
+            <div class="btn-group col-md-1 col-lg-pull-1 myStyle_8">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                        style="background: #f7f7f7; width: 170px">
+                    <span class="job">职位类型</span>
+                </button>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="#" onclick="showJob($(this).text())">不限</a></li>
+                    <li><a href="#" onclick="showJob($(this).text())">全职</a></li>
+                    <li><a href="#" onclick="showJob($(this).text())">兼职</a></li>
+                    <li><a href="#" onclick="showJob($(this).text())">实习</a></li>
+                    <li><a href="#" onclick="showJob($(this).text())">校园</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="myStyle_1 text-center" style="padding-top: 1px">
+        <div><h3 class="text-primary">智能匹配</h3></div>
+    </div>
+    <!--搜索结果，循环显示form即可，其中各项内容需从数据库中查询，并替换-->
+    <form>
+        <div class="myStyle_10"></div>
+        <div class="myStyle_9 myStyle_8"
+             style="padding-left: 30px; padding-right: 30px; padding-top: 10px; padding-bottom: 10px">
+            <div class="row">
+                <!--职位名-->
+                <div class="text-left col-md-6">
+                    <h4 class="myStyle_12">智能交通工程中心-Java开发工程师</h4>
+                </div>
+                <!--企业名-->
+                <div class="text-right col-md-6">
+                    <h4>上海产业技术研究院</h4>
+                </div>
+            </div>
+            <div class="row">
+                <!--职位月薪-->
+                <div class="text-left col-md-2">
+                    <h4 class="myStyle_11">8000-16000元</h4>
+                </div>
+                <!--职位要求，三类必填，即使是“不限”也要显示出来-->
+                <div class="text-left col-md-6">
+                    <h5 class="myStyle_13">经验不限&nbsp&nbsp&nbsp本科&nbsp&nbsp&nbsp全职</h5>
+                </div>
+                <!--企业类型-->
+                <div class="text-right col-md-4">
+                    <h5>外商独资&nbsp&nbsp&nbsp100-300人</h5>
+                </div>
+            </div>
+            <div class="text-right">
+                <button class="btn btn-info btn-lg" data-toggle="dropdown" type="button">申请职位</button>
+            </div>
+        </div>
+    </form>
+    <form>
+        <div class="myStyle_10"></div>
+        <div class="myStyle_9 myStyle_8"
+             style="padding-left: 30px; padding-right: 30px; padding-top: 10px; padding-bottom: 10px">
+            <div class="row">
+                <!--职位名-->
+                <div class="text-left col-md-6">
+                    <h4 class="myStyle_12">智能交通工程中心-Java开发工程师</h4>
+                </div>
+                <!--企业名-->
+                <div class="text-right col-md-6">
+                    <h4>上海产业技术研究院</h4>
+                </div>
+            </div>
+            <div class="row">
+                <!--职位月薪-->
+                <div class="text-left col-md-2">
+                    <h4 class="myStyle_11">8000-16000元</h4>
+                </div>
+                <!--职位要求，三类必填，即使是“不限”也要显示出来-->
+                <div class="text-left col-md-6">
+                    <h5 class="myStyle_13">经验不限&nbsp&nbsp&nbsp本科&nbsp&nbsp&nbsp全职</h5>
+                </div>
+                <!--企业类型-->
+                <div class="text-right col-md-4">
+                    <h5>外商独资&nbsp&nbsp&nbsp100-300人</h5>
+                </div>
+            </div>
+            <div class="text-right">
+                <button class="btn btn-info btn-lg" data-toggle="dropdown" type="button">申请职位</button>
+            </div>
+        </div>
+    </form>
+    <form>
+        <div class="myStyle_10"></div>
+        <div class="myStyle_9 myStyle_8"
+             style="padding-left: 30px; padding-right: 30px; padding-top: 10px; padding-bottom: 10px">
+            <div class="row">
+                <!--职位名-->
+                <div class="text-left col-md-6">
+                    <h4 class="myStyle_12">智能交通工程中心-Java开发工程师</h4>
+                </div>
+                <!--企业名-->
+                <div class="text-right col-md-6">
+                    <h4>上海产业技术研究院</h4>
+                </div>
+            </div>
+            <div class="row">
+                <!--职位月薪-->
+                <div class="text-left col-md-2">
+                    <h4 class="myStyle_11">8000-16000元</h4>
+                </div>
+                <!--职位要求，三类必填，即使是“不限”也要显示出来-->
+                <div class="text-left col-md-6">
+                    <h5 class="myStyle_13">经验不限&nbsp&nbsp&nbsp本科&nbsp&nbsp&nbsp全职</h5>
+                </div>
+                <!--企业类型-->
+                <div class="text-right col-md-4">
+                    <h5>外商独资&nbsp&nbsp&nbsp100-300人</h5>
+                </div>
+            </div>
+            <div class="text-right">
+                <button class="btn btn-info btn-lg" data-toggle="dropdown" type="button">申请职位</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="myStyle_6"></div>
+<div class="myStyle_7"></div>
+<div class="jumbotron text-center" style="margin-bottom:0">
+    <h6 class="text-danger">RightCopy@Bikini</h6>
+    <h5 class="text-info">解释权归Bikini所有，如有任何意见或建议请联系我们</h5>
+    <p><h5><span class="glyphicon glyphicon-phone-alt">：68221932</span></h5></p>
+    <p><h5><span class="glyphicon glyphicon-earphone">：18302161037</span></h5></p>
+    <p><h5><span class="glyphicon glyphicon-envelope"></span>：161310614@mail.dhu.edu.cn</h5></p>
+    <p><h6><span class="glyphicon glyphicon-magnet"></span>
+    <span class="glyphicon glyphicon-bell"></span>
+    <span class="glyphicon glyphicon-globe"></span>
+    <span class="glyphicon glyphicon-tree-deciduous"></span></h6></p>
+</div>
+</body>
+</html>

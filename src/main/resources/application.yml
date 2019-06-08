@@ -1,0 +1,38 @@
+spring:
+  thymeleaf:
+    prefix: classpath:/templates/html/
+    suffix: .html
+    mode: HTML
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+    cache: false
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      url: jdbc:mysql://47.101.149.36:3306/bikini?serverTimeZone=GMT+8&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+      username: root
+      password: 123698745
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      filters: stat,wall,log4j,config
+      max-active: 100
+      initial-size: 1
+      max-wait: 60000
+      min-idle: 1
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: select 'x' from dual
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-open-prepared-statements: 50
+      max-pool-prepared-statement-per-connection-size: 20
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+server:
+  servlet:
+    context-path: /bikini
+  port: 8080
