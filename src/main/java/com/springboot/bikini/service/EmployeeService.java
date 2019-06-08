@@ -10,7 +10,7 @@ public interface EmployeeService {
     int updateEmployee(EmployeeDomain employeeDomain);
 //    public EmployeeDomain selectByEmployeeId(int employeeId);
 //    public List<EmployeeDomain> selectAllEmployee();
-    void login(EmployeeDomain employerDomain);
+    void login(EmployeeDomain employeeDomain);
     void register(EmployeeDomain employerDomain);
 
 }

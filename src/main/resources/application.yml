@@ -1,11 +1,6 @@
 spring:
   thymeleaf:
-    prefix: classpath:/templates/html/
-    suffix: .html
-    mode: HTML
-    encoding: UTF-8
-    servlet:
-      content-type: text/html
+    prefix: classpath:/template/html/
     cache: false
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource

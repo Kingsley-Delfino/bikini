@@ -14,24 +14,24 @@ import javax.transaction.Transactional;
 @Service
 @Transactional
 public class EmployeeServiceImpl implements EmployeeService {
+
     @Autowired
     private EmployeeDao employeeDao;
 
-    private Logger logger = LoggerFactory.getLogger(getClass());;
+    private Logger logger = LoggerFactory.getLogger(getClass());
     @Override
-
     public void login(EmployeeDomain employeeDomain){
         if(("").equals(employeeDomain.getEmployeeTel())||employeeDomain.getEmployeeTel()==null
                 ||("").equals(employeeDomain.getEmployeePassword())||employeeDomain.getEmployeePassword()==null){
             throw new BusinessException("必要参数为空");
         }
         EmployeeDomain employeeDomain1= employeeDao.selectByEmployeeTel(employeeDomain.getEmployeeTel());
-        logger.info("result:"+employeeDomain1);
+        logger.info("result:"+employeeDomain1.toString());
 //        if(!(employerDomain.getEmployerPasswd().equals((employerDomain1.getEmployerPasswd())))){
 //            throw new BusinessException("密码错误");
 //        }
         //用校验过的参数去调用equals
-        if(!employeeDomain.equals(employeeDomain1)){
+        if(!employeeDomain.getEmployeePassword().equals(employeeDomain1.getEmployeePassword())){
             throw new BusinessException("账号或密码错误");
         }
     }

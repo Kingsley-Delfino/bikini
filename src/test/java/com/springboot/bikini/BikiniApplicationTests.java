@@ -43,13 +43,13 @@ public class BikiniApplicationTests {
     @Test
     public void login(){
         logger= LoggerFactory.getLogger(getClass());
-        EmployerDomain employerDomain=new EmployerDomain();
-        employerDomain.setEmployerId(2);
-        employerDomain.setEmployerTel("123456");
-        employerDomain.setEmployerPasswd("123456");
+        EmployeeDomain employeeDomain=new EmployeeDomain();
+        //employerDomain.setEmployerId(2);
+        employeeDomain.setEmployeeTel("110");
+        employeeDomain.setEmployeePassword("123456");
         logger.info("success");
-        logger.info(employerDomain.getEmployerTel()+employerDomain.getEmployerPasswd());
-        employerService.login(employerDomain);
+        logger.info(employeeDomain.getEmployeeTel()+employeeDomain.getEmployeePassword());
+        employeeService.login(employeeDomain);
         logger.info("登录成功！");
 
     }

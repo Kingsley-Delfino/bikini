@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head  runat="server">
     <meta charset="utf-8">
     <title>企业HR注册</title>
-    <link rel="stylesheet" href="../css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../css/bootstrap-theme.min.css" />
-    <script src="../js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap-theme.min.css}" />
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="shortcut icon" href="../../photo/others/5.jpg" />
+    <link rel="shortcut icon" href="../../static/photo/others/5.jpg" />
     <style>
         .myStyle_2 {
             height: auto;
@@ -50,7 +50,7 @@
 
     <script>
         function back() {
-            window.location.href='main.html';
+            window.location.href='/bikini/employee/main';
         }
     </script>
 </head>
@@ -61,13 +61,13 @@
             <button type="button" class="btn btn-info" onclick="back()">返回</button>
         </div>
         <div class="col-sm-2 col-lg-push-3">
-            <img src="../../photo/others/3.jpg" style="height: 50px">
+            <img src="../../static/photo/others/3.jpg" style="height: 50px">
         </div>
         <div class="col-sm-2 col-lg-push-2">
             <h5>企业HR注册</h5>
         </div>
         <div class="col-sm-2 col-lg-push-1">
-            <img src="../../photo/others/6.jpg" style="height: 50px">
+            <img src="../../static/photo/others/6.jpg" style="height: 50px">
         </div>
         <div class="col-sm-3 col-lg-push-2">
             <div class="btn-group">
@@ -110,7 +110,7 @@
                 <label for="inputPassword2" class="sr-only">密码</label>
                 <input type="password" id="inputPassword2" class="form-control" placeholder="再次输入密码" required>
                 <p></p>
-                <button class="btn btn-lg btn-info btn-block" type="submit">企业HR注册</button>
+                <button class="btn btn-lg btn-info btn-block" type="button">企业HR注册</button>
             </div>
         </div>
     </form>

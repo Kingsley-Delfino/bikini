@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html>
-<head runat="server">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head  runat="server">
     <meta charset="utf-8">
-    <title>应聘者注册</title>
-    <link href="../css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="../css/bootstrap-theme.min.css" rel="stylesheet"/>
-    <script src="../js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>职位搜索</title>
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap-theme.min.css}" />
+    <script th:src="@{/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link href="../../photo/others/5.jpg" rel="shortcut icon"/>
+    <link rel="shortcut icon" href="../../static/photo/others/5.jpg" />
     <style>
         .myStyle_1 {
             width: 1000px;
@@ -93,15 +93,19 @@
         function showJob(a) {
             $('.job').text(a)
         }
+        function show() {
+            window.location.href='/bikini/employee/employeeShow';
+        }
     </script>
 </head>
 <body>
 <div class="jumbotron text-center" style="margin-bottom:0; height: 150px; background:#FFFFFF">
     <div class="row">
-        <div class="col-sm-1">
+        <div class="col-sm-1" style="padding-left: 100px">
+            <button type="button" class="btn btn-info" onclick="show()">首页</button>
         </div>
         <div class="col-sm-2">
-            <img src="../../photo/others/3.jpg" style="margin-top:-25px; height: 100px">
+            <img src="../../static/photo/others/3.jpg" style="margin-top:-25px; height: 100px">
         </div>
         <div>
             <form class="bs-example bs-example-form" role="form">
@@ -123,7 +127,7 @@
             </form>
         </div>
         <div class="col-sm-2">
-            <img src="../../photo/others/6.jpg" style="margin-top:-25px; height: 100px">
+            <img src="../../static/photo/others/6.jpg" style="margin-top:-25px; height: 100px">
         </div>
     </div>
 </div>
