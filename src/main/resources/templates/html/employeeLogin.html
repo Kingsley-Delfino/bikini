@@ -58,8 +58,8 @@
                 dataType:"json",
                 data:JSON.stringify({"employeeTel":userTel,"employeePassword":userPasswd})
             }).done(function (data) {
-                if(data.status==0){
-                    window.location.href='/bikini/employeeShow';
+                if(data.status==200){
+                    window.location.href='employeeShow.html';
                 }
                 else{
                     alert("账号或密码输入错误！");
