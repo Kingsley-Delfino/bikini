@@ -141,7 +141,7 @@
                     <span class="education">学历要求</span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a href="#" onclick="showEducaion($(this).text())">不限</a></li>
+                    <li><a href="#" onclick="showEducaion($(this).text())">学历不限</a></li>
                     <li><a href="#" onclick="showEducaion($(this).text())">高中/中专/中技及以下</a></li>
                     <li><a href="#" onclick="showEducaion($(this).text())">大专及同等学历</a></li>
                     <li><a href="#" onclick="showEducaion($(this).text())">本科/学士及同等学历</a></li>
@@ -156,7 +156,7 @@
                     <span class="experience">工作经验</span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a href="#" onclick="showExperience($(this).text())">不限</a></li>
+                    <li><a href="#" onclick="showExperience($(this).text())">工作经验不限</a></li>
                     <li><a href="#" onclick="showExperience($(this).text())">无经验</a></li>
                     <li><a href="#" onclick="showExperience($(this).text())">1年以下</a></li>
                     <li><a href="#" onclick="showExperience($(this).text())">1-3年</a></li>
@@ -171,12 +171,18 @@
                     <span class="job">职位类型</span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a href="#" onclick="showJob($(this).text())">不限</a></li>
+                    <li><a href="#" onclick="showJob($(this).text())">职位类型不限</a></li>
                     <li><a href="#" onclick="showJob($(this).text())">全职</a></li>
                     <li><a href="#" onclick="showJob($(this).text())">兼职</a></li>
                     <li><a href="#" onclick="showJob($(this).text())">实习</a></li>
                     <li><a href="#" onclick="showJob($(this).text())">校园</a></li>
                 </ul>
+            </div>
+        </div>
+        <div class="row" style="padding-top: 20px">
+            <div class="col-md-3"><h4>截止时间：</h4></div>
+            <div class="col-md-3 myStyle_8 col-lg-pull-2" style="padding-left: 60px">
+                <input type="text" id="deadLine" class="form-control" placeholder="YYYY-MM-DD" style="width: 539px">
             </div>
         </div>
         <br>

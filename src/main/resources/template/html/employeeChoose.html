@@ -4,9 +4,9 @@
     <meta charset="utf-8">
     <title>职位搜索</title>
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
-    <link rel="stylesheet" th:href="@{/css/bootstrap-theme.min.css}"/>
-    <script src="../../static/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap-theme.min.css}" />
+    <script th:src="@{/js/bootstrap.min.js}"></script>
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="../../static/js/jquery.cookie.js"></script>
@@ -56,7 +56,7 @@
 
         .myStyle_9 {
             width: 1000px;
-            height: 150px;
+            height: 170px;
             background: #FFFFFF;
         }
 
@@ -78,19 +78,20 @@
             color: #aaa;
         }
     </style>
-    <script>
+    <script type="text/javascript">
         function autoLoad() {
             var b = $.cookie("job");
             document.getElementById("search").value = b;
             console.log(b);
-        }
-
-        function showExperience(a) {
-            $('.experience').text(a)
+            search();
         }
 
         function showEducaion(a) {
             $('.education').text(a)
+        }
+
+        function showExperience(a) {
+            $('.experience').text(a)
         }
 
         function showCompany(a) {
@@ -98,7 +99,7 @@
         }
 
         function showJob(a) {
-            $('.job').text(a)
+            $('.type').text(a)
         }
 
         function show() {
@@ -106,7 +107,74 @@
         }
 
         function search() {
-            window.location.href = '/bikini/employee/employeeShow';
+            var job = $('#search').val();
+            var wagesLow=$('#minWages').val();
+            var wagesTop=$('#maxWages').val();
+            if(job===""){
+                alert("请输入职位关键字！");
+            }
+            else if($('#optionsRadios2').is(':checked') &&("" === wagesLow||""===wagesTop)){
+                alert("请输入月薪！");
+            }
+            else{
+                if($('#optionsRadios1').is(':checked')){
+                    wagesLow = 0;
+                    wagesTop = 200000;
+                }
+                var education = $('.education').text();
+                var experience = $('.experience').text();
+                var company = $('.company').text();
+                var type = $('.type').text();
+                if(education==="学历要求"||education==="学历不限"){
+                    education="";
+                }
+                if(experience==="工作经验"||experience==="工作经验不限"){
+                    experience="";
+                }
+                if(company==="公司性质"||company==="公司性质不限"){
+                    company="";
+                }
+                if(type==="职位类型"||type==="职位类型不限"){
+                    type="";
+                }
+                $.ajax({
+                    url:'/bikini/employee/employeeQueryFirst',
+                    type:'post',
+                    contentType:"application/json",
+                    dataType:"json",
+                    data: JSON.stringify({"positionName":job,"positionSalaryLow":wagesLow,"positionSalaryTop":wagesTop,"positionEducation":education,"positionExperience":experience,"positionType":type})
+                }).done(function (data) {
+                    console.log(data);
+                    var html="";
+                    for(var i=0; i<data.length; i++){
+                        html+='<form><div class="myStyle_10"></div><div class="myStyle_9 myStyle_8" style="padding-left: 30px; padding-right: 30px; padding-top: 10px; padding-bottom: 10px"><div class="row"><div class="text-left col-md-6 myStyle_8"><button type="button" class="btn btn-link" onclick="job(' + data[i].position_id + ')"><h4 class="myStyle_12">' + data[i].position_name + '</h4></button></div><div class="text-right col-md-6"><h4>'+data[i].company_name+'</h4></div></div><div class="row"><div class="text-left col-md-2"><h4 class="myStyle_11">'+data[i].position_salary_low+'-'+data[i].position_salary_top+'</h4></div><div class="text-left col-md-6"><h5 class="myStyle_13">'+data[i].position_education+'&nbsp&nbsp&nbsp'+data[i].position_experience+'&nbsp&nbsp&nbsp'+data[i].position_type+'</h5></div><div class="text-right col-md-4"><h5>'+data[i].company_type+'&nbsp&nbsp&nbsp'+data[i].company_staff_num+'人</h5></div></div><div class="text-right"><button class="btn btn-info btn-lg" type="button" onclick="apply('+data[i].position_employer_id+')">申请职位</button></div></div></form>';
+                    }
+                    document.getElementById("result").innerHTML = html;
+                });
+            }
+        }
+        function apply(id) {
+            $.ajax({
+                url:'/bikini/employee/employeeSendCv',
+                type:'post',
+                contentType:"application/json",
+                dataType:"json",
+                data: JSON.stringify({"position_employer_id":id})
+            }).done(function (data) {
+                console.log(data);
+                if(data.status===200){
+                    console.log(data);
+                    alert("申请成功！");
+                }
+                else{
+                    console.log(data);
+                    alert("申请失败！");
+                }
+            })
+        }
+        function look(id) {
+            $.cookie("positionId",id);
+            window.location.href='/bikini/employee/employeeJob';
         }
     </script>
 </head>
@@ -165,12 +233,12 @@
         <div class="row" style="padding-top: 20px">
             <div class="col-md-2"><h4>其它：</h4></div>
             <div class="btn-group col-md-2 col-lg-pull-1 myStyle_8">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="education" value=""
                         style="background: #f7f7f7; width: 170px">
                     <span class="education">学历要求</span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a href="#" onclick="showEducaion($(this).text())">不限</a></li>
+                    <li><a href="#" onclick="showEducaion($(this).text())">学历不限</a></li>
                     <li><a href="#" onclick="showEducaion($(this).text())">高中/中专/中技及以下</a></li>
                     <li><a href="#" onclick="showEducaion($(this).text())">大专及同等学历</a></li>
                     <li><a href="#" onclick="showEducaion($(this).text())">本科/学士及同等学历</a></li>
@@ -186,7 +254,7 @@
                     <span class="experience">工作经验</span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a href="#" onclick="showExperience($(this).text())">不限</a></li>
+                    <li><a href="#" onclick="showExperience($(this).text())">工作经验不限</a></li>
                     <li><a href="#" onclick="showExperience($(this).text())">无经验</a></li>
                     <li><a href="#" onclick="showExperience($(this).text())">1年以下</a></li>
                     <li><a href="#" onclick="showExperience($(this).text())">1-3年</a></li>
@@ -202,7 +270,7 @@
                     <span class="company">公司性质</span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a href="#" onclick="showCompany($(this).text())">不限</a></li>
+                    <li><a href="#" onclick="showCompany($(this).text())">公司类型不限</a></li>
                     <li><a href="#" onclick="showCompany($(this).text())">国企</a></li>
                     <li><a href="#" onclick="showCompany($(this).text())">外商独资</a></li>
                     <li><a href="#" onclick="showCompany($(this).text())">代表处</a></li>
@@ -224,10 +292,10 @@
             <div class="btn-group col-md-1 col-lg-pull-1 myStyle_8">
                 <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
                         style="background: #f7f7f7; width: 170px">
-                    <span class="job">职位类型</span>
+                    <span class="type">职位类型</span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a href="#" onclick="showJob($(this).text())">不限</a></li>
+                    <li><a href="#" onclick="showJob($(this).text())">职位类型不限</a></li>
                     <li><a href="#" onclick="showJob($(this).text())">全职</a></li>
                     <li><a href="#" onclick="showJob($(this).text())">兼职</a></li>
                     <li><a href="#" onclick="showJob($(this).text())">实习</a></li>
@@ -240,106 +308,8 @@
     <div class="myStyle_1 text-center" style="padding-top: 1px">
         <div><h3 class="text-primary">智能匹配</h3></div>
     </div>
-    <!--搜索结果，循环显示form即可，其中各项内容需从数据库中查询，并替换-->
-    <form>
-        <div class="myStyle_10"></div>
-        <div class="myStyle_9 myStyle_8"
-             style="padding-left: 30px; padding-right: 30px; padding-top: 10px; padding-bottom: 10px">
-            <div class="row">
-                <!--职位名-->
-                <div class="text-left col-md-6">
-                    <h4 class="myStyle_12">智能交通工程中心-Java开发工程师</h4>
-                </div>
-                <!--企业名-->
-                <div class="text-right col-md-6">
-                    <h4>上海产业技术研究院</h4>
-                </div>
-            </div>
-            <div class="row">
-                <!--职位月薪-->
-                <div class="text-left col-md-2">
-                    <h4 class="myStyle_11">8000-16000元</h4>
-                </div>
-                <!--职位要求，三类必填，即使是“不限”也要显示出来-->
-                <div class="text-left col-md-6">
-                    <h5 class="myStyle_13">经验不限&nbsp&nbsp&nbsp本科&nbsp&nbsp&nbsp全职</h5>
-                </div>
-                <!--企业类型-->
-                <div class="text-right col-md-4">
-                    <h5>外商独资&nbsp&nbsp&nbsp100-300人</h5>
-                </div>
-            </div>
-            <div class="text-right">
-                <button class="btn btn-info btn-lg" data-toggle="dropdown" type="button">申请职位</button>
-            </div>
-        </div>
-    </form>
-    <form>
-        <div class="myStyle_10"></div>
-        <div class="myStyle_9 myStyle_8"
-             style="padding-left: 30px; padding-right: 30px; padding-top: 10px; padding-bottom: 10px">
-            <div class="row">
-                <!--职位名-->
-                <div class="text-left col-md-6">
-                    <h4 class="myStyle_12">智能交通工程中心-Java开发工程师</h4>
-                </div>
-                <!--企业名-->
-                <div class="text-right col-md-6">
-                    <h4>上海产业技术研究院</h4>
-                </div>
-            </div>
-            <div class="row">
-                <!--职位月薪-->
-                <div class="text-left col-md-2">
-                    <h4 class="myStyle_11">8000-16000元</h4>
-                </div>
-                <!--职位要求，三类必填，即使是“不限”也要显示出来-->
-                <div class="text-left col-md-6">
-                    <h5 class="myStyle_13">经验不限&nbsp&nbsp&nbsp本科&nbsp&nbsp&nbsp全职</h5>
-                </div>
-                <!--企业类型-->
-                <div class="text-right col-md-4">
-                    <h5>外商独资&nbsp&nbsp&nbsp100-300人</h5>
-                </div>
-            </div>
-            <div class="text-right">
-                <button class="btn btn-info btn-lg" data-toggle="dropdown" type="button">申请职位</button>
-            </div>
-        </div>
-    </form>
-    <form>
-        <div class="myStyle_10"></div>
-        <div class="myStyle_9 myStyle_8"
-             style="padding-left: 30px; padding-right: 30px; padding-top: 10px; padding-bottom: 10px">
-            <div class="row">
-                <!--职位名-->
-                <div class="text-left col-md-6">
-                    <h4 class="myStyle_12">智能交通工程中心-Java开发工程师</h4>
-                </div>
-                <!--企业名-->
-                <div class="text-right col-md-6">
-                    <h4>上海产业技术研究院</h4>
-                </div>
-            </div>
-            <div class="row">
-                <!--职位月薪-->
-                <div class="text-left col-md-2">
-                    <h4 class="myStyle_11">8000-16000元</h4>
-                </div>
-                <!--职位要求，三类必填，即使是“不限”也要显示出来-->
-                <div class="text-left col-md-6">
-                    <h5 class="myStyle_13">经验不限&nbsp&nbsp&nbsp本科&nbsp&nbsp&nbsp全职</h5>
-                </div>
-                <!--企业类型-->
-                <div class="text-right col-md-4">
-                    <h5>外商独资&nbsp&nbsp&nbsp100-300人</h5>
-                </div>
-            </div>
-            <div class="text-right">
-                <button class="btn btn-info btn-lg" data-toggle="dropdown" type="button">申请职位</button>
-            </div>
-        </div>
-    </form>
+    <div id="result">
+    </div>
 </div>
 <div class="myStyle_6"></div>
 <div class="myStyle_7"></div>

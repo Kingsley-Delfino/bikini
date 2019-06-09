@@ -102,9 +102,33 @@
         function show() {
             window.location.href='/bikini/employee/employeeShow';
         }
+        function autoLoad() {
+            var id=$.cookie("positionId");
+            $.ajax({
+                url:'/bikini/employee/employeeQueryFirst',
+                type:'post',
+                contentType:"application/json",
+                dataType:"json",
+                data: JSON.stringify({"positionId":id})
+            }).done(function (data) {
+                console.log(data);
+                document.getElementById("positionName").innerHTML = '<h3 class="myStyle_12">' + data[0].position_name + '</h3>';
+                document.getElementById("wages").innerHTML ='<h4 class="myStyle_11">'+data[0].position_salary_low+'-'+data[0].position_salary_top+'</h4>';
+                document.getElementById("condition").innerHTML ='<h5 class="myStyle_13">'+data[0].position_education+'&nbsp&nbsp&nbsp'+data[0].position_experience+'&nbsp&nbsp&nbsp'+data[0].position_type+'</h5>';
+                document.getElementById("jobDescription").value=data[0].position_description;
+                document.getElementById("companyName").innerHTML ='<h3 class="myStyle_12">' + data[0].company_name + '</h3>';
+                document.getElementById("companyType").innerHTML ='<h4 class="myStyle_11">' + data[0].company_type + '</h4>';
+                document.getElementById("companyStaffNum").innerHTML ='<h5 class="myStyle_13">' + data[0].company_staff_num + '</h5>';
+                document.getElementById("companyAdress").innerHTML ='<h5 class="myStyle_13">' + data[0].company_adress + '</h5>';
+                document.getElementById("companyDescription").value=data[0].company_description;
+                document.getElementById("positionCreateDate").innerHTML ='<h5 class="myStyle_13">发布日期：' + data[0].position_create_date + '</h5>';
+                document.getElementById("positionDeadline").innerHTML ='<h5 class="myStyle_11">截至日期：' + data[0].position_deadline + '</h5>';
+            });
+            console.log(id);
+        }
     </script>
 </head>
-<body>
+<body onload="">
 <div class="jumbotron text-center" style="margin-bottom:0; height: 30px; background:#FFFFFF">
     <div class="row" style="margin-top:-1.3%">
         <div class="col-sm-1" style="padding-left: 100px">
@@ -125,43 +149,34 @@
 
 <div class="myStyle_2" style="padding-top: 30px; padding-bottom: 30px;">
     <div class="myStyle_3" style="padding: 30px">
-        <div class="row" style="padding-left: 15px; width: 655px">
-            <h3 class="myStyle_12">智能交通工程中心-Java开发工程师</h3>
+        <div class="row" id="positionName" style="padding-left: 15px; width: 655px">
         </div>
-        <div class="row" style="padding-left: 15px;">
-            <h4 class="myStyle_11">8000-16000元</h4>
+        <div class="row" id="wages" style="padding-left: 15px;">
         </div>
-        <div class="row" style="padding-left: 15px;">
-            <h5 class="myStyle_13">经验不限&nbsp&nbsp&nbsp本科&nbsp&nbsp&nbsp全职</h5>
+        <div class="row" id="condition" style="padding-left: 15px;">
         </div>
         <div class="row" style="padding-left: 15px">
             <h4>职位描述：</h4>
             <textarea class="form-control" id="jobDescription" rows="5" style="width: 640px" required>
-岗位职责：
-1. 独立完成技术预研工作，并负责技术研究成果的培训；
-2. 根据业务需求，可独立完成技术可行性报告、概要设计、详细设计、并撰写相关文档；并负责讲解相关设计；
-3. 搭建系统开发环境，完成系统框架与核心代码开发；
-4. 参与产品方案讨论与技术调研，给出解决方案，并负责相关文档的编写维护。
             </textarea>
         </div>
         <br>
-        <div class="row" style="padding-left: 15px; width: 655px">
-            <h3 class="myStyle_12">上海产业技术研究院</h3>
+        <div class="row" id="companyName" style="padding-left: 15px; width: 655px">
         </div>
-        <div class="row" style="padding-left: 15px;">
-            <h4 class="myStyle_11">外商独资</h4>
+        <div class="row" id="companyType" style="padding-left: 15px;">
         </div>
-        <div class="row" style="padding-left: 15px;">
-            <h5 class="myStyle_13">100-300人</h5>
+        <div class="row" id="companyStaffNum" style="padding-left: 15px;">
         </div>
-        <div class="row" style="padding-left: 15px;">
-            <h5 class="myStyle_13">公司位置：浦东新区金苏路200号D&F幢</h5>
+        <div class="row" id="companyAdress" style="padding-left: 15px;">
         </div>
         <div class="row" style="padding-left: 15px">
             <h4>公司描述：</h4>
-            <textarea class="form-control" id="companyDescription" rows="5" style="width: 640px" required>
-上海产业技术研究院成立于2012年7月，是由上海市委、市政府批准成立的新型应用技术研发和服务机构。其主要任务是承担共性技术研发和服务体系中的战略规划、组织协调、联合研发、成果转化和政府决策咨询，以及重...
-            </textarea>
+            <textarea class="form-control" id="companyDescription" rows="5" style="width: 640px" required></textarea>
+        </div>
+        <br>
+        <div class="row" id="positionCreateDate" style="padding-left: 15px;">
+        </div>
+        <div class="row" id="positionDeadline" style="padding-left: 15px;">
         </div>
         <br>
         <button class="btn btn-lg btn-info btn-block" type="button" style="width: 640px">申请职位</button>
