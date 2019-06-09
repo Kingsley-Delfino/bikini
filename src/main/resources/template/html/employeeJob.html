@@ -123,8 +123,28 @@
                 document.getElementById("companyDescription").value=data[0].company_description;
                 document.getElementById("positionCreateDate").innerHTML ='<h5 class="myStyle_13">发布日期：' + data[0].position_create_date + '</h5>';
                 document.getElementById("positionDeadline").innerHTML ='<h5 class="myStyle_11">截至日期：' + data[0].position_deadline + '</h5>';
+                document.getElementById("apply").innerHTML ='<button class="btn btn-lg btn-info btn-block" onclick="apply('+data[0].position_employer_id+')" type="button" style="width: 640px">申请职位</button>';
             });
             console.log(id);
+        }
+        function apply(id) {
+            $.ajax({
+                url:'/bikini/employee/employeeSendCv',
+                type:'post',
+                contentType:"application/json",
+                dataType:"json",
+                data: JSON.stringify({"position_employer_id":id})
+            }).done(function (data) {
+                console.log(data);
+                if(data.status===200){
+                    console.log(data);
+                    alert("申请成功！");
+                }
+                else{
+                    console.log(data);
+                    alert("申请失败！");
+                }
+            })
         }
     </script>
 </head>
@@ -179,7 +199,8 @@
         <div class="row" id="positionDeadline" style="padding-left: 15px;">
         </div>
         <br>
-        <button class="btn btn-lg btn-info btn-block" type="button" style="width: 640px">申请职位</button>
+        <div id="apply">
+        </div>
     </div>
 </div>
 <div class="myStyle_6"></div>
