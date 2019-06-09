@@ -4,18 +4,21 @@ import com.springboot.bikini.model.EmployeeDomain;
 import com.springboot.bikini.model.JSONResult;
 import com.springboot.bikini.model.PositionDomain;
 import com.springboot.bikini.service.PositionService;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
 public class PositionController {
     private PositionService positionService;
 
-    public JSONResult positionRelease(HttpServletRequest request, PositionDomain positionDomain) {
+    public JSONResult positionRelease(HttpServletRequest request, @RequestBody PositionDomain positionDomain) {
         HttpSession session=request.getSession();
         String tel=(String)session.getAttribute("employerTel");
         int id=positionService.getEmployerId(tel);
@@ -29,12 +32,9 @@ public class PositionController {
      *@return: List<PositionDomain>
      */
     @RequestMapping("/employeeQuery")
-    public JSONResult employeeQuery(PositionDomain positionDomain, HttpServletRequest request){
-        int pageNum=Integer.parseInt(request.getParameter("page"));
-        int limit=Integer.parseInt(request.getParameter("limit"));
-        pageNum=1;
-        limit=10000;
-        List<PositionDomain> positionDomains =positionService.employeeSelectPosition(positionDomain,pageNum,limit);
+    public JSONResult employeeQuery(@RequestBody PositionDomain positionDomain){
+
+        List<HashMap> positionDomains =positionService.employeeSelectPosition(positionDomain);
         return new JSONResult(positionDomains);
     }
     /**
@@ -43,8 +43,53 @@ public class PositionController {
      *@return:
     */
     @RequestMapping("/employeeQueryFirst")
-    public JSONResult employeeQueryFirst(PositionDomain positionDomain){
-        List<PositionDomain> positionDomains =positionService.employeeSelectPosition(positionDomain,1,10000);
+    public JSONResult employeeQueryFirst(@RequestBody PositionDomain positionDomain){
+        List<HashMap> positionDomains =positionService.employeeSelectPosition(positionDomain);
         return new JSONResult(positionDomains);
+    }
+    
+    /**
+     *@description: 申请职位
+     *@param: positionId,employeeId
+     *@return: void
+    */
+    @RequestMapping("/employeeSendCv")
+    public JSONResult employeeSendCv(HttpServletRequest request,@RequestParam int position_employer_id){
+        HttpSession session=request.getSession();
+        String tel=(String)session.getAttribute("employeeTel");
+        positionService.sendCv(tel,position_employer_id);
+        return new JSONResult("success");
+    }
+
+    /**
+     *@description: 发布职位
+     *@param: PositionDomain
+     *@return: void
+    */
+    public JSONResult positionRelease(@RequestBody PositionDomain positionDomain,HttpServletRequest request){
+        HttpSession session=request.getSession();
+        String tel=(String)session.getAttribute("employerTel");
+        positionService.release(positionDomain,tel);
+        return new JSONResult("success");
+    }
+    /**
+     *@description: 雇主查看自己发布的职位
+     *@param: void
+     *@return: List<PositionDomain>
+    */
+    public JSONResult selectOneselfPosition(HttpServletRequest request){
+        HttpSession session=request.getSession();
+        String tel=(String)session.getAttribute("employerTel");
+        List<PositionDomain> list=positionService.selectAllPosition(tel);
+        return new JSONResult(list);
+    }
+    /**
+     *@description: 雇主删除自己发布的某个职位
+     *@param: positionId
+     *@return: void
+    */
+    public JSONResult deletePosition(@RequestParam int positionId){
+        positionService.deletePosition(positionId);
+        return new JSONResult();
     }
 }

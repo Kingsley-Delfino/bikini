@@ -20,6 +20,7 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 @RunWith(SpringRunner.class)
@@ -135,11 +136,34 @@ public class BikiniApplicationTests {
         logger= LoggerFactory.getLogger(getClass());
         PositionDomain positionDomain = new PositionDomain();
         int pageNum=1;
-        int limit=3;
-        List<PositionDomain> positionDomains =positionService.employeeSelectPosition(positionDomain,1,20);
-        for (PositionDomain i:positionDomains) {
+        int limit=30;
+        List<HashMap> positionDomains =positionService.employeeSelectPosition(positionDomain);
+
+        for (HashMap i:positionDomains) {
             logger.info(i.toString());
         }
+    }
+
+    @Test
+    public void sendCv(){
+        int position_employer_id=3;
+        String tel="110";
+        positionService.sendCv(tel,position_employer_id);
+    }
+
+    @Test
+    public void selectAllP(){
+        String employerTel="123456";
+        List<PositionDomain> list=positionService.selectAllPosition(employerTel);
+        for (PositionDomain i:
+             list) {
+            logger.info(i.toString());
+        }
+    }
+    @Test
+    public void deletePosition(){
+        int positionId=7;
+        positionService.deletePosition(positionId);
     }
 
 }

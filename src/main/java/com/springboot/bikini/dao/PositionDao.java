@@ -1,12 +1,12 @@
 package com.springboot.bikini.dao;
 
 import com.springboot.bikini.model.PositionDomain;
+import com.springboot.bikini.sql.EmployerSqlProvider;
 import com.springboot.bikini.sql.PositionSqlProvider;
-import org.apache.ibatis.annotations.InsertProvider;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.SelectProvider;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
 @Repository
 public interface PositionDao {
@@ -15,10 +15,16 @@ public interface PositionDao {
     public int insertPosition(PositionDomain positionDomain);
 
     @SelectProvider(type= PositionSqlProvider.class,method="selectPositionIdByTel")
-    public int selectPositionIdByTel(String tel);
+    public int selectPositionIdByTel(@Param("tel") String tel);
 
     @SelectProvider(type= PositionSqlProvider.class,method="selectPositionByPosition")
-    public List<PositionDomain> selectPositionByPosition(PositionDomain positionDomain,int page,int limit);
+    public List<HashMap> selectPositionByPosition(PositionDomain positionDomain);
+
+    @SelectProvider(type= PositionSqlProvider.class,method = "selectCompanyInfoByPositionId")
+    public HashMap selectCompanyInfoByPositionId(@Param("positionId") int positionId);
+
+    @InsertProvider(type=PositionSqlProvider.class,method = "insertSendCv")
+    public void insertSendCv(@Param("employeeId") int employeeId,@Param("employerId") int employerId,@Param("CVAddress") String CVAddress);
 
     public int deletePosition(int PositionId);
     public int updatePosition(PositionDomain positionDomain);

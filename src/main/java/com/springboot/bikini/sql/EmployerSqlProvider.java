@@ -1,6 +1,9 @@
 package com.springboot.bikini.sql;
 
 import com.springboot.bikini.model.EmployerDomain;
+import com.springboot.bikini.model.PositionDomain;
+
+import java.util.List;
 
 /**
  * 生成sql
@@ -29,6 +32,15 @@ public class EmployerSqlProvider {
         return "UPDATE employer\n" +
                 "SET EMPLOYER_COMPANY_ID=#{id}\n" +
                 "where EMPLOYER_TEL=#{tel};";
+    }
+    public String selectAllPositionById(int employerId){
+        return "select position_id, position_name, position_create_date, position_deadline, position_education, position_employer_id, position_type, position_salary_low, position_salary_top, position_experience, position_description\n" +
+                "from position\n" +
+                "where POSITION_EMPLOYER_ID=#{employerId}";
+    }
+    public String deletePositionByPositionId(int positionId){
+        return "delete from position\n" +
+                "where POSITION_ID=#{positionId}";
     }
 
 }

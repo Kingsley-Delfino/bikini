@@ -25,7 +25,7 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
 
-    @RequestMapping("/login")
+    @RequestMapping("/employeeLogin")
     public String login(){
         return "employeeLogin";
     }
@@ -39,15 +39,61 @@ public class EmployeeController {
     public String employeeShow(){
         return "employeeShow";
     }
+
+    @RequestMapping("/employeeChoose")
+    public String employeeChoose(){return "employeeChoose";}
+
+    @RequestMapping("/employeeEdit")
+    public String employeeEdit(){return "employeeEdit";}
+
+    @RequestMapping("/employeeJob")
+    public String employeeJob(){return "employeeJob";}
+
+    @RequestMapping("/employeeRegister")
+    public String employeeRegister(){return "employeeRegister";}
+
+    @RequestMapping("employeeSearch")
+    public String employeeSearch(){return "employeeSearch";}
+
+    @RequestMapping("employer")
+    public String employer(){return "employer";}
+
+    @RequestMapping("/employerCompany")
+    public String employerCompany(){return "employerCompany";}
+
+    @RequestMapping("/employerEdit")
+    public String employerEdit(){return "employerEidt";}
+
+    @RequestMapping("/employerEmployee")
+    public String employerEmployee(){return "employerEmployee";}
+
+    @RequestMapping("/employerJob")
+    public String employerJob(){return "employerJob";}
+
+    @RequestMapping("/employerLogin")
+    public String employerLogin(){return "employerLogin";}
+
+    @RequestMapping("/employerPublish")
+    public String employerPublish(){return "employerPublish";}
+
+    @RequestMapping("/employerRegister")
+    public String employerRegister(){return "employerRegister";}
+
+    @RequestMapping("/employerSearch")
+    public String employerSearch(){return "employerSearch";}
+
+    @RequestMapping("/employerShow")
+    public String employerShow(){return "employerShow";}
+
     /**
      *@description: 登录功能
      *@param: employeeTel,password
      *@return: null
     */
-    @RequestMapping("/employeeLogin")
+    @RequestMapping("/employeeLog")
     @ResponseBody
     public JSONResult employeeLogin(@RequestBody EmployeeDomain employeeDomain){
-        System.out.println(employeeDomain.getEmployeePassword()+"!!!!!!!!!!!!!!!!!!");
+        //System.out.println(employeeDomain.getEmployeePassword()+"!!!!!!!!!!!!!!!!!!");
         employeeService.login(employeeDomain);
 
         return new JSONResult("success");
@@ -57,7 +103,7 @@ public class EmployeeController {
      *@param: employeedomain
      *@return: null
     */
-    @RequestMapping("/employeeRegister")
+    @RequestMapping("/employeeReg")
     public JSONResult employerRegister(@RequestBody EmployeeDomain employeeDomain){
         employeeService.register(employeeDomain);
         return new JSONResult("success");
