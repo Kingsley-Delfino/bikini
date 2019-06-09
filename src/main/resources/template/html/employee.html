@@ -4,12 +4,13 @@
     <meta charset="utf-8">
     <title>关于我</title>
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
-    <link rel="stylesheet" th:href="@{/css/bootstrap-theme.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/bootstrap-theme.min.css}"/>
     <script th:src="@{/js/bootstrap.min.js}"></script>
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <link rel="shortcut icon" href="../../static/photo/others/5.jpg" />
+    <script type="text/javascript" src="../../static/js/jquery.cookie.js"></script>
+    <link rel="shortcut icon" href="../../static/photo/others/5.jpg"/>
     <style>
         .myStyle_1 {
             width: 1000px;
@@ -103,10 +104,45 @@
         function show() {
             window.location.href='/bikini/employee/employeeShow';
         }
+        function autoLoad() {
+            var employeeTel=$.cookie("employeeTel");
+            $.ajax({
+                url:'/bikini/employee/不知道',
+                type:'post',
+                contentType:"application/json",
+                dataType:"json",
+                data: JSON.stringify({"employeeTel":employeeTel})
+            }).done(function (data) {
+                console.log(data);
+                document.getElementById("employeeName").innerHTML = '<h4 class="myStyle_11">用户名：'+data[0].employeeName+'</h4>';
+                document.getElementById("employeeAge").innerHTML ='<h5>年龄：'+data[0].employeeAge+'岁</h5>';
+                document.getElementById("employeeGender").innerHTML ='<h5>性别：'+data[0].employeeGender+'</h5>;
+                document.getElementById("employeeTel").innerHTML ='<h5>电话：'+data[0].employeeTel+'</h5>';
+                document.getElementById("employeeEmail").innerHTML ='<h5>电子邮箱：'+data[0].employeeEmail+'</h5>';
+                document.getElementById("employeeUniversity").innerHTML ='<h5>毕业学校：'+data[0].employeeUniversity+'</h5>';
+                document.getElementById("employeeAddress").innerHTML ='<h5>家庭住址：'+data[0].employeeAddress+'</h5>';
+                document.getElementById("employeeCv").innerHTML ='<button type="button" class="btn btn-link" onclick="cv()"><h5 class="myStyle_12">《个人简历》</h5></button>';
+                var a=data[0].employeeCvAddress;
+                $.cookie("employeeCvAdress",a);
+            });
+            console.log(employeeTel);
+        }
+        function cv() {
+            try{
+                alert($.cookie("employeeCvAdress"));
+                //打开简历
+            }
+            catch (e) {
+                alert(e);
+            }
+        }
+        function edit() {
+            window.location.href='/bikini/employee/employeeEdit';
+        }
     </script>
 
 </head>
-<body>
+<body onload="autoLoad()">
 <div class="jumbotron text-center" style="margin-bottom:0; height: 30px; background:#FFFFFF">
     <div class="row" style="margin-top:-1.3%">
         <div class="col-sm-1" style="padding-left: 100px">
@@ -130,26 +166,26 @@
         <div class="row text-center" style="padding-bottom:30px;">
             <img class="img-circle" src="../../static/photo/others/11.jpg" width="300" height="300"/>
         </div>
-        <div class="row text-center">
-            <h4 class="myStyle_11">用户名：章鱼哥</h4>
+        <div class="row text-center" id="employeeName">
         </div>
-        <div class="row text-center">
-            <h5>年龄：20岁</h5>
+        <div class="row text-center" id="employeeAge">
         </div>
-        <div class="row text-center">
-            <h5>性别：男</h5>
+        <div class="row text-center" id="employeeGender">
         </div>
-        <div class="row text-center">
-            <h5>电话：183002161037</h5>
+        <div class="row text-center" id="employeeTel">
         </div>
-        <div class="row text-center">
-            <h5>电子邮箱：291704946@qq.com</h5>
+        <div class="row text-center" id="employeeEmail">
         </div>
-        <div class="row text-center">
-            <h5>《个人简历》这里有一个个人简历，可以在线查看</h5>
+        <div class="row text-center" id="employeeUniversity">
+        </div>
+        <div class="row text-center" id="employeeAddress">
+        </div>
+        <div class="row text-center" id="employeeCv">
         </div>
         <br>
-        <button class="btn btn-lg btn-info btn-block" type="button" style="width: 640px">修改个人信息</button>
+        <div>
+            <button class="btn btn-lg btn-info btn-block" type="button" onclick="edit()" style="width: 640px">修改个人信息</button>
+        </div>
     </div>
 </div>
 <div class="myStyle_6"></div>
