@@ -55,5 +55,10 @@ public class PositionSqlProvider {
                 "values (#{employeeId},#{employerId},#{CVAddress})";
     }
 
+    public String selectCompanyIdByTel(String tel){
+        return "select EMPLOYER_COMPANY_ID\n" +
+                "from employer\n" +
+                "where EMPLOYER_TEL=#{tel}";
+    };
 
 }

@@ -7,10 +7,11 @@ import java.util.List;
 public interface EmployeeService {
 //    public int insertEmployee(EmployeeDomain record);
 //    public int deleteEmployee(int EmployerId);
-    int updateEmployee(EmployeeDomain employeeDomain);
+    public int updateEmployee(EmployeeDomain employeeDomain);
 //    public EmployeeDomain selectByEmployeeId(int employeeId);
 //    public List<EmployeeDomain> selectAllEmployee();
-    void login(EmployeeDomain employeeDomain);
-    void register(EmployeeDomain employerDomain);
+    public void login(EmployeeDomain employeeDomain);
+    public void register(EmployeeDomain employerDomain);
+    public EmployeeDomain selectByTel(String tel);
 
 }

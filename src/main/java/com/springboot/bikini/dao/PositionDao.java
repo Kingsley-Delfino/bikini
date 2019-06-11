@@ -26,6 +26,8 @@ public interface PositionDao {
     @InsertProvider(type=PositionSqlProvider.class,method = "insertSendCv")
     public void insertSendCv(@Param("employeeId") int employeeId,@Param("employerId") int employerId,@Param("CVAddress") String CVAddress);
 
+    @SelectProvider(type=PositionSqlProvider.class,method = "selectCompanyIdByTel")
+    public int selectCompanyIdByTel(@Param("tel")String tel);
     public int deletePosition(int PositionId);
     public int updatePosition(PositionDomain positionDomain);
     public PositionDomain selectByPositionId(int PositionId);

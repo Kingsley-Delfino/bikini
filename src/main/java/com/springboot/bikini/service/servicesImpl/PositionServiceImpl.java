@@ -86,5 +86,13 @@ public class PositionServiceImpl implements PositionService {
         employerDao.deletePositionByPositionId(positionId);
     }
 
+    @Override
+    public boolean companyIdIsNull(String tel){
+        int id=positionDao.selectCompanyIdByTel(tel);
+        if(id==0)
+            return false;
+        else
+            return true;
+    }
 
 }

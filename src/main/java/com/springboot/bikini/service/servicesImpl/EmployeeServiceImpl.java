@@ -53,4 +53,8 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employeeDao.updateEmployee(employeeDomain);
     }
 
+    @Override
+    public EmployeeDomain selectByTel(String tel){
+        return employeeDao.selectByEmployeeTel(tel);
+    };
 }

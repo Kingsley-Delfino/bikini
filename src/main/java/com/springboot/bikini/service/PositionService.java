@@ -13,6 +13,7 @@ public interface PositionService {
     public void release(PositionDomain positionDomain,String tel);
     public List<PositionDomain> selectAllPosition(String tel);
     public void deletePosition(int positionId);
+    public boolean companyIdIsNull(String tel);
 //    public int deletePosition(int PositionId);
 //    public int updatePosition(PositionDomain positionDomain);
 //    public PositionDomain selectByPositionId(int PositionId);

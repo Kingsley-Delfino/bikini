@@ -19,6 +19,7 @@ public class PositionController {
     @Autowired
     private PositionService positionService;
 
+    @ResponseBody
     public JSONResult positionRelease(HttpServletRequest request, @RequestBody PositionDomain positionDomain) {
         HttpSession session=request.getSession();
         String tel=(String)session.getAttribute("employerTel");
@@ -32,6 +33,7 @@ public class PositionController {
      *@param: @PositionDomain,pageNum,limit
      *@return: List<PositionDomain>
      */
+    @ResponseBody
     @RequestMapping("/employeeQuery")
     public JSONResult employeeQuery(@RequestBody PositionDomain positionDomain){
 
@@ -60,7 +62,8 @@ public class PositionController {
      *@description: 申请职位
      *@param: positionId,employeeId
      *@return: void
-    */
+     */
+    @ResponseBody
     @RequestMapping("/employeeSendCv")
     public JSONResult employeeSendCv(HttpServletRequest request,@RequestParam int position_employer_id){
         HttpSession session=request.getSession();
@@ -74,6 +77,8 @@ public class PositionController {
      *@param: PositionDomain
      *@return: void
     */
+    @ResponseBody
+    @RequestMapping("/releasePosition")
     public JSONResult positionRelease(@RequestBody PositionDomain positionDomain,HttpServletRequest request){
         HttpSession session=request.getSession();
         String tel=(String)session.getAttribute("employerTel");
@@ -85,6 +90,8 @@ public class PositionController {
      *@param: void
      *@return: List<PositionDomain>
     */
+    @ResponseBody
+    @RequestMapping("/selectAllPositionByOneself")
     public JSONResult selectOneselfPosition(HttpServletRequest request){
         HttpSession session=request.getSession();
         String tel=(String)session.getAttribute("employerTel");
@@ -96,8 +103,27 @@ public class PositionController {
      *@param: positionId
      *@return: void
     */
+    @ResponseBody
+    @RequestMapping("/deletePositionById")
     public JSONResult deletePosition(@RequestParam int positionId){
         positionService.deletePosition(positionId);
         return new JSONResult();
     }
+    /**
+     *@description: 判断有没有注册公司
+     *@param:
+     *@return:从msg中取值 success代表有公司，fail代表没有
+     */
+    @ResponseBody
+    @RequestMapping("/haveCompany")
+    public JSONResult haveCompany(HttpServletRequest request){
+        HttpSession session=request.getSession();
+        String tel=(String)session.getAttribute("employerTel");
+        boolean status=positionService.companyIdIsNull(tel);
+        if(status==true)
+            return new JSONResult("success");
+        else
+            return new JSONResult("fail");
+    }
+
 }

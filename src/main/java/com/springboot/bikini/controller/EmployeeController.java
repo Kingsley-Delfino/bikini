@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 
 @Controller
 @RequestMapping("/employee")
@@ -111,5 +114,17 @@ public class EmployeeController {
         employeeService.updateEmployee(employeeDomain);
         return new JSONResult("success");
     }
-
+    /**
+     *@description: employee查看自己信息
+     *@param: employeetel
+     *@return: employeedomain
+    */
+    @ResponseBody
+    @RequestMapping("lookEmployeeInfo")
+    public JSONResult lookEmployeeInfo(HttpServletRequest request){
+        HttpSession session=request.getSession();
+        String tel=(String)session.getAttribute("employeeTel");
+        EmployeeDomain employeeDomain=employeeService.selectByTel(tel);
+        return new JSONResult(employeeDomain);
+    }
 }

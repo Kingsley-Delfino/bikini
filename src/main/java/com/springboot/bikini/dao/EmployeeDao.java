@@ -2,10 +2,7 @@ package com.springboot.bikini.dao;
 
 import com.springboot.bikini.model.EmployeeDomain;
 import com.springboot.bikini.sql.EmployeeSqlProvider;
-import org.apache.ibatis.annotations.InsertProvider;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.SelectProvider;
-import org.apache.ibatis.annotations.UpdateProvider;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -20,12 +17,12 @@ public interface EmployeeDao {
     @UpdateProvider(type=EmployeeSqlProvider.class,method="updateEmployee")
     public int updateEmployee(EmployeeDomain employeeDomain);
 
-    public EmployeeDomain selectByEmployeeId(int employeeId);
+    public EmployeeDomain selectByEmployeeId(@Param("employeeId") int employeeId);
     public List<EmployeeDomain> selectAllEmployee();
 
     @SelectProvider(type = EmployeeSqlProvider.class, method = "selectByEmployeeTel")
-    public EmployeeDomain selectByEmployeeTel(String employeeTel);
+    public EmployeeDomain selectByEmployeeTel(@Param("employeeTel") String employeeTel);
 
     @SelectProvider(type = EmployeeSqlProvider.class, method = "selectCountEmployeeByTel")
-    int selectCountEmployeeByTel(String employeeTel);
+    int selectCountEmployeeByTel(@Param("employeeTel") String employeeTel);
 }
