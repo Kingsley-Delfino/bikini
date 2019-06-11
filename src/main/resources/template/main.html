@@ -2,75 +2,35 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head  runat="server">
     <meta charset="utf-8">
-    <title>企业HR登陆</title>
+    <title>比奇堡招聘网站</title>
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/bootstrap-theme.min.css}"/>
     <script th:src="@{/js/bootstrap.min.js}"></script>
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../../static/js/jquery.cookie.js"></script>
-    <link rel="shortcut icon" href="../../static/photo/others/5.jpg"/>
+    <script type="text/javascript" src="../static/js/jquery.cookie.js"></script>
+    <link rel="shortcut icon" href="../static/photo/others/5.jpg"/>
     <style>
-        .myStyle_2 {
-            height: auto;
-            background: #aaa;
-        }
-        .myStyle_2::after {
-            clear: both;
-        }
-        .myStyle_3 {
-            margin-right: auto;
-            margin-left: auto;
-            height: auto;
-            width: 500px;
-            background: #FFFFFF;
-        }
-        .myStyle_3::after {
-            clear: both;
-        }
-        .myStyle_4 {
-            margin-right: auto;
-            margin-left: auto;
-            height: auto;
-            width: 400px;
-            background: #FFFFFF;
-        }
-        .myStyle_4::after {
-            clear: both;
-        }
-        .myStyle_6 {
-            height: 300px;
-            background: #FFFFFF;
-        }
-        .myStyle_7 {
+        .fakeimg {
             height: 70px;
             background: #aaa;
         }
     </style>
-
-    <script>
-        function back() {
-            window.location.href='/bikini/employee/main';
-        }
-    </script>
 </head>
 <body>
 <div class="jumbotron text-center" style="margin-bottom:0; height: 30px; background:#FFFFFF">
     <div class="row" style="margin-top:-1.3%">
-        <div class="col-sm-1 col-lg-push-1">
-            <button type="button" class="btn btn-info" onclick="back()">返回</button>
+        <div class="col-sm-2 col-lg-push-4">
+            <img src="../static/photo/others/3.jpg" style="height: 50px">
         </div>
         <div class="col-sm-2 col-lg-push-3">
-            <img src="../../static/photo/others/3.jpg" style="height: 50px">
+            <h5>一份简历，涨薪36%</h5>
         </div>
         <div class="col-sm-2 col-lg-push-2">
-            <h5>企业HR登陆</h5>
+            <img src="../static/photo/others/6.jpg" style="height: 50px">
         </div>
-        <div class="col-sm-2 col-lg-push-1">
-            <img src="../../static/photo/others/6.jpg" style="height: 50px">
-        </div>
-        <div class="col-sm-3 col-lg-push-2">
+        <div class="col-sm-3 col-lg-push-3">
             <div class="btn-group">
                 <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown">登陆
                     <span class="caret"></span>
@@ -94,27 +54,15 @@
         </div>
     </div>
 </div>
-
-<div class="myStyle_2" style="padding-top: 30px;padding-bottom: 30px">
-    <form>
-        <div class="myStyle_3" style="padding-top: 100px;padding-bottom: 100px">
-            <div class="myStyle_4">
-                <input type="text" id="username" class="form-control" placeholder="账号" required autofocus>
-                <p></p>
-                <label for="inputPassword" class="sr-only">密码</label>
-                <input type="password" id="inputPassword" class="form-control" placeholder="密码" required>
-                <div class="checkbox">
-                    <label>
-                        <input type="checkbox" value="remember-me">
-                        记住我 </label>
-                </div>
-                <button class="btn btn-lg btn-info btn-block" type="button">企业HR登录</button>
-            </div>
-        </div>
-    </form>
+<div class="text-center">
+    <div style="left:0; top:0; width:100%;">
+        <img src="../static/photo/others/2.jpg" width="100%" height="100%"/>
+    </div>
+    <img src="../static/photo/others/1.jpg" style="height: 300px">
 </div>
-<div class="myStyle_6"></div>
-<div class="myStyle_7"></div>
+
+<div class="fakeimg"></div>
+
 <div class="jumbotron text-center" style="margin-bottom:0">
     <h6 class="text-danger">RightCopy@Bikini</h6>
     <h5 class="text-info">解释权归Bikini所有，如有任何意见或建议请联系我们</h5>

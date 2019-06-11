@@ -2,15 +2,15 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head  runat="server">
     <meta charset="utf-8">
-    <title>职位详情</title>
+    <title>关于我</title>
     <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/bootstrap-theme.min.css}"/>
     <script th:src="@{/js/bootstrap.min.js}"></script>
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../../static/js/jquery.cookie.js"></script>
-    <link rel="shortcut icon" href="../../static/photo/others/5.jpg"/>
+    <script type="text/javascript" src="../static/js/jquery.cookie.js"></script>
+    <link rel="shortcut icon" href="../static/photo/others/5.jpg"/>
     <style>
         .myStyle_1 {
             width: 1000px;
@@ -84,6 +84,7 @@
             color: #aaa;
         }
     </style>
+
     <script>
         function showExperience(a) {
             $('.experience').text(a)
@@ -104,65 +105,57 @@
             window.location.href='/bikini/employee/employeeShow';
         }
         function autoLoad() {
-            var id=$.cookie("positionId");
+            var employeeTel=$.cookie("employeeTel");
             $.ajax({
-                url:'/bikini/employee/employeeQueryFirst',
+                url:'/bikini/employee/不知道',
                 type:'post',
                 contentType:"application/json",
                 dataType:"json",
-                data: JSON.stringify({"positionId":id})
+                data: JSON.stringify({"employeeTel":employeeTel})
             }).done(function (data) {
                 console.log(data);
-                document.getElementById("positionName").innerHTML = '<h3 class="myStyle_12">' + data[0].position_name + '</h3>';
-                document.getElementById("wages").innerHTML ='<h4 class="myStyle_11">'+data[0].position_salary_low+'-'+data[0].position_salary_top+'</h4>';
-                document.getElementById("condition").innerHTML ='<h5 class="myStyle_13">'+data[0].position_education+'&nbsp&nbsp&nbsp'+data[0].position_experience+'&nbsp&nbsp&nbsp'+data[0].position_type+'</h5>';
-                document.getElementById("jobDescription").value=data[0].position_description;
-                document.getElementById("companyName").innerHTML ='<h3 class="myStyle_12">' + data[0].company_name + '</h3>';
-                document.getElementById("companyType").innerHTML ='<h4 class="myStyle_11">' + data[0].company_type + '</h4>';
-                document.getElementById("companyStaffNum").innerHTML ='<h5 class="myStyle_13">' + data[0].company_staff_num + '</h5>';
-                document.getElementById("companyAdress").innerHTML ='<h5 class="myStyle_13">' + data[0].company_adress + '</h5>';
-                document.getElementById("companyDescription").value=data[0].company_description;
-                document.getElementById("positionCreateDate").innerHTML ='<h5 class="myStyle_13">发布日期：' + data[0].position_create_date + '</h5>';
-                document.getElementById("positionDeadline").innerHTML ='<h5 class="myStyle_11">截至日期：' + data[0].position_deadline + '</h5>';
-                document.getElementById("apply").innerHTML ='<button class="btn btn-lg btn-info btn-block" onclick="apply('+data[0].position_employer_id+')" type="button" style="width: 640px">申请职位</button>';
+                document.getElementById("employeeName").innerHTML = '<h4 class="myStyle_11">用户名：'+data[0].employeeName+'</h4>';
+                document.getElementById("employeeAge").innerHTML ='<h5>年龄：'+data[0].employeeAge+'岁</h5>';
+                document.getElementById("employeeGender").innerHTML ='<h5>性别：'+data[0].employeeGender+'</h5>;
+                document.getElementById("employeeTel").innerHTML ='<h5>电话：'+data[0].employeeTel+'</h5>';
+                document.getElementById("employeeEmail").innerHTML ='<h5>电子邮箱：'+data[0].employeeEmail+'</h5>';
+                document.getElementById("employeeUniversity").innerHTML ='<h5>毕业学校：'+data[0].employeeUniversity+'</h5>';
+                document.getElementById("employeeAddress").innerHTML ='<h5>家庭住址：'+data[0].employeeAddress+'</h5>';
+                document.getElementById("employeeCv").innerHTML ='<button type="button" class="btn btn-link" onclick="cv()"><h5 class="myStyle_12">《个人简历》</h5></button>';
+                var a=data[0].employeeCvAddress;
+                $.cookie("employeeCvAdress",a);
             });
-            console.log(id);
+            console.log(employeeTel);
         }
-        function apply(id) {
-            $.ajax({
-                url:'/bikini/employee/employeeSendCv',
-                type:'post',
-                contentType:"application/json",
-                dataType:"json",
-                data: JSON.stringify({"position_employer_id":id})
-            }).done(function (data) {
-                console.log(data);
-                if(data.status===200){
-                    console.log(data);
-                    alert("申请成功！");
-                }
-                else{
-                    console.log(data);
-                    alert("申请失败！");
-                }
-            })
+        function cv() {
+            try{
+                alert($.cookie("employeeCvAdress"));
+                //打开简历
+            }
+            catch (e) {
+                alert(e);
+            }
+        }
+        function edit() {
+            window.location.href='/bikini/employee/employeeEdit';
         }
     </script>
+
 </head>
-<body onload="">
+<body onload="autoLoad()">
 <div class="jumbotron text-center" style="margin-bottom:0; height: 30px; background:#FFFFFF">
     <div class="row" style="margin-top:-1.3%">
         <div class="col-sm-1" style="padding-left: 100px">
             <button type="button" class="btn btn-info" onclick="show()">首页</button>
         </div>
         <div class="col-sm-2 col-lg-push-3">
-            <img src="../../static/photo/others/3.jpg" style="height: 50px">
+            <img src="../static/photo/others/3.jpg" style="height: 50px">
         </div>
         <div class="col-sm-2 col-lg-push-2">
-            <h5>职位详情</h5>
+            <h5>关于我</h5>
         </div>
         <div class="col-sm-2 col-lg-push-1">
-            <img src="../../static/photo/others/6.jpg" style="height: 50px">
+            <img src="../static/photo/others/6.jpg" style="height: 50px">
         </div>
     </div>
 </div>
@@ -170,37 +163,28 @@
 
 <div class="myStyle_2" style="padding-top: 30px; padding-bottom: 30px;">
     <div class="myStyle_3" style="padding: 30px">
-        <div class="row" id="positionName" style="padding-left: 15px; width: 655px">
+        <div class="row text-center" style="padding-bottom:30px;">
+            <img class="img-circle" src="../static/photo/others/11.jpg" width="300" height="300"/>
         </div>
-        <div class="row" id="wages" style="padding-left: 15px;">
+        <div class="row text-center" id="employeeName">
         </div>
-        <div class="row" id="condition" style="padding-left: 15px;">
+        <div class="row text-center" id="employeeAge">
         </div>
-        <div class="row" style="padding-left: 15px">
-            <h4>职位描述：</h4>
-            <textarea class="form-control" id="jobDescription" rows="5" style="width: 640px" required>
-            </textarea>
+        <div class="row text-center" id="employeeGender">
         </div>
-        <br>
-        <div class="row" id="companyName" style="padding-left: 15px; width: 655px">
+        <div class="row text-center" id="employeeTel">
         </div>
-        <div class="row" id="companyType" style="padding-left: 15px;">
+        <div class="row text-center" id="employeeEmail">
         </div>
-        <div class="row" id="companyStaffNum" style="padding-left: 15px;">
+        <div class="row text-center" id="employeeUniversity">
         </div>
-        <div class="row" id="companyAdress" style="padding-left: 15px;">
+        <div class="row text-center" id="employeeAddress">
         </div>
-        <div class="row" style="padding-left: 15px">
-            <h4>公司描述：</h4>
-            <textarea class="form-control" id="companyDescription" rows="5" style="width: 640px" required></textarea>
+        <div class="row text-center" id="employeeCv">
         </div>
         <br>
-        <div class="row" id="positionCreateDate" style="padding-left: 15px;">
-        </div>
-        <div class="row" id="positionDeadline" style="padding-left: 15px;">
-        </div>
-        <br>
-        <div id="apply">
+        <div>
+            <button class="btn btn-lg btn-info btn-block" type="button" onclick="edit()" style="width: 640px">修改个人信息</button>
         </div>
     </div>
 </div>

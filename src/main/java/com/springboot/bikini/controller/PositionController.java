@@ -4,18 +4,19 @@ import com.springboot.bikini.model.EmployeeDomain;
 import com.springboot.bikini.model.JSONResult;
 import com.springboot.bikini.model.PositionDomain;
 import com.springboot.bikini.service.PositionService;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 
-@RestController
+@Controller
+@RequestMapping("/position")
 public class PositionController {
+    @Autowired
     private PositionService positionService;
 
     public JSONResult positionRelease(HttpServletRequest request, @RequestBody PositionDomain positionDomain) {
@@ -42,9 +43,16 @@ public class PositionController {
      *@param: @PositionDomain（只含有positionName）
      *@return:
     */
+    @ResponseBody
     @RequestMapping("/employeeQueryFirst")
     public JSONResult employeeQueryFirst(@RequestBody PositionDomain positionDomain){
         List<HashMap> positionDomains =positionService.employeeSelectPosition(positionDomain);
+        for (HashMap i:
+             positionDomains) {
+            System.out.println(i.toString());
+
+        }
+
         return new JSONResult(positionDomains);
     }
     

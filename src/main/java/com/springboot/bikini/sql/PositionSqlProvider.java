@@ -17,15 +17,14 @@ public class PositionSqlProvider {
     public String selectPositionByPosition(PositionDomain positionDomain){
         String str="select position_id,position_name, position_create_date, position_deadline, position_education, position_employer_id, position_type, position_salary_low, position_salary_top, position_experience, position_description\n" +
                 "from position\n";
-        if((positionDomain.getPositionName()==null||"".equals(positionDomain.getPositionName()))
-            &&(positionDomain.getPositionExperience()==null||"".equals(positionDomain.getPositionExperience()))
-            &&(positionDomain.getPositionEducation()==null||"".equals(positionDomain.getPositionEducation()))
-            &&(positionDomain.getPositionDescription()==null||"".equals(positionDomain.getPositionDescription())
-            &&positionDomain.getPositionSalaryLow()==0&&positionDomain.getPositionSalaryTop()==1000000)){
-
-        }
-        else{
+//        if((positionDomain.getPositionName()==null||"".equals(positionDomain.getPositionName()))
+//            &&(positionDomain.getPositionExperience()==null||"".equals(positionDomain.getPositionExperience()))
+//            &&(positionDomain.getPositionEducation()==null||"".equals(positionDomain.getPositionEducation()))
+//            &&positionDomain.getPositionSalaryLow()==0&&positionDomain.getPositionSalaryTop()==1000000){
+//        }
+//        else{
             str+="where ";
+            str+="POSITION_SALARY_LOW>#{positionSalaryLow} and POSITION_SALARY_TOP<#{positionSalaryTop} and ";
             if(positionDomain.getPositionName()!=null&&!"".equals(positionDomain.getPositionName())){
                 str+="POSITION_NAME=#{positionName} and ";
             }
@@ -38,11 +37,11 @@ public class PositionSqlProvider {
             if(positionDomain.getPositionType()!=null&&!"".equals(positionDomain.getPositionType())){
                 str+="POSITION_TYPE=#{positionType} and ";
             }
-            if(positionDomain.getPositionSalaryLow()!=0&&positionDomain.getPositionSalaryTop()!=1000000){
-                str+="POSITION_SALARY_LOW>#{PositionSalaryLow} and POSITION_SALARY_TOP<#{PositionSalaryTop} and ";
-            }
+            //if(positionDomain.getPositionSalaryLow()!=0&&positionDomain.getPositionSalaryTop()!=1000000){
+                //str+="POSITION_SALARY_LOW>#{PositionSalaryLow} and POSITION_SALARY_TOP<#{PositionSalaryTop} and ";
+            //}
             str=str.substring(0,str.length()-4);
-        }
+        //}
         return str;
     }
 

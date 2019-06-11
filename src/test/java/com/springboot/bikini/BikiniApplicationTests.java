@@ -165,5 +165,18 @@ public class BikiniApplicationTests {
         int positionId=7;
         positionService.deletePosition(positionId);
     }
+    @Test
+    public void queryfirst(){
+        PositionDomain positionDomain=new PositionDomain();
+        positionDomain.setPositionName("Java开发");
+        positionDomain.setPositionSalaryLow(0);
+        positionDomain.setPositionSalaryTop(1000000);
+        List<HashMap> positionDomains =positionService.employeeSelectPosition(positionDomain);
+        for (HashMap i:
+                positionDomains) {
+            logger.info(i.toString());
+        }
+    }
+
 
 }

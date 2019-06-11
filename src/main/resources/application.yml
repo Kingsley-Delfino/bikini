@@ -1,6 +1,6 @@
 spring:
   thymeleaf:
-    prefix: classpath:/template/html/
+    prefix: classpath:/template/
     cache: false
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
@@ -31,3 +31,4 @@ server:
   servlet:
     context-path: /bikini
   port: 8080
+#spring.mvc.static-path-pattern: /static/photo/**

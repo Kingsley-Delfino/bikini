@@ -3,14 +3,14 @@
 <head runat="server">
     <meta charset="utf-8">
     <title>职位搜索</title>
-    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script th:src="@{/js/jquery-3.4.1.min.js}"></script>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/bootstrap-theme.min.css}"/>
     <script th:src="@{/js/bootstrap.min.js}"></script>
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../../static/js/jquery.cookie.js"></script>
-    <link rel="shortcut icon" href="../../static/photo/others/5.jpg"/>
+<!--    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">-->
+<!--    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+    <script type="text/javascript" th:src="@{/js/jquery.cookie.js}"></script>
+    <link rel="shortcut icon" th:href="@{/photo/others/5.jpg}"/>
     <style>
         .myStyle_1 {
             width: 1000px;
@@ -106,6 +106,9 @@
             window.location.href = '/bikini/employee/employeeShow';
         }
 
+        function look(a) {
+            alert(a);
+        }
         function search() {
             var job = $('#search').val();
             var wagesLow=$('#minWages').val();
@@ -119,7 +122,7 @@
             else{
                 if($('#optionsRadios1').is(':checked')){
                     wagesLow = 0;
-                    wagesTop = 200000;
+                    wagesTop = 1000000;
                 }
                 var education = $('.education').text();
                 var experience = $('.experience').text();
@@ -138,16 +141,18 @@
                     type="";
                 }
                 $.ajax({
-                    url:'/bikini/employee/employeeQueryFirst',
+                    url:'/bikini/position/employeeQueryFirst',
                     type:'post',
                     contentType:"application/json",
                     dataType:"json",
                     data: JSON.stringify({"positionName":job,"positionSalaryLow":wagesLow,"positionSalaryTop":wagesTop,"positionEducation":education,"positionExperience":experience,"positionType":type})
                 }).done(function (data) {
                     console.log(data);
+                    var obj= data.data;
                     var html="";
-                    for(var i=0; i<data.length; i++){
-                        html+='<form><div class="myStyle_10"></div><div class="myStyle_9 myStyle_8" style="padding-left: 30px; padding-right: 30px; padding-top: 10px; padding-bottom: 10px"><div class="row"><div class="text-left col-md-6 myStyle_8"><button type="button" class="btn btn-link" onclick="look(' + data[i].position_id + ')"><h4 class="myStyle_12">' + data[i].position_name + '</h4></button></div><div class="text-right col-md-6"><h4>'+data[i].company_name+'</h4></div></div><div class="row"><div class="text-left col-md-2"><h4 class="myStyle_11">'+data[i].position_salary_low+'-'+data[i].position_salary_top+'</h4></div><div class="text-left col-md-6"><h5 class="myStyle_13">'+data[i].position_education+'&nbsp&nbsp&nbsp'+data[i].position_experience+'&nbsp&nbsp&nbsp'+data[i].position_type+'</h5></div><div class="text-right col-md-4"><h5>'+data[i].company_type+'&nbsp&nbsp&nbsp'+data[i].company_staff_num+'人</h5></div></div><div class="text-right"><button class="btn btn-info btn-lg" type="button" onclick="apply('+data[i].position_employer_id+')">申请职位</button></div></div></form>';
+                    console.log("obj: "+obj.length);
+                    for(var i=0; i<obj.length; i++){
+                        html+='<form><div class="myStyle_10"></div><div class="myStyle_9 myStyle_8" style="padding-left: 30px; padding-right: 30px; padding-top: 10px; padding-bottom: 10px"><div class="row"><div class="text-left col-md-6 myStyle_8"><button type="button" class="btn btn-link" onclick="look(' + obj[i].position_id + ')"><h4 class="myStyle_12">' + obj[i].position_name + '</h4></button></div><div class="text-right col-md-6"><h4>'+obj[i].company_name+'</h4></div></div><div class="row"><div class="text-left col-md-2"><h4 class="myStyle_11">'+obj[i].position_salary_low+'-'+obj[i].position_salary_top+'</h4></div><div class="text-left col-md-6"><h5 class="myStyle_13">'+obj[i].position_education+'&nbsp&nbsp&nbsp'+obj[i].position_experience+'&nbsp&nbsp&nbsp'+obj[i].position_type+'</h5></div><div class="text-right col-md-4"><h5>'+obj[i].company_type+'&nbsp&nbsp&nbsp'+obj[i].company_staff_num+'人</h5></div></div><div class="text-right"><button class="btn btn-info btn-lg" type="button" onclick="apply('+obj[i].position_employer_id+')">申请职位</button></div></div></form>';
                     }
                     document.getElementById("result").innerHTML = html;
                 });
@@ -172,6 +177,13 @@
                 }
             })
         }
+        // function show1(data) {
+        //     var html="";
+        //     for(var i=0; i<data.length; i++){
+        //         html+='<form><div class="myStyle_10"></div><div class="myStyle_9 myStyle_8" style="padding-left: 30px; padding-right: 30px; padding-top: 10px; padding-bottom: 10px"><div class="row"><div class="text-left col-md-6 myStyle_8"><button type="button" class="btn btn-link" onclick="look(' + data[i].position_id + ')"><h4 class="myStyle_12">' + data[i].position_name + '</h4></button></div><div class="text-right col-md-6"><h4>'+data[i].company_name+'</h4></div></div><div class="row"><div class="text-left col-md-2"><h4 class="myStyle_11">'+data[i].position_salary_low+'-'+data[i].position_salary_top+'</h4></div><div class="text-left col-md-6"><h5 class="myStyle_13">'+data[i].position_education+'&nbsp&nbsp&nbsp'+data[i].position_experience+'&nbsp&nbsp&nbsp'+data[i].position_type+'</h5></div><div class="text-right col-md-4"><h5>'+data[i].company_type+'&nbsp&nbsp&nbsp'+data[i].company_staff_num+'人</h5></div></div><div class="text-right"><button class="btn btn-info btn-lg" type="button" onclick="apply('+data[i].position_employer_id+')">申请职位</button></div></div></form>';
+        //     }
+        //     document.getElementById("result").innerHTML = html;
+        // }
         function look(id) {
             $.cookie("positionId",id);
             window.location.href='/bikini/employee/employeeJob';
@@ -185,7 +197,7 @@
             <button type="button" class="btn btn-info" onclick="show()">首页</button>
         </div>
         <div class="col-sm-2">
-            <img src="../../static/photo/others/3.jpg" style="margin-top:-25px; height: 100px">
+            <img th:src="@{/photo/others/3.jpg}" style="margin-top:-25px; height: 100px">
         </div>
         <div>
             <div class="col-lg-6">
@@ -205,7 +217,7 @@
             </div>
         </div>
         <div class="col-sm-2">
-            <img src="../../static/photo/others/6.jpg" style="margin-top:-25px; height: 100px">
+            <img th:src="@{/photo/others/6.jpg}" style="margin-top:-25px; height: 100px">
         </div>
     </div>
 </div>
