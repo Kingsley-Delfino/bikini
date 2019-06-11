@@ -7,8 +7,6 @@
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/bootstrap-theme.min.css}"/>
     <script th:src="@{/js/bootstrap.min.js}"></script>
-<!--    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">-->
-<!--    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
     <script type="text/javascript" th:src="@{/js/jquery.cookie.js}"></script>
     <link rel="shortcut icon" th:href="@{/photo/others/5.jpg}"/>
     <style>
@@ -106,21 +104,16 @@
             window.location.href = '/bikini/employee/employeeShow';
         }
 
-        function look(a) {
-            alert(a);
-        }
         function search() {
             var job = $('#search').val();
-            var wagesLow=$('#minWages').val();
-            var wagesTop=$('#maxWages').val();
-            if(job===""){
+            var wagesLow = $('#minWages').val();
+            var wagesTop = $('#maxWages').val();
+            if (job === "") {
                 alert("请输入职位关键字！");
-            }
-            else if($('#optionsRadios2').is(':checked') &&("" === wagesLow||""===wagesTop)){
+            } else if ($('#optionsRadios2').is(':checked') && ("" === wagesLow || "" === wagesTop)) {
                 alert("请输入月薪！");
-            }
-            else{
-                if($('#optionsRadios1').is(':checked')){
+            } else {
+                if ($('#optionsRadios1').is(':checked')) {
                     wagesLow = 0;
                     wagesTop = 1000000;
                 }
@@ -128,65 +121,70 @@
                 var experience = $('.experience').text();
                 var company = $('.company').text();
                 var type = $('.type').text();
-                if(education==="学历要求"||education==="学历不限"){
-                    education="";
+                if (education === "学历要求" || education === "学历不限") {
+                    education = "";
                 }
-                if(experience==="工作经验"||experience==="工作经验不限"){
-                    experience="";
+                if (experience === "工作经验" || experience === "工作经验不限") {
+                    experience = "";
                 }
-                if(company==="公司性质"||company==="公司性质不限"){
-                    company="";
+                if (company === "公司性质" || company === "公司性质不限") {
+                    company = "";
                 }
-                if(type==="职位类型"||type==="职位类型不限"){
-                    type="";
+                if (type === "职位类型" || type === "职位类型不限") {
+                    type = "";
                 }
                 $.ajax({
-                    url:'/bikini/position/employeeQueryFirst',
-                    type:'post',
-                    contentType:"application/json",
-                    dataType:"json",
-                    data: JSON.stringify({"positionName":job,"positionSalaryLow":wagesLow,"positionSalaryTop":wagesTop,"positionEducation":education,"positionExperience":experience,"positionType":type})
+                    url: '/bikini/position/employeeQueryFirst',
+                    type: 'post',
+                    contentType: "application/json",
+                    dataType: "json",
+                    data: JSON.stringify({
+                        "positionName": job,
+                        "positionSalaryLow": wagesLow,
+                        "positionSalaryTop": wagesTop,
+                        "positionEducation": education,
+                        "positionExperience": experience,
+                        "positionType": type
+                    })
                 }).done(function (data) {
                     console.log(data);
-                    var obj= data.data;
-                    var html="";
-                    console.log("obj: "+obj.length);
-                    for(var i=0; i<obj.length; i++){
-                        html+='<form><div class="myStyle_10"></div><div class="myStyle_9 myStyle_8" style="padding-left: 30px; padding-right: 30px; padding-top: 10px; padding-bottom: 10px"><div class="row"><div class="text-left col-md-6 myStyle_8"><button type="button" class="btn btn-link" onclick="look(' + obj[i].position_id + ')"><h4 class="myStyle_12">' + obj[i].position_name + '</h4></button></div><div class="text-right col-md-6"><h4>'+obj[i].company_name+'</h4></div></div><div class="row"><div class="text-left col-md-2"><h4 class="myStyle_11">'+obj[i].position_salary_low+'-'+obj[i].position_salary_top+'</h4></div><div class="text-left col-md-6"><h5 class="myStyle_13">'+obj[i].position_education+'&nbsp&nbsp&nbsp'+obj[i].position_experience+'&nbsp&nbsp&nbsp'+obj[i].position_type+'</h5></div><div class="text-right col-md-4"><h5>'+obj[i].company_type+'&nbsp&nbsp&nbsp'+obj[i].company_staff_num+'人</h5></div></div><div class="text-right"><button class="btn btn-info btn-lg" type="button" onclick="apply('+obj[i].position_employer_id+')">申请职位</button></div></div></form>';
+                    var obj = data.data;
+                    console.log("obj: " + obj.length);
+                    var html = "";
+                    if (obj.length === 0) {
+                        html = '<form><div class="myStyle_10"></div><div class="myStyle_9 myStyle_8" style="padding-left: 30px; padding-right: 30px; padding-top: 10px; padding-bottom: 10px"><div class="row text-center col-md-6 myStyle_8"><h6 class="myStyle_10">未查找到任何相关信息！</h6></div></div></form>';
+                    } else {
+                        for (var i = 0; i < obj.length; i++) {
+                            html += '<form><div class="myStyle_10"></div><div class="myStyle_9 myStyle_8" style="padding-left: 30px; padding-right: 30px; padding-top: 10px; padding-bottom: 10px"><div class="row"><div class="text-left col-md-6 myStyle_8"><button type="button" class="btn btn-link" onclick="look(' + obj[i].position_id + ')"><h4 class="myStyle_12">' + obj[i].position_name + '</h4></button></div><div class="text-right col-md-6"><h4>' + obj[i].company_name + '</h4></div></div><div class="row"><div class="text-left col-md-2"><h4 class="myStyle_11">' + obj[i].position_salary_low + '-' + obj[i].position_salary_top + '</h4></div><div class="text-left col-md-6"><h5 class="myStyle_13">' + obj[i].position_education + '&nbsp&nbsp&nbsp' + obj[i].position_experience + '&nbsp&nbsp&nbsp' + obj[i].position_type + '</h5></div><div class="text-right col-md-4"><h5>' + obj[i].company_type + '&nbsp&nbsp&nbsp' + obj[i].company_staff_num + '人</h5></div></div><div class="text-right"><button class="btn btn-info btn-lg" type="button" onclick="apply(' + obj[i].position_employer_id + ')">申请职位</button></div></div></form>';
+                        }
                     }
                     document.getElementById("result").innerHTML = html;
                 });
             }
         }
+
         function apply(id) {
             $.ajax({
-                url:'/bikini/employee/employeeSendCv',
-                type:'post',
-                contentType:"application/json",
-                dataType:"json",
-                data: JSON.stringify({"position_employer_id":id})
+                url: '/bikini/position/employeeSendCv',
+                type: 'post',
+                contentType: "application/json",
+                dataType: "json",
+                data: JSON.stringify({"position_employer_id": id})
             }).done(function (data) {
                 console.log(data);
-                if(data.status===200){
+                if (data.status === 200) {
                     console.log(data);
                     alert("申请成功！");
-                }
-                else{
+                } else {
                     console.log(data);
                     alert("申请失败！");
                 }
             })
         }
-        // function show1(data) {
-        //     var html="";
-        //     for(var i=0; i<data.length; i++){
-        //         html+='<form><div class="myStyle_10"></div><div class="myStyle_9 myStyle_8" style="padding-left: 30px; padding-right: 30px; padding-top: 10px; padding-bottom: 10px"><div class="row"><div class="text-left col-md-6 myStyle_8"><button type="button" class="btn btn-link" onclick="look(' + data[i].position_id + ')"><h4 class="myStyle_12">' + data[i].position_name + '</h4></button></div><div class="text-right col-md-6"><h4>'+data[i].company_name+'</h4></div></div><div class="row"><div class="text-left col-md-2"><h4 class="myStyle_11">'+data[i].position_salary_low+'-'+data[i].position_salary_top+'</h4></div><div class="text-left col-md-6"><h5 class="myStyle_13">'+data[i].position_education+'&nbsp&nbsp&nbsp'+data[i].position_experience+'&nbsp&nbsp&nbsp'+data[i].position_type+'</h5></div><div class="text-right col-md-4"><h5>'+data[i].company_type+'&nbsp&nbsp&nbsp'+data[i].company_staff_num+'人</h5></div></div><div class="text-right"><button class="btn btn-info btn-lg" type="button" onclick="apply('+data[i].position_employer_id+')">申请职位</button></div></div></form>';
-        //     }
-        //     document.getElementById("result").innerHTML = html;
-        // }
+
         function look(id) {
-            $.cookie("positionId",id);
-            window.location.href='/bikini/employee/employeeJob';
+            $.cookie("positionId", id);
+            window.location.href = '/bikini/employee/employeeJob';
         }
     </script>
 </head>
@@ -203,15 +201,12 @@
             <div class="col-lg-6">
                 <div class="input-group  input-group-lg">
                     <div class="input-group-btn">
-                        <button class="btn btn-info dropdown-toggle" data-toggle="dropdown" type="button">职位
-                        </button>
+                        <button class="btn btn-info" type="button">职位</button>
                     </div>
-                    <label for="search"></label><input type="text" id="search" class="form-control" value=""
+                    <label for="search"></label><input type="text" id="search" class="form-control"
                                                        placeholder="请输入关键词，如：JAVA、销售代表、行政助理等" required autofocus>
                     <span class="input-group-btn">
-						<button class="btn btn-info" type="button" onclick="search()">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
+						<button class="btn btn-info" type="button" onclick="search()">搜索</button>
 					</span>
                 </div>
             </div>
@@ -245,18 +240,19 @@
         <div class="row" style="padding-top: 20px">
             <div class="col-md-2"><h4>其它：</h4></div>
             <div class="btn-group col-md-2 col-lg-pull-1 myStyle_8">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="education" value=""
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" id="education"
+                        value=""
                         style="background: #f7f7f7; width: 170px">
                     <span class="education">学历要求</span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a href="#" onclick="showEducaion($(this).text())">学历不限</a></li>
-                    <li><a href="#" onclick="showEducaion($(this).text())">高中/中专/中技及以下</a></li>
-                    <li><a href="#" onclick="showEducaion($(this).text())">大专及同等学历</a></li>
-                    <li><a href="#" onclick="showEducaion($(this).text())">本科/学士及同等学历</a></li>
-                    <li><a href="#" onclick="showEducaion($(this).text())">硕士/研究生及同等学历</a></li>
-                    <li><a href="#" onclick="showEducaion($(this).text())">博士及以上</a></li>
-                    <li><a href="#" onclick="showEducaion($(this).text())">其它</a></li>
+                    <li><a onclick="showEducaion($(this).text())">学历不限</a></li>
+                    <li><a onclick="showEducaion($(this).text())">高中/中专/中技及以下</a></li>
+                    <li><a onclick="showEducaion($(this).text())">大专及同等学历</a></li>
+                    <li><a onclick="showEducaion($(this).text())">本科/学士及同等学历</a></li>
+                    <li><a onclick="showEducaion($(this).text())">硕士/研究生及同等学历</a></li>
+                    <li><a onclick="showEducaion($(this).text())">博士及以上</a></li>
+                    <li><a onclick="showEducaion($(this).text())">其它</a></li>
                 </ul>
             </div>
             <div class="myStyle_5 col-md-2"></div>
@@ -266,13 +262,13 @@
                     <span class="experience">工作经验</span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a href="#" onclick="showExperience($(this).text())">工作经验不限</a></li>
-                    <li><a href="#" onclick="showExperience($(this).text())">无经验</a></li>
-                    <li><a href="#" onclick="showExperience($(this).text())">1年以下</a></li>
-                    <li><a href="#" onclick="showExperience($(this).text())">1-3年</a></li>
-                    <li><a href="#" onclick="showExperience($(this).text())">3-5年</a></li>
-                    <li><a href="#" onclick="showExperience($(this).text())">5-10年</a></li>
-                    <li><a href="#" onclick="showExperience($(this).text())">10年以上</a></li>
+                    <li><a onclick="showExperience($(this).text())">工作经验不限</a></li>
+                    <li><a onclick="showExperience($(this).text())">无经验</a></li>
+                    <li><a onclick="showExperience($(this).text())">1年以下</a></li>
+                    <li><a onclick="showExperience($(this).text())">1-3年</a></li>
+                    <li><a onclick="showExperience($(this).text())">3-5年</a></li>
+                    <li><a onclick="showExperience($(this).text())">5-10年</a></li>
+                    <li><a onclick="showExperience($(this).text())">10年以上</a></li>
                 </ul>
             </div>
             <div class="myStyle_5 col-md-2"></div>
@@ -282,22 +278,22 @@
                     <span class="company">公司性质</span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a href="#" onclick="showCompany($(this).text())">公司类型不限</a></li>
-                    <li><a href="#" onclick="showCompany($(this).text())">国企</a></li>
-                    <li><a href="#" onclick="showCompany($(this).text())">外商独资</a></li>
-                    <li><a href="#" onclick="showCompany($(this).text())">代表处</a></li>
-                    <li><a href="#" onclick="showCompany($(this).text())">合资</a></li>
-                    <li><a href="#" onclick="showCompany($(this).text())">股份制企业</a></li>
-                    <li><a href="#" onclick="showCompany($(this).text())">上市公司</a></li>
-                    <li><a href="#" onclick="showCompany($(this).text())">国家机关</a></li>
-                    <li><a href="#" onclick="showCompany($(this).text())">事业单位</a></li>
-                    <li><a href="#" onclick="showCompany($(this).text())">银行</a></li>
-                    <li><a href="#" onclick="showCompany($(this).text())">医院</a></li>
-                    <li><a href="#" onclick="showCompany($(this).text())">学校/下级学院</a></li>
-                    <li><a href="#" onclick="showCompany($(this).text())">律师事务所</a></li>
-                    <li><a href="#" onclick="showCompany($(this).text())">社会团体</a></li>
-                    <li><a href="#" onclick="showCompany($(this).text())">港澳台公司</a></li>
-                    <li><a href="#" onclick="showCompany($(this).text())">其它</a></li>
+                    <li><a onclick="showCompany($(this).text())">公司类型不限</a></li>
+                    <li><a onclick="showCompany($(this).text())">国企</a></li>
+                    <li><a onclick="showCompany($(this).text())">外商独资</a></li>
+                    <li><a onclick="showCompany($(this).text())">代表处</a></li>
+                    <li><a onclick="showCompany($(this).text())">合资</a></li>
+                    <li><a onclick="showCompany($(this).text())">股份制企业</a></li>
+                    <li><a onclick="showCompany($(this).text())">上市公司</a></li>
+                    <li><a onclick="showCompany($(this).text())">国家机关</a></li>
+                    <li><a onclick="showCompany($(this).text())">事业单位</a></li>
+                    <li><a onclick="showCompany($(this).text())">银行</a></li>
+                    <li><a onclick="showCompany($(this).text())">医院</a></li>
+                    <li><a onclick="showCompany($(this).text())">学校/下级学院</a></li>
+                    <li><a onclick="showCompany($(this).text())">律师事务所</a></li>
+                    <li><a onclick="showCompany($(this).text())">社会团体</a></li>
+                    <li><a onclick="showCompany($(this).text())">港澳台公司</a></li>
+                    <li><a onclick="showCompany($(this).text())">其它</a></li>
                 </ul>
             </div>
             <div class="myStyle_5 col-md-2"></div>
@@ -307,11 +303,11 @@
                     <span class="type">职位类型</span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a href="#" onclick="showJob($(this).text())">职位类型不限</a></li>
-                    <li><a href="#" onclick="showJob($(this).text())">全职</a></li>
-                    <li><a href="#" onclick="showJob($(this).text())">兼职</a></li>
-                    <li><a href="#" onclick="showJob($(this).text())">实习</a></li>
-                    <li><a href="#" onclick="showJob($(this).text())">校园</a></li>
+                    <li><a onclick="showJob($(this).text())">职位类型不限</a></li>
+                    <li><a onclick="showJob($(this).text())">全职</a></li>
+                    <li><a onclick="showJob($(this).text())">兼职</a></li>
+                    <li><a onclick="showJob($(this).text())">实习</a></li>
+                    <li><a onclick="showJob($(this).text())">校园</a></li>
                 </ul>
             </div>
         </div>

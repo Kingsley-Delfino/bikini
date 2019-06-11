@@ -3,14 +3,12 @@
 <head  runat="server">
     <meta charset="utf-8">
     <title>职位详情</title>
-    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script th:src="@{/js/jquery-3.4.1.min.js}"></script>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/bootstrap-theme.min.css}"/>
     <script th:src="@{/js/bootstrap.min.js}"></script>
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../static/js/jquery.cookie.js"></script>
-    <link rel="shortcut icon" href="../static/photo/others/5.jpg"/>
+    <script type="text/javascript" th:src="@{/js/jquery.cookie.js}"></script>
+    <link rel="shortcut icon" th:href="@{/photo/others/5.jpg}"/>
     <style>
         .myStyle_1 {
             width: 1000px;
@@ -106,31 +104,33 @@
         function autoLoad() {
             var id=$.cookie("positionId");
             $.ajax({
-                url:'/bikini/employee/employeeQueryFirst',
+                url:'/bikini/position/employeeQueryFirst',
                 type:'post',
                 contentType:"application/json",
                 dataType:"json",
                 data: JSON.stringify({"positionId":id})
             }).done(function (data) {
                 console.log(data);
-                document.getElementById("positionName").innerHTML = '<h3 class="myStyle_12">' + data[0].position_name + '</h3>';
-                document.getElementById("wages").innerHTML ='<h4 class="myStyle_11">'+data[0].position_salary_low+'-'+data[0].position_salary_top+'</h4>';
-                document.getElementById("condition").innerHTML ='<h5 class="myStyle_13">'+data[0].position_education+'&nbsp&nbsp&nbsp'+data[0].position_experience+'&nbsp&nbsp&nbsp'+data[0].position_type+'</h5>';
-                document.getElementById("jobDescription").value=data[0].position_description;
-                document.getElementById("companyName").innerHTML ='<h3 class="myStyle_12">' + data[0].company_name + '</h3>';
-                document.getElementById("companyType").innerHTML ='<h4 class="myStyle_11">' + data[0].company_type + '</h4>';
-                document.getElementById("companyStaffNum").innerHTML ='<h5 class="myStyle_13">' + data[0].company_staff_num + '</h5>';
-                document.getElementById("companyAdress").innerHTML ='<h5 class="myStyle_13">' + data[0].company_adress + '</h5>';
-                document.getElementById("companyDescription").value=data[0].company_description;
-                document.getElementById("positionCreateDate").innerHTML ='<h5 class="myStyle_13">发布日期：' + data[0].position_create_date + '</h5>';
-                document.getElementById("positionDeadline").innerHTML ='<h5 class="myStyle_11">截至日期：' + data[0].position_deadline + '</h5>';
-                document.getElementById("apply").innerHTML ='<button class="btn btn-lg btn-info btn-block" onclick="apply('+data[0].position_employer_id+')" type="button" style="width: 640px">申请职位</button>';
+                var obj = data.data;
+                console.log("obj: " + obj.length);
+                document.getElementById("positionName").innerHTML = '<h3 class="myStyle_12">' + obj[0].position_name + '</h3>';
+                document.getElementById("wages").innerHTML ='<h4 class="myStyle_11">'+obj[0].position_salary_low+'-'+obj[0].position_salary_top+'</h4>';
+                document.getElementById("condition").innerHTML ='<h5 class="myStyle_13">'+obj[0].position_education+'&nbsp&nbsp&nbsp'+obj[0].position_experience+'&nbsp&nbsp&nbsp'+obj[0].position_type+'</h5>';
+                document.getElementById("jobDescription").value=obj[0].position_description;
+                document.getElementById("companyName").innerHTML ='<h3 class="myStyle_12">' + obj[0].company_name + '</h3>';
+                document.getElementById("companyType").innerHTML ='<h4 class="myStyle_11">' + obj[0].company_type + '</h4>';
+                document.getElementById("companyStaffNum").innerHTML ='<h5 class="myStyle_13">' + obj[0].company_staff_num + '</h5>';
+                document.getElementById("companyAdress").innerHTML ='<h5 class="myStyle_13">' + obj[0].company_adress + '</h5>';
+                document.getElementById("companyDescription").value=obj[0].company_description;
+                document.getElementById("positionCreateDate").innerHTML ='<h5 class="myStyle_13">发布日期：' + obj[0].position_create_date + '</h5>';
+                document.getElementById("positionDeadline").innerHTML ='<h5 class="myStyle_11">截至日期：' + obj[0].position_deadline + '</h5>';
+                document.getElementById("apply").innerHTML ='<button class="btn btn-lg btn-info btn-block" onclick="apply('+obj[0].position_employer_id+')" type="button" style="width: 640px">申请职位</button>';
             });
             console.log(id);
         }
         function apply(id) {
             $.ajax({
-                url:'/bikini/employee/employeeSendCv',
+                url:'/bikini/position/employeeSendCv',
                 type:'post',
                 contentType:"application/json",
                 dataType:"json",
@@ -156,13 +156,13 @@
             <button type="button" class="btn btn-info" onclick="show()">首页</button>
         </div>
         <div class="col-sm-2 col-lg-push-3">
-            <img src="../static/photo/others/3.jpg" style="height: 50px">
+            <img th:src="@{/photo/others/3.jpg}" style="height: 50px">
         </div>
         <div class="col-sm-2 col-lg-push-2">
             <h5>职位详情</h5>
         </div>
         <div class="col-sm-2 col-lg-push-1">
-            <img src="../static/photo/others/6.jpg" style="height: 50px">
+            <img th:src="@{/photo/others/6.jpg}" style="height: 50px">
         </div>
     </div>
 </div>

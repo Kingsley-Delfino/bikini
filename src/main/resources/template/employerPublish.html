@@ -3,14 +3,12 @@
 <head  runat="server">
     <meta charset="utf-8">
     <title>发布招聘信息</title>
-    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script th:src="@{/js/jquery-3.4.1.min.js}"></script>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/bootstrap-theme.min.css}"/>
     <script th:src="@{/js/bootstrap.min.js}"></script>
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../static/js/jquery.cookie.js"></script>
-    <link rel="shortcut icon" href="../static/photo/others/5.jpg"/>
+    <script type="text/javascript" th:src="@{/js/jquery.cookie.js}"></script>
+    <link rel="shortcut icon" th:href="@{/photo/others/5.jpg}"/>
     <style>
         .myStyle_1 {
             width: 1000px;
@@ -100,19 +98,63 @@
         function showJob(a) {
             $('.job').text(a)
         }
+
+        function show() {
+            window.location.href='/bikini/employer/employerShow';
+        }
+
+        function publish() {
+            var positionName=$('#positionName').val();
+            var positionDescription=$('#positionDescription').val();
+            var positionSalaryLow=$('#minWages').val();
+            var positionSalaryTop=$('#maxWages').val();
+            var positionEducation=$('.education').text();
+            var positionExperience=$('.experience').text();
+            var positionType=$('.job').text();
+            var positionDeadline=$('#deadLine').val();
+            $.ajax({
+                url: '/bikini/employer/不知道',
+                type: 'post',
+                contentType: "application/json",
+                dataType: "json",
+                data: JSON.stringify({
+                    "positionName": positionName,
+                    "positionDescription": positionDescription,
+                    "positionSalaryLow": positionSalaryLow,
+                    "positionSalaryTop": positionSalaryTop,
+                    "positionEducation": positionEducation,
+                    "positionExperience": positionExperience,
+                    "positionType": positionType,
+                    "positionDeadline": positionDeadline
+                })
+            }).done(function (data) {
+                console.log(data);
+                if(data.status===200){
+                    console.log(data);
+                    alert("职位发布成功！");
+                }
+                else{
+                    console.log(data);
+                    alert("职位发布失败！");
+                }
+            });
+        }
     </script>
 </head>
 <body>
 <div class="jumbotron text-center" style="margin-bottom:0; height: 30px; background:#FFFFFF">
     <div class="row" style="margin-top:-1.3%">
-        <div class="col-sm-2 col-lg-push-4">
-            <img src="../static/photo/others/3.jpg" style="height: 50px">
+        <div class="col-sm-1" style="padding-left: 100px">
+            <button type="button" class="btn btn-info" onclick="show()">首页</button>
         </div>
         <div class="col-sm-2 col-lg-push-3">
-            <h5>发布招聘信息</h5>
+            <img th:src="@{/photo/others/3.jpg}" style="height: 50px">
         </div>
         <div class="col-sm-2 col-lg-push-2">
-            <img src="../static/photo/others/6.jpg" style="height: 50px">
+            <h5>发布招聘信息</h5>
+        </div>
+        <div class="col-sm-2 col-lg-push-1">
+            <img th:src="@{/photo/others/6.jpg}" style="height: 50px">
         </div>
     </div>
 </div>
@@ -121,17 +163,17 @@
 <div class="myStyle_2" style="padding-top: 30px; padding-bottom: 30px;">
     <div class="myStyle_3" style="padding: 30px">
         <div class="row" style="padding-left: 15px; width: 655px">
-            <input type="text" id="jobName" class="form-control" placeholder="职位名称" required autofocus>
+            <input type="text" id="positionName" class="form-control" placeholder="职位名称" required autofocus>
             <br>
-            <textarea class="form-control" id="companyDescription" rows="5" style="min-width: 90%" placeholder="职位描述" required></textarea>
+            <textarea class="form-control" id="positionDescription" rows="5" style="min-width: 90%" placeholder="职位描述" required></textarea>
         </div>
         <div class="row" style="padding-top: 20px">
             <div class="col-md-2"><h4>月薪：</h4></div>
             <div class="col-md-3 myStyle_8 col-lg-pull-1" style="padding-left: 20px">
-                <input type="text" id="minWages" class="form-control" placeholder="最低月薪" style="width: 250px">
+                <input type="text" id="minWages" class="form-control" placeholder="最低月薪" style="width: 250px" required>
             </div>
             <div class="col-md-3 myStyle_8 col-lg-push-1" style="padding-left: 70px">
-                <input type="text" id="maxWages" class="form-control" placeholder="最高月薪" style="width: 250px">
+                <input type="text" id="maxWages" class="form-control" placeholder="最高月薪" style="width: 250px" required>
             </div>
         </div>
         <div class="row" style="padding-top: 20px">
@@ -183,11 +225,11 @@
         <div class="row" style="padding-top: 20px">
             <div class="col-md-3"><h4>截止时间：</h4></div>
             <div class="col-md-3 myStyle_8 col-lg-pull-2" style="padding-left: 60px">
-                <input type="text" id="deadLine" class="form-control" placeholder="YYYY-MM-DD" style="width: 539px">
+                <input type="text" id="deadLine" class="form-control" placeholder="YYYY-MM-DD" style="width: 539px" required>
             </div>
         </div>
         <br>
-        <button class="btn btn-lg btn-info btn-block" type="button" style="width: 640px">确认发布招聘信息</button>
+        <button class="btn btn-lg btn-info btn-block" type="button" onclick="publish()" style="width: 640px">确认发布招聘信息</button>
     </div>
 </div>
 <div class="myStyle_6"></div>

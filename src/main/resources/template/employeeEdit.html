@@ -3,14 +3,12 @@
 <head  runat="server">
     <meta charset="utf-8">
     <title>编辑个人信息</title>
-    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script th:src="@{/js/jquery-3.4.1.min.js}"></script>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/bootstrap-theme.min.css}"/>
     <script th:src="@{/js/bootstrap.min.js}"></script>
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../static/js/jquery.cookie.js"></script>
-    <link rel="shortcut icon" href="../static/photo/others/5.jpg"/>
+    <script type="text/javascript" th:src="@{/js/jquery.cookie.js}"></script>
+    <link rel="shortcut icon" th:href="@{/photo/others/5.jpg}"/>
     <style>
         .myStyle_1 {
             width: 1000px;
@@ -112,13 +110,13 @@
             <button type="button" class="btn btn-info" onclick="show()">首页</button>
         </div>
         <div class="col-sm-2 col-lg-push-3">
-            <img src="../static/photo/others/3.jpg" style="height: 50px">
+            <img th:src="@{/photo/others/3.jpg}" style="height: 50px">
         </div>
         <div class="col-sm-2 col-lg-push-2">
             <h5>编辑个人信息</h5>
         </div>
         <div class="col-sm-2 col-lg-push-1">
-            <img src="../static/photo/others/6.jpg" style="height: 50px">
+            <img th:src="@{/photo/others/6.jpg}" style="height: 50px">
         </div>
     </div>
 </div>
@@ -128,7 +126,7 @@
     <div class="myStyle_3" style="padding: 30px">
         <div class="row">
             <div class="myStyle_9 col-lg-1" style="padding-bottom:30px; padding-left: 15px">
-                <img class="img-circle" src="../static/photo/others/11.jpg" width="240" height="240"/>
+                <img class="img-circle" th:src="@{/photo/others/11.jpg}" width="240" height="240"/>
             </div>
             <div class="myStyle_10 col-lg-1 col-lg-pull-20">
                 <div class="row">

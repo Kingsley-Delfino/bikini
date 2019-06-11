@@ -3,14 +3,12 @@
 <head  runat="server">
     <meta charset="utf-8">
     <title>企业HR登陆</title>
-    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script th:src="@{/js/jquery-3.4.1.min.js}"></script>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/bootstrap-theme.min.css}"/>
     <script th:src="@{/js/bootstrap.min.js}"></script>
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../static/js/jquery.cookie.js"></script>
-    <link rel="shortcut icon" href="../static/photo/others/5.jpg"/>
+    <script type="text/javascript" th:src="@{/js/jquery.cookie.js}"></script>
+    <link rel="shortcut icon" th:href="@{/photo/others/5.jpg}"/>
     <style>
         .myStyle_2 {
             height: auto;
@@ -49,11 +47,34 @@
         }
     </style>
 
-    <script>
+    <script type="text/javascript">
+        function login() {
+            var userTel = $('#userTel').val();
+            $.cookie("userTel",userTel);
+            var userPasswd = $('#userPasswd').val();
+            $.ajax({
+                url:'/bikini/employer/employerLog',
+                type:'post',
+                contentType:"application/json",
+                dataType:"json",
+                data: JSON.stringify({"employeeTel":userTel,"employeePassword":userPasswd})
+            }).done(function (data) {
+                console.log(data);
+                if(data.status===200){
+                    console.log(data);
+                    window.location.href='/bikini/employer/employerShow';
+                }
+                else{
+                    console.log(data);
+                    alert("账号或密码输入错误！");
+                }
+            })
+        }
         function back() {
             window.location.href='/bikini/employee/main';
         }
     </script>
+
 </head>
 <body>
 <div class="jumbotron text-center" style="margin-bottom:0; height: 30px; background:#FFFFFF">
@@ -62,13 +83,13 @@
             <button type="button" class="btn btn-info" onclick="back()">返回</button>
         </div>
         <div class="col-sm-2 col-lg-push-3">
-            <img src="../static/photo/others/3.jpg" style="height: 50px">
+            <img th:src="@{/photo/others/3.jpg}" style="height: 50px">
         </div>
         <div class="col-sm-2 col-lg-push-2">
             <h5>企业HR登陆</h5>
         </div>
         <div class="col-sm-2 col-lg-push-1">
-            <img src="../static/photo/others/6.jpg" style="height: 50px">
+            <img th:src="@{/photo/others/6.jpg}" style="height: 50px">
         </div>
         <div class="col-sm-3 col-lg-push-2">
             <div class="btn-group">
@@ -99,11 +120,11 @@
     <form>
         <div class="myStyle_3" style="padding-top: 100px;padding-bottom: 100px">
             <div class="myStyle_4">
-                <input type="text" id="username" class="form-control" placeholder="账号" required autofocus>
+                <input type="text" id="userTel" class="form-control" placeholder="账号" required autofocus>
                 <p></p>
-                <label for="inputPassword" class="sr-only">密码</label>
-                <input type="password" id="inputPassword" class="form-control" placeholder="密码" required>
-                <div class="checkbox">
+                <label for="userPasswd" class="sr-only">密码</label>
+                <input type="password" id="userPasswd" class="form-control" placeholder="密码" required>
+                <div class="checkbox text-right">
                     <label>
                         <input type="checkbox" value="remember-me">
                         记住我 </label>

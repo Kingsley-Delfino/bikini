@@ -3,14 +3,12 @@
 <head  runat="server">
     <meta charset="utf-8">
     <title>关于我</title>
-    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script th:src="@{/js/jquery-3.4.1.min.js}"></script>
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/bootstrap-theme.min.css}"/>
     <script th:src="@{/js/bootstrap.min.js}"></script>
-    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="../static/js/jquery.cookie.js"></script>
-    <link rel="shortcut icon" href="../static/photo/others/5.jpg"/>
+    <script type="text/javascript" th:src="@{/js/jquery.cookie.js}"></script>
+    <link rel="shortcut icon" th:href="@{/photo/others/5.jpg}"/>
     <style>
         .myStyle_1 {
             width: 1000px;
@@ -107,22 +105,24 @@
         function autoLoad() {
             var employeeTel=$.cookie("employeeTel");
             $.ajax({
-                url:'/bikini/employee/不知道',
+                url:'/bikini/position/不知道',
                 type:'post',
                 contentType:"application/json",
                 dataType:"json",
                 data: JSON.stringify({"employeeTel":employeeTel})
             }).done(function (data) {
                 console.log(data);
-                document.getElementById("employeeName").innerHTML = '<h4 class="myStyle_11">用户名：'+data[0].employeeName+'</h4>';
-                document.getElementById("employeeAge").innerHTML ='<h5>年龄：'+data[0].employeeAge+'岁</h5>';
-                document.getElementById("employeeGender").innerHTML ='<h5>性别：'+data[0].employeeGender+'</h5>;
-                document.getElementById("employeeTel").innerHTML ='<h5>电话：'+data[0].employeeTel+'</h5>';
-                document.getElementById("employeeEmail").innerHTML ='<h5>电子邮箱：'+data[0].employeeEmail+'</h5>';
-                document.getElementById("employeeUniversity").innerHTML ='<h5>毕业学校：'+data[0].employeeUniversity+'</h5>';
-                document.getElementById("employeeAddress").innerHTML ='<h5>家庭住址：'+data[0].employeeAddress+'</h5>';
+                var obj = data.data;
+                console.log("obj: " + obj.length);
+                document.getElementById("employeeName").innerHTML = '<h4 class="myStyle_11">用户名：'+obj[0].employeeName+'</h4>';
+                document.getElementById("employeeAge").innerHTML ='<h5>年龄：'+obj[0].employeeAge+'岁</h5>';
+                document.getElementById("employeeGender").innerHTML ='<h5>性别：'+obj[0].employeeGender+'</h5>';
+                document.getElementById("employeeTel").innerHTML ='<h5>电话：'+obj[0].employeeTel+'</h5>';
+                document.getElementById("employeeEmail").innerHTML ='<h5>电子邮箱：'+obj[0].employeeEmail+'</h5>';
+                document.getElementById("employeeUniversity").innerHTML ='<h5>毕业学校：'+obj[0].employeeUniversity+'</h5>';
+                document.getElementById("employeeAddress").innerHTML ='<h5>家庭住址：'+obj[0].employeeAddress+'</h5>';
                 document.getElementById("employeeCv").innerHTML ='<button type="button" class="btn btn-link" onclick="cv()"><h5 class="myStyle_12">《个人简历》</h5></button>';
-                var a=data[0].employeeCvAddress;
+                var a=obj[0].employeeCvAddress;
                 $.cookie("employeeCvAdress",a);
             });
             console.log(employeeTel);
@@ -149,13 +149,13 @@
             <button type="button" class="btn btn-info" onclick="show()">首页</button>
         </div>
         <div class="col-sm-2 col-lg-push-3">
-            <img src="../static/photo/others/3.jpg" style="height: 50px">
+            <img th:src="@{/photo/others/3.jpg}" style="height: 50px">
         </div>
         <div class="col-sm-2 col-lg-push-2">
             <h5>关于我</h5>
         </div>
         <div class="col-sm-2 col-lg-push-1">
-            <img src="../static/photo/others/6.jpg" style="height: 50px">
+            <img th:src="@{/photo/others/6.jpg}" style="height: 50px">
         </div>
     </div>
 </div>
@@ -164,7 +164,7 @@
 <div class="myStyle_2" style="padding-top: 30px; padding-bottom: 30px;">
     <div class="myStyle_3" style="padding: 30px">
         <div class="row text-center" style="padding-bottom:30px;">
-            <img class="img-circle" src="../static/photo/others/11.jpg" width="300" height="300"/>
+            <img class="img-circle" th:src="@{/photo/others/11.jpg}" width="300" height="300"/>
         </div>
         <div class="row text-center" id="employeeName">
         </div>

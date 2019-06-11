@@ -3,15 +3,10 @@
 <head runat="server">
     <meta charset="utf-8">
     <title>找工作</title>
-<!--    <script th:src="@{/js/jquery-3.4.1.js}"></script>-->
     <script th:src="@{/js/jquery-3.4.1.min.js}"></script>
-<!--    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>-->
-<!--    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>-->
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
     <link rel="stylesheet" th:href="@{/css/bootstrap-theme.min.css}"/>
     <script th:src="@{/js/bootstrap.min.js}"></script>
-<!--    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">-->
-<!--    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
     <script type="text/javascript" th:src="@{/js/jquery.cookie.js}"></script>
     <link rel="shortcut icon" th:href="@{/photo/others/5.jpg}"/>
     <style>
@@ -86,14 +81,12 @@
             <div class="col-lg-6">
                 <div class="input-group  input-group-lg">
                     <div class="input-group-btn">
-                        <button class="btn btn-info dropdown-toggle" data-toggle="dropdown" type="button">职位</button>
+                        <button class="btn btn-info" type="button">职位</button>
                     </div>
                     <label for="search"></label><input type="text" id="search" class="form-control"
                                                        placeholder="请输入关键词，如：JAVA、销售代表、行政助理等" required autofocus>
                     <span class="input-group-btn">
-						<button class="btn btn-info" type="button">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
+						<button class="btn btn-info" type="button">搜索</button>
 					</span>
                 </div>
             </div>
