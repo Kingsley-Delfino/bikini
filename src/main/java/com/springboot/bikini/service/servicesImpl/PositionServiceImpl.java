@@ -65,6 +65,10 @@ public class PositionServiceImpl implements PositionService {
     @Override
     public void sendCv(String tel,int position_employer_id){
         EmployeeDomain employeeDomain=employeeDao.selectByEmployeeTel(tel);
+        int count=employeeDao.selectSendCvByEmployeeIdAndEmployerId(employeeDomain.getEmployeeId(),position_employer_id);
+        if(count>0) {
+            throw new BusinessException("您已经申请过该职位！");
+        }
         positionDao.insertSendCv(employeeDomain.getEmployeeId(),position_employer_id,employeeDomain.getEmployeeCvAddress());
     }
 

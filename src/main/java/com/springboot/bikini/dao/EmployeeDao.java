@@ -25,4 +25,7 @@ public interface EmployeeDao {
 
     @SelectProvider(type = EmployeeSqlProvider.class, method = "selectCountEmployeeByTel")
     int selectCountEmployeeByTel(@Param("employeeTel") String employeeTel);
+
+    @SelectProvider(type=EmployeeSqlProvider.class,method = "selectSendCvByEmployeeIdAndEmployerId")
+    int selectSendCvByEmployeeIdAndEmployerId(int employeeId,int employerId);
 }

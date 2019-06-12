@@ -40,4 +40,10 @@ public class EmployeeSqlProvider {
 
         return str;
     }
+
+    public String selectSendCvByEmployeeIdAndEmployerId(int employeeId,int employerId){
+        return "select count(*)\n" +
+                "from sendCv\n" +
+                "where EMPLOYEE_ID=#{employeeId} and EMPLOYER_ID=#{employerId}";
+    };
 }
