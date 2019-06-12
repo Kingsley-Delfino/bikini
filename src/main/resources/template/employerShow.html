@@ -42,15 +42,13 @@
         function getCompany() {
             var userTel = $.cookie("userTel");
             $.ajax({
-                url: '/bikini/employer/不知道',
+                url: '/bikini/position/haveCompany',
                 type: 'post',
                 contentType: "application/json",
                 dataType: "json",
                 data: JSON.stringify({"employerTel": userTel})
             }).done(function (data) {
-                var obj = data.data;
-                console.log("obj: " + obj.length);
-                return obj.length !== 0;
+                return data.status === 200;
             })
         }
 

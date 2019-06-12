@@ -58,7 +58,7 @@
         function autoLoad() {
             var employeeTel = $.cookie("employeeTel");
             $.ajax({
-                url: '/bikini/employee/查询应聘者个人信息',
+                url: '/bikini/employee/lookEmployeeInfo',
                 type: 'post',
                 contentType: "application/json",
                 dataType: "json",
@@ -67,16 +67,16 @@
                 console.log(data);
                 var obj = data.data;
                 console.log("obj: " + obj.length);
-                document.getElementById("employeePhoto").innerHTML = '<img class="img-circle" th:src="' + obj[0].employeePhotoAddress + '" width="300" height="300" alt="Cinque Terre">';
-                document.getElementById("employeeName").innerHTML = '<h4 class="myStyle_11">用户名：' + obj[0].employeeName + '</h4>';
-                document.getElementById("employeeAge").innerHTML = '<h5>年龄：' + obj[0].employeeAge + '岁</h5>';
-                document.getElementById("employeeGender").innerHTML = '<h5>性别：' + obj[0].employeeGender + '</h5>';
-                document.getElementById("employeeTel").innerHTML = '<h5>电话：' + obj[0].employeeTel + '</h5>';
-                document.getElementById("employeeEmail").innerHTML = '<h5>电子邮箱：' + obj[0].employeeEmail + '</h5>';
-                document.getElementById("employeeUniversity").innerHTML = '<h5>毕业学校：' + obj[0].employeeUniversity + '</h5>';
-                document.getElementById("employeeAddress").innerHTML = '<h5>家庭住址：' + obj[0].employeeAddress + '</h5>';
+                document.getElementById("employeePhoto").innerHTML = '<img class="img-circle" th:src="' + obj.employeePhotoAddress + '" width="300" height="300" alt="Cinque Terre">';
+                document.getElementById("employeeName").innerHTML = '<h4 class="myStyle_11">用户名：' + obj.employeeName + '</h4>';
+                document.getElementById("employeeAge").innerHTML = '<h5>年龄：' + obj.employeeAge + '岁</h5>';
+                document.getElementById("employeeGender").innerHTML = '<h5>性别：' + obj.employeeGender + '</h5>';
+                document.getElementById("employeeTel").innerHTML = '<h5>电话：' + obj.employeeTel + '</h5>';
+                document.getElementById("employeeEmail").innerHTML = '<h5>电子邮箱：' + obj.employeeEmail + '</h5>';
+                document.getElementById("employeeUniversity").innerHTML = '<h5>毕业学校：' + obj.employeeUniversity + '</h5>';
+                document.getElementById("employeeAddress").innerHTML = '<h5>家庭住址：' + obj.employeeAddress + '</h5>';
                 document.getElementById("employeeCv").innerHTML = '<button type="button" class="btn btn-link" onclick="cv()"><h5 class="myStyle_12">《个人简历》</h5></button>';
-                $.cookie("employeeCvAdress", obj[0].employeeCvAddress);
+                $.cookie("employeeCvAdress", obj.employeeCvAddress);
             });
             console.log(employeeTel);
         }

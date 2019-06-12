@@ -120,7 +120,7 @@ public class PositionController {
         HttpSession session=request.getSession();
         String tel=(String)session.getAttribute("employerTel");
         boolean status=positionService.companyIdIsNull(tel);
-        if(status==true)
+        if(status)
             return new JSONResult("success");
         else
             return new JSONResult("fail");
