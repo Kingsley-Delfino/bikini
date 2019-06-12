@@ -178,5 +178,14 @@ public class BikiniApplicationTests {
         }
     }
 
+    @Test
+    public void selectAllEmployee(){
+        String tel="1234567";
+        List<HashMap> list=employerService.selectAllEmployeeHaveCv(tel);
+        for (HashMap i:
+                list) {
+            logger.info(i.toString());
+        }
+    }
 
 }

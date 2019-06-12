@@ -7,6 +7,7 @@ import com.springboot.bikini.sql.PositionSqlProvider;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
+import java.util.HashMap;
 import java.util.List;
 @Repository
 @Mapper
@@ -16,6 +17,7 @@ public interface EmployerDao {
 
     public int deleteEmployer(@Param("employerId")int EmployerId);
 
+    @UpdateProvider(type=EmployerSqlProvider.class,method = "updateEmployer")
     public int updateEmployer(EmployerDomain employerDomain);
 
     @SelectProvider(type = EmployerSqlProvider.class, method = "selectByEmployerTel")
@@ -37,4 +39,7 @@ public interface EmployerDao {
 
     @DeleteProvider(type= EmployerSqlProvider.class,method = "deletePositionByPositionId")
     void deletePositionByPositionId(@Param("positionId") int PositionId);
+
+    @SelectProvider(type = EmployerSqlProvider.class,method = "selectAllEmployeeByEmployerId")
+    List<HashMap> selectAllEmployeeByEmployerId(@Param("employerId") int employerId);
 }

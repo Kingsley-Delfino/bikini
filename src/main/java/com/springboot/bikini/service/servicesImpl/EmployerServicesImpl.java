@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.HashMap;
+import java.util.List;
 
 @Service
 @Transactional
@@ -58,5 +60,20 @@ public class EmployerServicesImpl implements EmployerService {
         employerDao.updateEmployerCompanyId(company_id,tel);
     }
 
+    @Override
+    public EmployerDomain  selectInfoByTel(String tel){
+        return employerDao.selectByEmployerTel(tel);
+    }
 
+    @Override
+    public int updateEmployer(EmployerDomain employerDomain){
+        return employerDao.updateEmployer(employerDomain);
+    }
+
+    @Override
+    public List<HashMap> selectAllEmployeeHaveCv(String tel){
+        EmployerDomain employerDomain=selectInfoByTel(tel);
+        int employerId=employerDomain.getEmployerId();
+        return employerDao.selectAllEmployeeByEmployerId(employerId);
+    }
 }

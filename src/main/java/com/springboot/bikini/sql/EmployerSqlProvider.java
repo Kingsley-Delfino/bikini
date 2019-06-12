@@ -3,6 +3,8 @@ package com.springboot.bikini.sql;
 import com.springboot.bikini.model.EmployerDomain;
 import com.springboot.bikini.model.PositionDomain;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -43,4 +45,24 @@ public class EmployerSqlProvider {
                 "where POSITION_ID=#{positionId}";
     }
 
+    public String updateEmployer(EmployerDomain employerDomain){
+        String str="UPDATE employer\nset ";
+        if(employerDomain.getEmployerName()!=null&&!"".equals(employerDomain.getEmployerName()))
+            str+="EMPLOYER_NAME=#{employerName},\n";
+        if(employerDomain.getEmployerAge()!=0&&!"".equals(employerDomain.getEmployerAge()))
+            str+="EMPLOYER_AGE=#{employerAge},\n";
+        if(employerDomain.getEmployerGender()!=null&&!"".equals(employerDomain.getEmployerGender()))
+            str+="EMPLOYER_GENDER=#{employerGender},\n";
+        if(employerDomain.getEmployerEmail()!=null&&!"".equals(employerDomain.getEmployerEmail()))
+            str+="EMPLOYER_EMAIL=#{employerEmail},\n";
+        str=str.substring(0,str.length()-2);
+        str+="\nWHERE EMPLOYER_TEL=#{employerTel};";
+        return str;
+    }
+
+    public String selectAllEmployeeByEmployerId(int employerId){
+        return "select sendCv.CV_ADRESS,employee.employee_id, employee_name, employee_tel, employee_age, employee_gender, employee_university, employee_email, employee_address, employee_cv_address, employee_photo_address\n" +
+                "from employee,sendCv\n" +
+                "where sendCv.EMPLOYEE_ID=employee.EMPLOYEE_ID and sendCv.EMPLOYER_ID=#{employerId}";
+    }
 }
