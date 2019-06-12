@@ -39,6 +39,22 @@
     </style>
 
     <script type="text/javascript">
+        function autoLoad() {
+            var employeeTel = $.cookie("userTel");
+            $.ajax({
+                url: '/bikini/employee/lookEmployeeInfo',
+                type: 'post',
+                contentType: "application/json",
+                dataType: "json",
+                data: JSON.stringify({"employeeTel": employeeTel})
+            }).done(function (data) {
+                var obj = data.data;
+                console.log("obj: " + obj.length);
+                document.getElementById("userPhoto").innerHTML = '<img class="img-circle" th:src="@{'+obj.employerPhotoAddress+'}" width="150" height="150" onclick="employee()" alt="Cinque Terre">';
+                document.getElementById("userName").innerHTML = '<h3>' + obj.employerName + '</h3>';
+            })
+        }
+
         function getCompany() {
             var userTel = $.cookie("userTel");
             $.ajax({
@@ -101,15 +117,12 @@
 <div class="myStyle_2" style="padding-top: 30px">
     <div class="row">
         <div class="myStyle_3 col-md-1 col-lg-push-2 myStyle_8">
-            <div class="text-center" style="padding-top: 25px; padding-bottom: 25px">
-                <!--从数据库查询当前用户头像地址，然后把图片11.jpg替换掉-->
-                <img class="img-circle" th:src="@{/photo/others/10.jpg}" width="150" height="150" onclick="employee()"
-                     alt="Cinque Terre">
+            <div class="text-center" id="userPhoto" style="padding-top: 25px; padding-bottom: 25px">
             </div>
             <div class="text-center">
                 <div><h4>HELLO</h4></div>
-                <!--从数据库查询当前用户姓名，然后把“章鱼哥”替换掉-->
-                <div><h3>海绵宝宝</h3></div>
+                <div id="userName">
+                </div>
             </div>
             <div class="text-center" style="padding-top: 95px">
                 <button type="button" class="btn btn-info" onclick="company()">企业绑定</button>

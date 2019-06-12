@@ -85,14 +85,14 @@
                     html = '<form><div class="myStyle_10"></div><div class="myStyle_9 myStyle_8" style="padding: 10px 30px;"><div class="row text-center col-md-6 myStyle_8"><h6 class="myStyle_10">未查找到任何相关信息！</h6></div></div></form>';
                 } else {
                     for (var i = 0; i < obj.length; i++) {
-                        html += '<form><div class="myStyle_10"></div><div class="myStyle_9 myStyle_8" style="padding: 10px 30px;"><div class="row"><div class="text-left col-md-2"><h4 class="myStyle_12">'+obj[i].employee_name+'</h4></div><div class="text-left col-md-1 col-lg-pull-1"><h5 class="myStyle_13">'+obj[i].employee_gender+'</h5></div><div class="text-left col-md-1 col-lg-pull-1"><h5 class="myStyle_13">'+obj[i].employee_age+'岁</h5></div></div><div class="row"><div class="text-left col-md-4"><h5 class="myStyle_11"><span class="glyphicon glyphicon-earphone">：'+obj[i].employee_tel+'</span></h5></div><div class="text-right" style="padding-right: 15px"><button class="btn btn-info btn-lg" type="button" onload="lookCv('+obj[i].employee_tel+')">查看个人简历</button></div></div><div class="row"><div class="text-left col-md-4"><h5 class="myStyle_11"><span class="glyphicon glyphicon-envelope"></span>：'+obj[i].employee_email+'</h5></div></div></div></form>';
+                        html += '<form><div class="myStyle_10"></div><div class="myStyle_9 myStyle_8" style="padding: 10px 30px;"><div class="row"><div class="text-left col-md-2"><h4 class="myStyle_12">'+obj[i].employee_name+'</h4></div><div class="text-left col-md-1 col-lg-pull-1"><h5 class="myStyle_13">'+obj[i].employee_gender+'</h5></div><div class="text-left col-md-1 col-lg-pull-1"><h5 class="myStyle_13">'+obj[i].employee_age+'岁</h5></div></div><div class="row"><div class="text-left col-md-4"><h5 class="myStyle_11"><span class="glyphicon glyphicon-earphone">：'+obj[i].employee_tel+'</span></h5></div><div class="text-right" style="padding-right: 15px"><button class="btn btn-info btn-lg" type="button" onclick="lookCv('+obj[i].employee_cv_address+')">查看个人简历</button></div></div><div class="row"><div class="text-left col-md-4"><h5 class="myStyle_11"><span class="glyphicon glyphicon-envelope"></span>：'+obj[i].employee_email+'</h5></div></div></div></form>';
                     }
                 }
                 document.getElementById("result").innerHTML = html;
             });
         }
-        function lookCv(tel) {
-            alert(tel);
+        function lookCv(address) {
+            alert("还没写"+address);
         }
     </script>
 </head>
