@@ -88,10 +88,10 @@ public class EmployeeController {
     */
     @RequestMapping("/employeeLog")
     @ResponseBody
-    public JSONResult employeeLogin(@RequestBody EmployeeDomain employeeDomain){
-        //System.out.println(employeeDomain.getEmployeePassword()+"!!!!!!!!!!!!!!!!!!");
+    public JSONResult employeeLogin(@RequestBody EmployeeDomain employeeDomain, HttpServletRequest request){
+        HttpSession session=request.getSession();
+        session.setAttribute("employeeTel",employeeDomain.getEmployeeTel());
         employeeService.login(employeeDomain);
-
         return new JSONResult("success");
     }
     /**

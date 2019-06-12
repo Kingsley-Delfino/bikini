@@ -37,6 +37,7 @@ public class EmployeeServiceImpl implements EmployeeService {
     }
     @Override
     public void register(EmployeeDomain employeeDomain){
+        System.out.println(employeeDomain.getEmployeeName()+employeeDomain.getEmployeeTel()+employeeDomain.getEmployeePassword());
         if(employeeDomain.getEmployeeName()==null||"".equals(employeeDomain.getEmployeeName())
                 ||employeeDomain.getEmployeeTel()==null||"".equals((employeeDomain.getEmployeeTel()))
                 ||employeeDomain.getEmployeePassword()==null||"".equals(employeeDomain.getEmployeePassword())){

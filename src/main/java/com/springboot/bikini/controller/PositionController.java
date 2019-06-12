@@ -67,9 +67,9 @@ public class PositionController {
     @RequestMapping("/employeeSendCv")
     public JSONResult employeeSendCv(HttpServletRequest request,@RequestBody PositionDomain positionDomain){
         int position_employer_id=positionDomain.getPositionEmployerId();
-        System.out.println(position_employer_id+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         HttpSession session=request.getSession();
         String tel=(String)session.getAttribute("employeeTel");
+        System.out.println(tel+"你爱我");
         positionService.sendCv(tel,position_employer_id);
         return new JSONResult("success");
     }

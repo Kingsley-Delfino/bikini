@@ -55,26 +55,43 @@
     </style>
 
     <script type="text/javascript">
+        function employeeLogin() {
+            window.location.href='/bikini/employee/employeeLogin';
+        }
+        function employeeRegister() {
+            window.location.href='/bikini/employee/employeeRegister';
+        }
+        function employerLogin() {
+            window.location.href='/bikini/employee/employerLogin';
+        }
+        function employerRegister() {
+            window.location.href='/bikini/employee/employerRegister';
+        }
         function login() {
             var userTel = $('#userTel').val();
             $.cookie("userTel", userTel);
             var userPasswd = $('#userPasswd').val();
-            $.ajax({
-                url: '/bikini/employer/employerLog',
-                type: 'post',
-                contentType: "application/json",
-                dataType: "json",
-                data: JSON.stringify({"employeeTel": userTel, "employeePassword": userPasswd})
-            }).done(function (data) {
-                console.log(data);
-                if (data.status === 200) {
+            if(userTel===null||userTel===""||userPasswd ===null||userPasswd===""){
+                alert("请先输入账户和密码！");
+            }
+            else{
+                $.ajax({
+                    url: '/bikini/employer/employerLog',
+                    type: 'post',
+                    contentType: "application/json",
+                    dataType: "json",
+                    data: JSON.stringify({"employerTel": userTel, "employerPassword": userPasswd})
+                }).done(function (data) {
                     console.log(data);
-                    window.location.href = '/bikini/employer/employerShow';
-                } else {
-                    console.log(data);
-                    alert("账号或密码输入错误！");
-                }
-            })
+                    if (data.status === 200) {
+                        console.log(data);
+                        window.location.href = '/bikini/employer/employerShow';
+                    } else {
+                        console.log(data);
+                        alert("账号或密码输入错误！");
+                    }
+                })
+            }
         }
 
         function back() {
@@ -104,9 +121,9 @@
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a href="employeeLogin.html">应聘者登陆</a></li>
+                    <li><a onclick="employeeLogin()">应聘者登陆</a></li>
                     <li class="divider"></li>
-                    <li><a href="employerLogin.html">企业HR登陆</a></li>
+                    <li><a onclick="employerLogin()">企业HR登陆</a></li>
                 </ul>
             </div>
             <div class="btn-group">
@@ -114,9 +131,9 @@
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a href="employeeRegister.html">应聘者注册</a></li>
+                    <li><a onclick="employeeRegister()">应聘者注册</a></li>
                     <li class="divider"></li>
-                    <li><a href="employerRegister.html">企业HR注册</a></li>
+                    <li><a onclick="employerRegister()">企业HR注册</a></li>
                 </ul>
             </div>
         </div>

@@ -26,7 +26,9 @@ public class EmployerController {
     private CompanyService companyService;
 
     @RequestMapping("/employerLog")
-    public JSONResult employerLogin(@RequestBody EmployerDomain employerDomain){
+    public JSONResult employerLogin(@RequestBody EmployerDomain employerDomain,HttpServletRequest request){
+        HttpSession session=request.getSession();
+        session.setAttribute("employerTel",employerDomain.getEmployerTel());
         employerService.login(employerDomain);
         return new JSONResult("success");
     }
