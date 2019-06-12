@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head  runat="server">
+<head runat="server">
     <meta charset="utf-8">
     <title>发布招聘信息</title>
     <script th:src="@{/js/jquery-3.4.1.min.js}"></script>
@@ -10,12 +10,6 @@
     <script type="text/javascript" th:src="@{/js/jquery.cookie.js}"></script>
     <link rel="shortcut icon" th:href="@{/photo/others/5.jpg}"/>
     <style>
-        .myStyle_1 {
-            width: 1000px;
-            height: 60px;
-            background: #FFFFFF;
-        }
-
         .myStyle_2 {
             height: auto;
             background: #aaa;
@@ -37,12 +31,6 @@
             clear: both;
         }
 
-        .myStyle_5 {
-            height: 30px;
-            width: 65px;
-            background: #FFFFFF;
-        }
-
         .myStyle_6 {
             height: 300px;
             background: #FFFFFF;
@@ -57,30 +45,6 @@
             padding-left: 0;
             padding-right: 0;
         }
-
-        .myStyle_9 {
-            width: 1000px;
-            height: 150px;
-            background: #FFFFFF;
-        }
-
-        .myStyle_10 {
-            width: 1000px;
-            height: 1px;
-            background: #aaa;
-        }
-
-        .myStyle_11 {
-            color: #FF0000;
-        }
-
-        .myStyle_12 {
-            color: #00BFFF;
-        }
-
-        .myStyle_13 {
-            color: #aaa;
-        }
     </style>
     <script>
         function showExperience(a) {
@@ -91,27 +55,23 @@
             $('.education').text(a)
         }
 
-        function showCompany(a) {
-            $('.company').text(a)
-        }
-
         function showJob(a) {
             $('.job').text(a)
         }
 
         function show() {
-            window.location.href='/bikini/employer/employerShow';
+            window.location.href = '/bikini/employer/employerShow';
         }
 
         function publish() {
-            var positionName=$('#positionName').val();
-            var positionDescription=$('#positionDescription').val();
-            var positionSalaryLow=$('#minWages').val();
-            var positionSalaryTop=$('#maxWages').val();
-            var positionEducation=$('.education').text();
-            var positionExperience=$('.experience').text();
-            var positionType=$('.job').text();
-            var positionDeadline=$('#deadLine').val();
+            var positionName = $('#positionName').val();
+            var positionDescription = $('#positionDescription').val();
+            var positionSalaryLow = $('#minWages').val();
+            var positionSalaryTop = $('#maxWages').val();
+            var positionEducation = $('.education').text();
+            var positionExperience = $('.experience').text();
+            var positionType = $('.job').text();
+            var positionDeadline = $('#deadLine').val();
             $.ajax({
                 url: '/bikini/employer/不知道',
                 type: 'post',
@@ -129,11 +89,10 @@
                 })
             }).done(function (data) {
                 console.log(data);
-                if(data.status===200){
+                if (data.status === 200) {
                     console.log(data);
                     alert("职位发布成功！");
-                }
-                else{
+                } else {
                     console.log(data);
                     alert("职位发布失败！");
                 }
@@ -148,13 +107,13 @@
             <button type="button" class="btn btn-info" onclick="show()">首页</button>
         </div>
         <div class="col-sm-2 col-lg-push-3">
-            <img th:src="@{/photo/others/3.jpg}" style="height: 50px">
+            <img th:src="@{/photo/others/3.jpg}" style="height: 50px" alt="Cinque Terre">
         </div>
         <div class="col-sm-2 col-lg-push-2">
             <h5>发布招聘信息</h5>
         </div>
         <div class="col-sm-2 col-lg-push-1">
-            <img th:src="@{/photo/others/6.jpg}" style="height: 50px">
+            <img th:src="@{/photo/others/6.jpg}" style="height: 50px" alt="Cinque Terre">
         </div>
     </div>
 </div>
@@ -163,17 +122,22 @@
 <div class="myStyle_2" style="padding-top: 30px; padding-bottom: 30px;">
     <div class="myStyle_3" style="padding: 30px">
         <div class="row" style="padding-left: 15px; width: 655px">
-            <input type="text" id="positionName" class="form-control" placeholder="职位名称" required autofocus>
+            <label for="positionName"></label><input type="text" id="positionName" class="form-control"
+                                                     placeholder="职位名称" required autofocus>
             <br>
-            <textarea class="form-control" id="positionDescription" rows="5" style="min-width: 90%" placeholder="职位描述" required></textarea>
+            <label for="positionDescription"></label><textarea class="form-control" id="positionDescription" rows="5"
+                                                               style="min-width: 90%" placeholder="职位描述"
+                                                               required></textarea>
         </div>
         <div class="row" style="padding-top: 20px">
             <div class="col-md-2"><h4>月薪：</h4></div>
             <div class="col-md-3 myStyle_8 col-lg-pull-1" style="padding-left: 20px">
-                <input type="text" id="minWages" class="form-control" placeholder="最低月薪" style="width: 250px" required>
+                <label for="minWages"></label><input type="text" id="minWages" class="form-control" placeholder="最低月薪"
+                                                     style="width: 250px" required>
             </div>
             <div class="col-md-3 myStyle_8 col-lg-push-1" style="padding-left: 70px">
-                <input type="text" id="maxWages" class="form-control" placeholder="最高月薪" style="width: 250px" required>
+                <label for="maxWages"></label><input type="text" id="maxWages" class="form-control" placeholder="最高月薪"
+                                                     style="width: 250px" required>
             </div>
         </div>
         <div class="row" style="padding-top: 20px">
@@ -225,11 +189,13 @@
         <div class="row" style="padding-top: 20px">
             <div class="col-md-3"><h4>截止时间：</h4></div>
             <div class="col-md-3 myStyle_8 col-lg-pull-2" style="padding-left: 60px">
-                <input type="text" id="deadLine" class="form-control" placeholder="YYYY-MM-DD" style="width: 539px" required>
+                <label for="deadLine"></label><input type="text" id="deadLine" class="form-control"
+                                                     placeholder="YYYY-MM-DD" style="width: 539px" required>
             </div>
         </div>
         <br>
-        <button class="btn btn-lg btn-info btn-block" type="button" onclick="publish()" style="width: 640px">确认发布招聘信息</button>
+        <button class="btn btn-lg btn-info btn-block" type="button" onclick="publish()" style="width: 640px">确认发布招聘信息
+        </button>
     </div>
 </div>
 <div class="myStyle_6"></div>
@@ -237,13 +203,13 @@
 <div class="jumbotron text-center" style="margin-bottom:0">
     <h6 class="text-danger">RightCopy@Bikini</h6>
     <h5 class="text-info">解释权归Bikini所有，如有任何意见或建议请联系我们</h5>
-    <p><h5><span class="glyphicon glyphicon-phone-alt">：68221932</span></h5></p>
-    <p><h5><span class="glyphicon glyphicon-earphone">：18302161037</span></h5></p>
-    <p><h5><span class="glyphicon glyphicon-envelope"></span>：161310614@mail.dhu.edu.cn</h5></p>
+    <p><h5><span class="glyphicon glyphicon-phone-alt">：68221932</span></h5>
+    <p><h5><span class="glyphicon glyphicon-earphone">：18302161037</span></h5>
+    <p><h5><span class="glyphicon glyphicon-envelope"></span>：161310614@mail.dhu.edu.cn</h5>
     <p><h6><span class="glyphicon glyphicon-magnet"></span>
     <span class="glyphicon glyphicon-bell"></span>
     <span class="glyphicon glyphicon-globe"></span>
-    <span class="glyphicon glyphicon-tree-deciduous"></span></h6></p>
+    <span class="glyphicon glyphicon-tree-deciduous"></span></h6>
 </div>
 </body>
 </html>

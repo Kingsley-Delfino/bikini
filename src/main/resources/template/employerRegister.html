@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head  runat="server">
+<head runat="server">
     <meta charset="utf-8">
     <title>企业HR注册</title>
     <script th:src="@{/js/jquery-3.4.1.min.js}"></script>
@@ -14,9 +14,11 @@
             height: auto;
             background: #aaa;
         }
+
         .myStyle_2::after {
             clear: both;
         }
+
         .myStyle_3 {
             margin-right: auto;
             margin-left: auto;
@@ -24,9 +26,11 @@
             width: 500px;
             background: #FFFFFF;
         }
+
         .myStyle_3::after {
             clear: both;
         }
+
         .myStyle_4 {
             margin-right: auto;
             margin-left: auto;
@@ -34,13 +38,16 @@
             width: 400px;
             background: #FFFFFF;
         }
+
         .myStyle_4::after {
             clear: both;
         }
+
         .myStyle_6 {
             height: 300px;
             background: #FFFFFF;
         }
+
         .myStyle_7 {
             height: 70px;
             background: #aaa;
@@ -49,7 +56,48 @@
 
     <script>
         function back() {
-            window.location.href='/bikini/employee/main';
+            window.location.href = '/bikini/employee/main';
+        }
+
+        function register() {
+            var userName = $('#userName').val();
+            var userTel = $('#userTel').val();
+            var userEmail = $('#userEmail').val();
+            var password = $('#password').val();
+            var password2 = $('#password2').val();
+            if (password !== password2) {
+                alert("密码不一致！");
+            } else {
+                $.ajax({
+                    url: '/bikini/employer/employerReg',
+                    type: 'post',
+                    contentType: "application/json",
+                    dataType: "json",
+                    data: JSON.stringify({
+                        "employerName": userName,
+                        "employerTel": userTel,
+                        "employerEmail": userEmail,
+                        "employerPassword": password,
+                        "employerAge": 0,
+                        "employerGender": "未填",
+                        "employerPhotoAddress": "@{/photo/others/10.jpg}"
+                    })
+                }).done(function (data) {
+                    console.log(data);
+                    if (data.status === 200) {
+                        console.log(data);
+                        alert("注册成功！");
+                        $('#userName').val("");
+                        $('#userTel').val("");
+                        $('#userMail').val("");
+                        $('#password').val("");
+                        $('#password2').val("");
+                    } else {
+                        console.log(data);
+                        alert("注册失败！");
+                    }
+                })
+            }
         }
     </script>
 </head>
@@ -60,13 +108,13 @@
             <button type="button" class="btn btn-info" onclick="back()">返回</button>
         </div>
         <div class="col-sm-2 col-lg-push-3">
-            <img th:src="@{/photo/others/3.jpg}" style="height: 50px">
+            <img th:src="@{/photo/others/3.jpg}" style="height: 50px" alt="Cinque Terre">
         </div>
         <div class="col-sm-2 col-lg-push-2">
             <h5>企业HR注册</h5>
         </div>
         <div class="col-sm-2 col-lg-push-1">
-            <img th:src="@{/photo/others/6.jpg}" style="height: 50px">
+            <img th:src="@{/photo/others/6.jpg}" style="height: 50px" alt="Cinque Terre">
         </div>
         <div class="col-sm-3 col-lg-push-2">
             <div class="btn-group">
@@ -97,19 +145,22 @@
     <form>
         <div class="myStyle_3" style="padding-top: 100px;padding-bottom: 100px">
             <div class="myStyle_4">
-                <input type="text" id="userName" class="form-control" placeholder="姓名" required autofocus>
+                <label for="userName"></label><input type="text" id="userName" class="form-control" placeholder="姓名"
+                                                     required autofocus>
                 <p></p>
-                <input type="text" id="userPhone" class="form-control" placeholder="手机号码" required autofocus>
+                <label for="userTel"></label><input type="text" id="userTel" class="form-control" placeholder="手机号码"
+                                                    required>
                 <p></p>
-                <input type="text" id="userMai" class="form-control" placeholder="电子邮箱" required autofocus>
+                <label for="userEmail"></label><input type="text" id="userEmail" class="form-control" placeholder="电子邮箱"
+                                                      required>
                 <p></p>
-                <label for="inputPassword" class="sr-only">密码</label>
-                <input type="password" id="inputPassword" class="form-control" placeholder="密码" required>
+                <label for="password" class="sr-only">密码</label>
+                <input type="password" id="password" class="form-control" placeholder="密码" required>
                 <p></p>
-                <label for="inputPassword2" class="sr-only">密码</label>
-                <input type="password" id="inputPassword2" class="form-control" placeholder="再次输入密码" required>
+                <label for="password2" class="sr-only">密码</label>
+                <input type="password" id="password2" class="form-control" placeholder="再次输入密码" required>
                 <p></p>
-                <button class="btn btn-lg btn-info btn-block" type="button">企业HR注册</button>
+                <button class="btn btn-lg btn-info btn-block" type="button" onclick="register()">企业HR注册</button>
             </div>
         </div>
     </form>
@@ -120,13 +171,13 @@
 <div class="jumbotron text-center" style="margin-bottom:0">
     <h6 class="text-danger">RightCopy@Bikini</h6>
     <h5 class="text-info">解释权归Bikini所有，如有任何意见或建议请联系我们</h5>
-    <p><h5><span class="glyphicon glyphicon-phone-alt">：68221932</span></h5></p>
-    <p><h5><span class="glyphicon glyphicon-earphone">：18302161037</span></h5></p>
-    <p><h5><span class="glyphicon glyphicon-envelope"></span>：161310614@mail.dhu.edu.cn</h5></p>
+    <p><h5><span class="glyphicon glyphicon-phone-alt">：68221932</span></h5>
+    <p><h5><span class="glyphicon glyphicon-earphone">：18302161037</span></h5>
+    <p><h5><span class="glyphicon glyphicon-envelope"></span>：161310614@mail.dhu.edu.cn</h5>
     <p><h6><span class="glyphicon glyphicon-magnet"></span>
     <span class="glyphicon glyphicon-bell"></span>
     <span class="glyphicon glyphicon-globe"></span>
-    <span class="glyphicon glyphicon-tree-deciduous"></span></h6></p>
+    <span class="glyphicon glyphicon-tree-deciduous"></span></h6>
 </div>
 </body>
 </html>

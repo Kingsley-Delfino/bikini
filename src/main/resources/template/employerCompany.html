@@ -14,9 +14,11 @@
             height: auto;
             background: #aaa;
         }
+
         .myStyle_2::after {
             clear: both;
         }
+
         .myStyle_3 {
             margin-right: auto;
             margin-left: auto;
@@ -24,9 +26,11 @@
             width: 500px;
             background: #FFFFFF;
         }
+
         .myStyle_3::after {
             clear: both;
         }
+
         .myStyle_4 {
             margin-right: auto;
             margin-left: auto;
@@ -34,17 +38,21 @@
             width: 400px;
             background: #FFFFFF;
         }
+
         .myStyle_4::after {
             clear: both;
         }
+
         .myStyle_5 {
             text-align: left;
             color: #9d9d9d;
         }
+
         .myStyle_6 {
             height: 300px;
             background: #FFFFFF;
         }
+
         .myStyle_7 {
             height: 70px;
             background: #aaa;
@@ -53,11 +61,11 @@
 
     <script>
         function company() {
-            var companyName=$('#companyName').val();
-            var companyStaffNum=$('#companyStaffNum').val();
-            var companyType=$('.companyType').text();
-            var companyAddress=$('#companyAddress').val();
-            var companyDescription=$('#companyDescription').val();
+            var companyName = $('#companyName').val();
+            var companyStaffNum = $('#companyStaffNum').val();
+            var companyType = $('.companyType').text();
+            var companyAddress = $('#companyAddress').val();
+            var companyDescription = $('#companyDescription').val();
             $.ajax({
                 url: '/bikini/employer/不知道',
                 type: 'post',
@@ -72,12 +80,15 @@
                 })
             }).done(function (data) {
                 console.log(data);
-                if(data.status===200){
+                if (data.status === 200) {
                     console.log(data);
                     alert("公司绑定成功！");
-                    window.location.href='/bikini/employer/employerShow';
-                }
-                else{
+                    $('#companyName').val("");
+                    $('#companyStaffNum').val("");
+                    $('.companyType').text("公司性质");
+                    $('#companyAddress').val("");
+                    $('#companyDescription').val("");
+                } else {
                     console.log(data);
                     alert("公司绑定失败！");
                 }
@@ -89,7 +100,7 @@
         }
 
         function show() {
-            window.location.href='/bikini/employer/employerShow';
+            window.location.href = '/bikini/employer/employerShow';
         }
     </script>
 </head>
@@ -100,13 +111,13 @@
             <button type="button" class="btn btn-info" onclick="show()">首页</button>
         </div>
         <div class="col-sm-2 col-lg-push-3">
-            <img th:src="@{/photo/others/3.jpg}" style="height: 50px">
+            <img th:src="@{/photo/others/3.jpg}" style="height: 50px" alt="Cinque Terre">
         </div>
         <div class="col-sm-2 col-lg-push-2">
             <h5>公司绑定</h5>
         </div>
         <div class="col-sm-2 col-lg-push-1">
-            <img th:src="@{/photo/others/6.jpg}" style="height: 50px">
+            <img th:src="@{/photo/others/6.jpg}" style="height: 50px" alt="Cinque Terre">
         </div>
     </div>
 </div>
@@ -115,9 +126,11 @@
     <form>
         <div class="myStyle_3" style="padding-top: 100px; padding-bottom: 100px">
             <div class="myStyle_4">
-                <input type="text" id="companyName" class="form-control" placeholder="公司名称" required autofocus>
+                <label for="companyName"></label><input type="text" id="companyName" class="form-control"
+                                                        placeholder="公司名称" required autofocus>
                 <br>
-                <input type="text" id="companyStaffNum" class="form-control" placeholder="公司员工数量" required>
+                <label for="companyStaffNum"></label><input type="text" id="companyStaffNum" class="form-control"
+                                                            placeholder="公司员工数量" required>
                 <br>
                 <div class="btn-group">
                     <button type="button" class="btn btn-default dropdown-toggle myStyle_5" data-toggle="dropdown"
@@ -144,9 +157,13 @@
                 </div>
                 <br>
                 <br>
-                <textarea class="form-control" id="companyAddress" rows="3" style="min-width: 90%" placeholder="公司地址" required></textarea>
+                <label for="companyAddress"></label><textarea class="form-control" id="companyAddress" rows="3"
+                                                              style="min-width: 90%" placeholder="公司地址"
+                                                              required></textarea>
                 <br>
-                <textarea class="form-control" id="companyDescription" rows="5" style="min-width: 90%" placeholder="公司描述" required></textarea>
+                <label for="companyDescription"></label><textarea class="form-control" id="companyDescription" rows="5"
+                                                                  style="min-width: 90%" placeholder="公司描述"
+                                                                  required></textarea>
                 <br>
                 <button class="btn btn-lg btn-info" type="button" onclick="company()">确认绑定</button>
             </div>
@@ -158,13 +175,13 @@
 <div class="jumbotron text-center" style="margin-bottom:0">
     <h6 class="text-danger">RightCopy@Bikini</h6>
     <h5 class="text-info">解释权归Bikini所有，如有任何意见或建议请联系我们</h5>
-    <p><h5><span class="glyphicon glyphicon-phone-alt">：68221932</span></h5></p>
-    <p><h5><span class="glyphicon glyphicon-earphone">：18302161037</span></h5></p>
-    <p><h5><span class="glyphicon glyphicon-envelope"></span>：161310614@mail.dhu.edu.cn</h5></p>
+    <p><h5><span class="glyphicon glyphicon-phone-alt">：68221932</span></h5>
+    <p><h5><span class="glyphicon glyphicon-earphone">：18302161037</span></h5>
+    <p><h5><span class="glyphicon glyphicon-envelope"></span>：161310614@mail.dhu.edu.cn</h5>
     <p><h6><span class="glyphicon glyphicon-magnet"></span>
     <span class="glyphicon glyphicon-bell"></span>
     <span class="glyphicon glyphicon-globe"></span>
-    <span class="glyphicon glyphicon-tree-deciduous"></span></h6></p>
+    <span class="glyphicon glyphicon-tree-deciduous"></span></h6>
 </div>
 </body>
 </html>
