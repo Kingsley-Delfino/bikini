@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head  runat="server">
+<head runat="server">
     <meta charset="utf-8">
     <title>我发布的职位</title>
     <script th:src="@{/js/jquery-3.4.1.min.js}"></script>
@@ -23,18 +23,6 @@
 
         .myStyle_2::after {
             clear: both;
-        }
-
-        .myStyle_3 {
-            height: 150px;
-            width: 1000px;
-            background: #FFFFFF;
-        }
-
-        .myStyle_5 {
-            height: 30px;
-            width: 65px;
-            background: #FFFFFF;
         }
 
         .myStyle_6 {
@@ -77,24 +65,56 @@
         }
     </style>
     <script>
-        function showExperience(a) {
-            $('.experience').text(a)
-        }
-
-        function showEducaion(a) {
-            $('.education').text(a)
-        }
-
-        function showCompany(a) {
-            $('.company').text(a)
-        }
-
-        function showJob(a) {
-            $('.job').text(a)
-        }
-
         function show() {
-            window.location.href='/bikini/employer/employerShow';
+            window.location.href = '/bikini/employer/employerShow';
+        }
+
+        function search() {
+            var employerTel = $.cookie("userTel");
+            $.ajax({
+                url: '/bikini/position/selectAllPositionByOneself',
+                type: 'post',
+                contentType: "application/json",
+                dataType: "json",
+                data: JSON.stringify({"employerTel": employerTel})
+            }).done(function (data) {
+                console.log(data);
+                var obj = data.data;
+                console.log("obj: " + obj.length);
+                var html = "";
+                if (obj.length === 0) {
+                    html = '<form><div class="myStyle_10"></div><div class="myStyle_9 myStyle_8" style="padding: 10px 30px;"><div class="row text-center col-md-6 myStyle_8"><h6 class="myStyle_10">未查找到任何相关信息！</h6></div></div></form>';
+                } else {
+                    for (var i = 0; i < obj.length; i++) {
+                        html += '<form><div class="myStyle_10"></div><div class="myStyle_9 myStyle_8" style="padding: 10px 30px;"><div class="row"><div class="text-left col-md-6 myStyle_8"><button type="button" class="btn btn-link" onclick="look(' + obj[i].position_id + ')"><h4 class="myStyle_12">' + obj[i].position_name + '</h4></button></div><div class="text-right col-md-6"><h4>' + obj[i].company_name + '</h4></div></div><div class="row"><div class="text-left col-md-2"><h4 class="myStyle_11">' + obj[i].position_salary_low + '-' + obj[i].position_salary_top + '</h4></div><div class="text-left col-md-6"><h5 class="myStyle_13">' + obj[i].position_education + '&nbsp&nbsp&nbsp' + obj[i].position_experience + '&nbsp&nbsp&nbsp' + obj[i].position_type + '</h5></div><div class="text-right col-md-4"><h5>' + obj[i].company_type + '&nbsp&nbsp&nbsp' + obj[i].company_staff_num + '人</h5></div></div><div class="text-right"><button class="btn btn-info btn-lg" type="button" onclick="deleteJob(' + obj[i].positionId + ')">删除</button></div></div></form>';
+                    }
+                }
+                document.getElementById("result").innerHTML = html;
+            });
+        }
+
+        function look(id) {
+            $.cookie("positionId", id);
+            window.location.href = '/bikini/employer/employerJob';
+        }
+
+        function deleteJob(id) {
+            $.ajax({
+                url: '/bikini/position/deletePositionById',
+                type: 'post',
+                contentType: "application/json",
+                dataType: "json",
+                data: JSON.stringify({"positionId": id})
+            }).done(function (data) {
+                console.log(data);
+                if (data.status === 200) {
+                    console.log(data);
+                    alert("删除成功！");
+                } else {
+                    console.log(data);
+                    alert("删除失败！");
+                }
+            })
         }
     </script>
 </head>
@@ -105,13 +125,13 @@
             <button type="button" class="btn btn-info" onclick="show()">首页</button>
         </div>
         <div class="col-sm-2 col-lg-push-3">
-            <img th:src="@{/photo/others/3.jpg}" style="height: 50px">
+            <img th:src="@{/photo/others/3.jpg}" style="height: 50px" alt="Cinque Terre">
         </div>
         <div class="col-sm-2 col-lg-push-2">
             <h5>我发布的职位</h5>
         </div>
         <div class="col-sm-2 col-lg-push-1">
-            <img th:src="@{/photo/others/6.jpg}" style="height: 50px">
+            <img th:src="@{/photo/others/6.jpg}" style="height: 50px" alt="Cinque Terre">
         </div>
     </div>
 </div>
@@ -119,53 +139,21 @@
     <div class="myStyle_1 text-center" style="padding-top: 1px">
         <div><h3 class="text-primary">我发布的职位</h3></div>
     </div>
-    <!--搜索结果，循环显示form即可，其中各项内容需从数据库中查询，并替换-->
-    <form>
-        <div class="myStyle_10"></div>
-        <div class="myStyle_9 myStyle_8"
-             style="padding-left: 30px; padding-right: 30px; padding-top: 10px; padding-bottom: 10px">
-            <div class="row">
-                <!--职位名-->
-                <div class="text-left col-md-6">
-                    <h4 class="myStyle_12">智能交通工程中心-Java开发工程师</h4>
-                </div>
-                <!--企业名-->
-                <div class="text-right col-md-6">
-                    <h4>上海产业技术研究院</h4>
-                </div>
-            </div>
-            <div class="row">
-                <!--职位月薪-->
-                <div class="text-left col-md-2">
-                    <h4 class="myStyle_11">8000-16000元</h4>
-                </div>
-                <!--职位要求，三类必填，即使是“不限”也要显示出来-->
-                <div class="text-left col-md-6">
-                    <h5 class="myStyle_13">经验不限&nbsp&nbsp&nbsp本科&nbsp&nbsp&nbsp全职</h5>
-                </div>
-                <!--企业类型-->
-                <div class="text-right col-md-4">
-                    <h5>外商独资&nbsp&nbsp&nbsp100-300人</h5>
-                </div>
-            </div>
-            <div class="text-right">
-                <button class="btn btn-info btn-lg" data-toggle="dropdown" type="button">删除职位</button>
-            </div>
-        </div>
-    </form>
+    <div id="result">
+    </div>
 </div>
 <div class="myStyle_6"></div>
 <div class="myStyle_7"></div>
 <div class="jumbotron text-center" style="margin-bottom:0">
     <h6 class="text-danger">RightCopy@Bikini</h6>
     <h5 class="text-info">解释权归Bikini所有，如有任何意见或建议请联系我们</h5>
-    <p><h5><span class="glyphicon glyphicon-phone-alt">：68221932</span></h5></p>
-    <p><h5><span class="glyphicon glyphicon-earphone">：18302161037</span></h5></p>
-    <p><h5><span class="glyphicon glyphicon-envelope"></span>：161310614@mail.dhu.edu.cn</h5></p>
+    <p><h5><span class="glyphicon glyphicon-phone-alt">：68221932</span></h5>
+    <p><h5><span class="glyphicon glyphicon-earphone">：18302161037</span></h5>
+    <p><h5><span class="glyphicon glyphicon-envelope"></span>：161310614@mail.dhu.edu.cn</h5>
     <p><h6><span class="glyphicon glyphicon-magnet"></span>
     <span class="glyphicon glyphicon-bell"></span>
     <span class="glyphicon glyphicon-globe"></span>
-    <span class="glyphicon glyphicon-tree-deciduous"></span></h6></p>
+    <span class="glyphicon glyphicon-tree-deciduous"></span></h6>
 </div>
 </body>
 </html>

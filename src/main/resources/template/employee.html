@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head  runat="server">
+<head runat="server">
     <meta charset="utf-8">
     <title>关于我</title>
     <script th:src="@{/js/jquery-3.4.1.min.js}"></script>
@@ -10,12 +10,6 @@
     <script type="text/javascript" th:src="@{/js/jquery.cookie.js}"></script>
     <link rel="shortcut icon" th:href="@{/photo/others/5.jpg}"/>
     <style>
-        .myStyle_1 {
-            width: 1000px;
-            height: 60px;
-            background: #FFFFFF;
-        }
-
         .myStyle_2 {
             height: auto;
             background: #aaa;
@@ -37,12 +31,6 @@
             clear: both;
         }
 
-        .myStyle_5 {
-            height: 30px;
-            width: 65px;
-            background: #FFFFFF;
-        }
-
         .myStyle_6 {
             height: 300px;
             background: #FFFFFF;
@@ -53,23 +41,6 @@
             background: #aaa;
         }
 
-        .myStyle_8 {
-            padding-left: 0;
-            padding-right: 0;
-        }
-
-        .myStyle_9 {
-            width: 1000px;
-            height: 150px;
-            background: #FFFFFF;
-        }
-
-        .myStyle_10 {
-            width: 1000px;
-            height: 1px;
-            background: #aaa;
-        }
-
         .myStyle_11 {
             color: #FF0000;
         }
@@ -77,67 +48,50 @@
         .myStyle_12 {
             color: #00BFFF;
         }
-
-        .myStyle_13 {
-            color: #aaa;
-        }
     </style>
 
     <script>
-        function showExperience(a) {
-            $('.experience').text(a)
-        }
-
-        function showEducaion(a) {
-            $('.education').text(a)
-        }
-
-        function showCompany(a) {
-            $('.company').text(a)
-        }
-
-        function showJob(a) {
-            $('.job').text(a)
-        }
         function show() {
-            window.location.href='/bikini/employee/employeeShow';
+            window.location.href = '/bikini/employee/employeeShow';
         }
+
         function autoLoad() {
-            var employeeTel=$.cookie("employeeTel");
+            var employeeTel = $.cookie("employeeTel");
             $.ajax({
-                url:'/bikini/position/不知道',
-                type:'post',
-                contentType:"application/json",
-                dataType:"json",
-                data: JSON.stringify({"employeeTel":employeeTel})
+                url: '/bikini/employee/lookEmployeeInfo',
+                type: 'post',
+                contentType: "application/json",
+                dataType: "json",
+                data: JSON.stringify({"employeeTel": employeeTel})
             }).done(function (data) {
                 console.log(data);
                 var obj = data.data;
                 console.log("obj: " + obj.length);
-                document.getElementById("employeeName").innerHTML = '<h4 class="myStyle_11">用户名：'+obj[0].employeeName+'</h4>';
-                document.getElementById("employeeAge").innerHTML ='<h5>年龄：'+obj[0].employeeAge+'岁</h5>';
-                document.getElementById("employeeGender").innerHTML ='<h5>性别：'+obj[0].employeeGender+'</h5>';
-                document.getElementById("employeeTel").innerHTML ='<h5>电话：'+obj[0].employeeTel+'</h5>';
-                document.getElementById("employeeEmail").innerHTML ='<h5>电子邮箱：'+obj[0].employeeEmail+'</h5>';
-                document.getElementById("employeeUniversity").innerHTML ='<h5>毕业学校：'+obj[0].employeeUniversity+'</h5>';
-                document.getElementById("employeeAddress").innerHTML ='<h5>家庭住址：'+obj[0].employeeAddress+'</h5>';
-                document.getElementById("employeeCv").innerHTML ='<button type="button" class="btn btn-link" onclick="cv()"><h5 class="myStyle_12">《个人简历》</h5></button>';
-                var a=obj[0].employeeCvAddress;
-                $.cookie("employeeCvAdress",a);
+                document.getElementById("employeePhoto").innerHTML = '<img class="img-circle" th:src="' + obj.employeePhotoAddress + '" width="300" height="300" alt="Cinque Terre">';
+                document.getElementById("employeeName").innerHTML = '<h4 class="myStyle_11">用户名：' + obj.employeeName + '</h4>';
+                document.getElementById("employeeAge").innerHTML = '<h5>年龄：' + obj.employeeAge + '岁</h5>';
+                document.getElementById("employeeGender").innerHTML = '<h5>性别：' + obj.employeeGender + '</h5>';
+                document.getElementById("employeeTel").innerHTML = '<h5>电话：' + obj.employeeTel + '</h5>';
+                document.getElementById("employeeEmail").innerHTML = '<h5>电子邮箱：' + obj.employeeEmail + '</h5>';
+                document.getElementById("employeeUniversity").innerHTML = '<h5>毕业学校：' + obj.employeeUniversity + '</h5>';
+                document.getElementById("employeeAddress").innerHTML = '<h5>家庭住址：' + obj.employeeAddress + '</h5>';
+                document.getElementById("employeeCv").innerHTML = '<button type="button" class="btn btn-link" onclick="cv()"><h5 class="myStyle_12">《个人简历》</h5></button>';
+                $.cookie("employeeCvAdress", obj.employeeCvAddress);
             });
             console.log(employeeTel);
         }
+
         function cv() {
-            try{
+            try {
                 alert($.cookie("employeeCvAdress"));
                 //打开简历
-            }
-            catch (e) {
+            } catch (e) {
                 alert(e);
             }
         }
+
         function edit() {
-            window.location.href='/bikini/employee/employeeEdit';
+            window.location.href = '/bikini/employee/employeeEdit';
         }
     </script>
 
@@ -149,13 +103,13 @@
             <button type="button" class="btn btn-info" onclick="show()">首页</button>
         </div>
         <div class="col-sm-2 col-lg-push-3">
-            <img th:src="@{/photo/others/3.jpg}" style="height: 50px">
+            <img th:src="@{/photo/others/3.jpg}" style="height: 50px" alt="Cinque Terre">
         </div>
         <div class="col-sm-2 col-lg-push-2">
             <h5>关于我</h5>
         </div>
         <div class="col-sm-2 col-lg-push-1">
-            <img th:src="@{/photo/others/6.jpg}" style="height: 50px">
+            <img th:src="@{/photo/others/6.jpg}" style="height: 50px" alt="Cinque Terre">
         </div>
     </div>
 </div>
@@ -163,8 +117,7 @@
 
 <div class="myStyle_2" style="padding-top: 30px; padding-bottom: 30px;">
     <div class="myStyle_3" style="padding: 30px">
-        <div class="row text-center" style="padding-bottom:30px;">
-            <img class="img-circle" th:src="@{/photo/others/11.jpg}" width="300" height="300"/>
+        <div class="row text-center" id="employeePhoto" style="padding-bottom:30px;">
         </div>
         <div class="row text-center" id="employeeName">
         </div>
@@ -184,7 +137,8 @@
         </div>
         <br>
         <div>
-            <button class="btn btn-lg btn-info btn-block" type="button" onclick="edit()" style="width: 640px">修改个人信息</button>
+            <button class="btn btn-lg btn-info btn-block" type="button" onclick="edit()" style="width: 640px">修改个人信息
+            </button>
         </div>
     </div>
 </div>
@@ -193,13 +147,13 @@
 <div class="jumbotron text-center" style="margin-bottom:0">
     <h6 class="text-danger">RightCopy@Bikini</h6>
     <h5 class="text-info">解释权归Bikini所有，如有任何意见或建议请联系我们</h5>
-    <p><h5><span class="glyphicon glyphicon-phone-alt">：68221932</span></h5></p>
-    <p><h5><span class="glyphicon glyphicon-earphone">：18302161037</span></h5></p>
-    <p><h5><span class="glyphicon glyphicon-envelope"></span>：161310614@mail.dhu.edu.cn</h5></p>
+    <p><h5><span class="glyphicon glyphicon-phone-alt">：68221932</span></h5>
+    <p><h5><span class="glyphicon glyphicon-earphone">：18302161037</span></h5>
+    <p><h5><span class="glyphicon glyphicon-envelope"></span>：161310614@mail.dhu.edu.cn</h5>
     <p><h6><span class="glyphicon glyphicon-magnet"></span>
     <span class="glyphicon glyphicon-bell"></span>
     <span class="glyphicon glyphicon-globe"></span>
-    <span class="glyphicon glyphicon-tree-deciduous"></span></h6></p>
+    <span class="glyphicon glyphicon-tree-deciduous"></span></h6>
 </div>
 </body>
 </html>

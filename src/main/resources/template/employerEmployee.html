@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head  runat="server">
+<head runat="server">
     <meta charset="utf-8">
     <title>该职位的应聘者</title>
     <script th:src="@{/js/jquery-3.4.1.min.js}"></script>
@@ -23,18 +23,6 @@
 
         .myStyle_2::after {
             clear: both;
-        }
-
-        .myStyle_3 {
-            height: 150px;
-            width: 1000px;
-            background: #FFFFFF;
-        }
-
-        .myStyle_5 {
-            height: 30px;
-            width: 65px;
-            background: #FFFFFF;
         }
 
         .myStyle_6 {
@@ -78,7 +66,7 @@
     </style>
     <script>
         function show() {
-            window.location.href='/bikini/employer/employerShow';
+            window.location.href = '/bikini/employer/employerShow';
         }
     </script>
 </head>
@@ -89,13 +77,13 @@
             <button type="button" class="btn btn-info" onclick="show()">首页</button>
         </div>
         <div class="col-sm-2 col-lg-push-3">
-            <img th:src="@{/photo/others/3.jpg}" style="height: 50px">
+            <img th:src="@{/photo/others/3.jpg}" style="height: 50px" alt="Cinque Terre">
         </div>
         <div class="col-sm-2 col-lg-push-2">
             <h5>该职位的应聘者</h5>
         </div>
         <div class="col-sm-2 col-lg-push-1">
-            <img th:src="@{/photo/others/6.jpg}" style="height: 50px">
+            <img th:src="@{/photo/others/6.jpg}" style="height: 50px" alt="Cinque Terre">
         </div>
     </div>
 </div>
@@ -107,7 +95,7 @@
     <form>
         <div class="myStyle_10"></div>
         <div class="myStyle_9 myStyle_8"
-             style="padding-left: 30px; padding-right: 30px; padding-top: 10px; padding-bottom: 10px">
+             style="padding: 10px 30px;">
             <div class="row">
                 <!--姓名-->
                 <div class="text-left col-md-2">
@@ -146,13 +134,13 @@
 <div class="jumbotron text-center" style="margin-bottom:0">
     <h6 class="text-danger">RightCopy@Bikini</h6>
     <h5 class="text-info">解释权归Bikini所有，如有任何意见或建议请联系我们</h5>
-    <p><h5><span class="glyphicon glyphicon-phone-alt">：68221932</span></h5></p>
-    <p><h5><span class="glyphicon glyphicon-earphone">：18302161037</span></h5></p>
-    <p><h5><span class="glyphicon glyphicon-envelope"></span>：161310614@mail.dhu.edu.cn</h5></p>
+    <p><h5><span class="glyphicon glyphicon-phone-alt">：68221932</span></h5>
+    <p><h5><span class="glyphicon glyphicon-earphone">：18302161037</span></h5>
+    <p><h5><span class="glyphicon glyphicon-envelope"></span>：161310614@mail.dhu.edu.cn</h5>
     <p><h6><span class="glyphicon glyphicon-magnet"></span>
     <span class="glyphicon glyphicon-bell"></span>
     <span class="glyphicon glyphicon-globe"></span>
-    <span class="glyphicon glyphicon-tree-deciduous"></span></h6></p>
+    <span class="glyphicon glyphicon-tree-deciduous"></span></h6>
 </div>
 </body>
 </html>

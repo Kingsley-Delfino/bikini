@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head  runat="server">
+<head runat="server">
     <meta charset="utf-8">
     <title>编辑个人信息</title>
     <script th:src="@{/js/jquery-3.4.1.min.js}"></script>
@@ -10,12 +10,6 @@
     <script type="text/javascript" th:src="@{/js/jquery.cookie.js}"></script>
     <link rel="shortcut icon" th:href="@{/photo/others/5.jpg}"/>
     <style>
-        .myStyle_1 {
-            width: 1000px;
-            height: 60px;
-            background: #FFFFFF;
-        }
-
         .myStyle_2 {
             height: auto;
             background: #aaa;
@@ -37,12 +31,6 @@
             clear: both;
         }
 
-        .myStyle_5 {
-            height: 30px;
-            width: 65px;
-            background: #FFFFFF;
-        }
-
         .myStyle_6 {
             height: 300px;
             background: #FFFFFF;
@@ -51,11 +39,6 @@
         .myStyle_7 {
             height: 70px;
             background: #aaa;
-        }
-
-        .myStyle_8 {
-            padding-left: 0;
-            padding-right: 0;
         }
 
         .myStyle_9 {
@@ -73,35 +56,52 @@
         .myStyle_11 {
             color: #FF0000;
         }
-
-        .myStyle_12 {
-            color: #00BFFF;
-        }
-
-        .myStyle_13 {
-            color: #aaa;
-        }
     </style>
     <script>
         function show() {
-            window.location.href='/bikini/employer/employerShow';
+            window.location.href = '/bikini/employer/employerShow';
+        }
+
+        function autoLoad() {
+            var userTel = $.cookie("userTel");
+            $.ajax({
+                url: '/bikini/employer/查询HR个人信息',
+                type: 'post',
+                contentType: "application/json",
+                dataType: "json",
+                data: JSON.stringify({"employerTel": userTel})
+            }).done(function (data) {
+                console.log(data);
+                var obj = data.data;
+                console.log("obj: " + obj.length);
+                document.getElementById("userPhoto").innerHTML = '<img class="img-circle" th:src="' + obj[0].employerPhotoAddress + '" width="210" height="210" alt="Cinque Terre">';
+                $('#userName').val(obj[0].employerName);
+                $('#userAge').val(obj[0].employerAge);
+                $('#userGender').val(obj[0].employerGender);
+                $('#userTel').val(obj[0].employerTel);
+                $('#userEmail').val(obj[0].employerEmail);
+            });
+        }
+
+        function submit() {
+            alert("还没写！");
         }
     </script>
 </head>
-<body>
+<body onload="autoLoad()">
 <div class="jumbotron text-center" style="margin-bottom:0; height: 30px; background:#FFFFFF">
     <div class="row" style="margin-top:-1.3%">
         <div class="col-sm-1" style="padding-left: 100px">
             <button type="button" class="btn btn-info" onclick="show()">首页</button>
         </div>
         <div class="col-sm-2 col-lg-push-3">
-            <img th:src="@{/photo/others/3.jpg}" style="height: 50px">
+            <img th:src="@{/photo/others/3.jpg}" style="height: 50px" alt="Cinque Terre">
         </div>
         <div class="col-sm-2 col-lg-push-2">
             <h5>编辑个人信息</h5>
         </div>
         <div class="col-sm-2 col-lg-push-1">
-            <img th:src="@{/photo/others/6.jpg}" style="height: 50px">
+            <img th:src="@{/photo/others/6.jpg}" style="height: 50px" alt="Cinque Terre">
         </div>
     </div>
 </div>
@@ -110,8 +110,9 @@
 <div class="myStyle_2" style="padding-top: 30px; padding-bottom: 30px;">
     <div class="myStyle_3" style="padding: 30px">
         <div class="row">
-            <div class="myStyle_9 col-lg-1" style="padding-bottom:30px; padding-left: 15px" onclick="document.getElementById('FileUpload').click()">
-                <img class="img-circle" th:src="@{/photo/others/10.jpg}" width="240" height="240"/>
+            <div class="myStyle_9 col-lg-1" style="padding-bottom:30px; padding-left: 15px"
+                 onclick="document.getElementById('FileUpload').click()">
+                <img class="img-circle" th:src="@{/photo/others/10.jpg}" width="240" height="240" alt="Cinque Terre">
             </div>
             <div class="myStyle_10 col-lg-1 col-lg-pull-20">
                 <div class="row">
@@ -119,8 +120,8 @@
                         <h4 class="myStyle_11">用户名：</h4>
                     </div>
                     <div class="col-lg-3">
-                        <input type="text" id="userName" class="form-control" style="width: 216px" placeholder="海绵宝宝"
-                               required autofocus>
+                        <label for="userName"></label><input type="text" id="userName" class="form-control"
+                                                             style="width: 216px" required>
                     </div>
                 </div>
                 <div class="row">
@@ -128,8 +129,8 @@
                         <h4 class="myStyle_11">年龄：</h4>
                     </div>
                     <div class="col-lg-3">
-                        <input type="text" id="userAge" class="form-control" style="width: 216px" placeholder="20岁"
-                               required autofocus>
+                        <label for="userAge"></label><input type="text" id="userAge" class="form-control"
+                                                            style="width: 216px" required>
                     </div>
                 </div>
                 <div class="row">
@@ -137,8 +138,8 @@
                         <h4 class="myStyle_11">性别：</h4>
                     </div>
                     <div class="col-lg-3">
-                        <input type="text" id="userSex" class="form-control" style="width: 216px" placeholder="男"
-                               required autofocus>
+                        <label for="userGender"></label><input type="text" id="userGender" class="form-control"
+                                                               style="width: 216px" required>
                     </div>
                 </div>
                 <div class="row">
@@ -146,8 +147,8 @@
                         <h4 class="myStyle_11">电话：</h4>
                     </div>
                     <div class="col-lg-3">
-                        <input type="text" id="userPhone" class="form-control" style="width: 216px"
-                               placeholder="18302161037" required autofocus>
+                        <label for="userPhone"></label><input type="text" id="userPhone" class="form-control"
+                                                              style="width: 216px" required>
                     </div>
                 </div>
                 <div class="row">
@@ -155,18 +156,13 @@
                         <h4 class="myStyle_11">电子邮箱：</h4>
                     </div>
                     <div class="col-lg-3">
-                        <input type="text" id="userEmail" class="form-control" style="width: 216px"
-                               placeholder="2901704946@qq.com" required autofocus>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-3">
-                        <button class="btn btn btn-info" type="button" style="width: 340px">选择个人简历</button>
+                        <label for="userEmail"></label><input type="text" id="userEmail" class="form-control"
+                                                              style="width: 216px" required>
                     </div>
                 </div>
             </div>
         </div>
-        <button class="btn btn-lg btn-info btn-block" type="button" style="width: 640px">提交</button>
+        <button class="btn btn-lg btn-info btn-block" type="button" onclick="submit()" style="width: 640px">提交</button>
     </div>
 </div>
 <div class="myStyle_6"></div>
@@ -174,13 +170,13 @@
 <div class="jumbotron text-center" style="margin-bottom:0">
     <h6 class="text-danger">RightCopy@Bikini</h6>
     <h5 class="text-info">解释权归Bikini所有，如有任何意见或建议请联系我们</h5>
-    <p><h5><span class="glyphicon glyphicon-phone-alt">：68221932</span></h5></p>
-    <p><h5><span class="glyphicon glyphicon-earphone">：18302161037</span></h5></p>
-    <p><h5><span class="glyphicon glyphicon-envelope"></span>：161310614@mail.dhu.edu.cn</h5></p>
+    <p><h5><span class="glyphicon glyphicon-phone-alt">：68221932</span></h5>
+    <p><h5><span class="glyphicon glyphicon-earphone">：18302161037</span></h5>
+    <p><h5><span class="glyphicon glyphicon-envelope"></span>：161310614@mail.dhu.edu.cn</h5>
     <p><h6><span class="glyphicon glyphicon-magnet"></span>
     <span class="glyphicon glyphicon-bell"></span>
     <span class="glyphicon glyphicon-globe"></span>
-    <span class="glyphicon glyphicon-tree-deciduous"></span></h6></p>
+    <span class="glyphicon glyphicon-tree-deciduous"></span></h6>
 </div>
 </body>
 </html>
