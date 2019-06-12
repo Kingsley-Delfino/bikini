@@ -65,7 +65,7 @@
         function autoLoad() {
             var userTel = $.cookie("userTel");
             $.ajax({
-                url: '/bikini/employer/查询HR个人信息',
+                url: '/bikini/employer/employerSelectInfo',
                 type: 'post',
                 contentType: "application/json",
                 dataType: "json",
@@ -74,17 +74,33 @@
                 console.log(data);
                 var obj = data.data;
                 console.log("obj: " + obj.length);
-                document.getElementById("userPhoto").innerHTML = '<img class="img-circle" th:src="' + obj[0].employerPhotoAddress + '" width="210" height="210" alt="Cinque Terre">';
-                $('#userName').val(obj[0].employerName);
-                $('#userAge').val(obj[0].employerAge);
-                $('#userGender').val(obj[0].employerGender);
-                $('#userTel').val(obj[0].employerTel);
-                $('#userEmail').val(obj[0].employerEmail);
+                document.getElementById("userPhoto").innerHTML = '<img class="img-circle" th:src="' + obj.employerPhotoAddress + '" width="210" height="210" alt="Cinque Terre">';
+                $('#userName').val(obj.employerName);
+                $('#userAge').val(obj.employerAge);
+                $('#userGender').val(obj.employerGender);
+                $('#userTel').val(obj.employerTel);
+                $('#userEmail').val(obj.employerEmail);
             });
         }
 
         function submit() {
-            alert("还没写！");
+            var userTel = $.cookie("userTel");
+            $.ajax({
+                url: '/bikini/employer/employerAlter',
+                type: 'post',
+                contentType: "application/json",
+                dataType: "json",
+                data: JSON.stringify({"employerTel": userTel})
+            }).done(function (data) {
+                console.log(data);
+                if (data.status === 200) {
+                    console.log(data);
+                    alert("修改成功！");
+                } else {
+                    console.log(data);
+                    alert("修改失败！");
+                }
+            });
         }
     </script>
 </head>

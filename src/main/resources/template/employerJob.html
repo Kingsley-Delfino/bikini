@@ -81,8 +81,8 @@
                 document.getElementById("companyDescription").value = obj[0].company_description;
                 document.getElementById("positionCreateDate").innerHTML = '<h5 class="myStyle_13">发布日期：' + obj[0].position_create_date + '</h5>';
                 document.getElementById("positionDeadline").innerHTML = '<h5 class="myStyle_11">截至日期：' + obj[0].position_deadline + '</h5>';
-                document.getElementById("deleteJob").innerHTML = '<button class="btn btn-lg btn-info btn-block" onclick="deleteJob(' + obj[0].position_id + ')" type="button" style="width: 640px">申请职位</button>';
                 document.getElementById("lookEmployee").innerHTML = '<button class="btn btn-lg btn-info btn-block" onclick="lookEmployee(' + obj[0].position_id + ')" type="button" style="width: 640px">查看应聘者</button>';
+                document.getElementById("deleteJob").innerHTML = '<button class="btn btn-lg btn-info btn-block" onclick="deleteJob(' + obj[0].position_id + ')" type="button" style="width: 640px">删除职位</button>';
             });
             console.log(id);
         }
@@ -107,7 +107,8 @@
         }
 
         function lookEmployee(id) {
-            alert("还没写");
+            $.cookie("positionId",id);
+            window.location.href='/bikini/employer/employerEmployee';
         }
     </script>
 </head>

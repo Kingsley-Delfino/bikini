@@ -68,9 +68,35 @@
         function show() {
             window.location.href = '/bikini/employer/employerShow';
         }
+        function autoLoad() {
+            var positionId = $.cookie("positionId");
+            $.ajax({
+                url: '/bikini/employer/selectAllEmployeeHaveCv',
+                type: 'post',
+                contentType: "application/json",
+                dataType: "json",
+                data: JSON.stringify({"positionId": positionId})
+            }).done(function (data) {
+                console.log(data);
+                var obj = data.data;
+                console.log("obj: " + obj.length);
+                var html = "";
+                if (obj.length === 0) {
+                    html = '<form><div class="myStyle_10"></div><div class="myStyle_9 myStyle_8" style="padding: 10px 30px;"><div class="row text-center col-md-6 myStyle_8"><h6 class="myStyle_10">未查找到任何相关信息！</h6></div></div></form>';
+                } else {
+                    for (var i = 0; i < obj.length; i++) {
+                        html += '<form><div class="myStyle_10"></div><div class="myStyle_9 myStyle_8" style="padding: 10px 30px;"><div class="row"><div class="text-left col-md-2"><h4 class="myStyle_12">'+obj[i].employee_name+'</h4></div><div class="text-left col-md-1 col-lg-pull-1"><h5 class="myStyle_13">'+obj[i].employee_gender+'</h5></div><div class="text-left col-md-1 col-lg-pull-1"><h5 class="myStyle_13">'+obj[i].employee_age+'岁</h5></div></div><div class="row"><div class="text-left col-md-4"><h5 class="myStyle_11"><span class="glyphicon glyphicon-earphone">：'+obj[i].employee_tel+'</span></h5></div><div class="text-right" style="padding-right: 15px"><button class="btn btn-info btn-lg" type="button" onload="lookCv('+obj[i].employee_tel+')">查看个人简历</button></div></div><div class="row"><div class="text-left col-md-4"><h5 class="myStyle_11"><span class="glyphicon glyphicon-envelope"></span>：'+obj[i].employee_email+'</h5></div></div></div></form>';
+                    }
+                }
+                document.getElementById("result").innerHTML = html;
+            });
+        }
+        function lookCv(tel) {
+            alert(tel);
+        }
     </script>
 </head>
-<body>
+<body onload="autoLoad()">
 <div class="jumbotron text-center" style="margin-bottom:0; height: 30px; background:#FFFFFF">
     <div class="row" style="margin-top:-1.3%">
         <div class="col-sm-1" style="padding-left: 100px">
@@ -91,43 +117,8 @@
     <div class="myStyle_1 text-center" style="padding-top: 1px">
         <div><h3 class="text-primary">我发布的职位</h3></div>
     </div>
-    <!--搜索结果，循环显示form即可，其中各项内容需从数据库中查询，并替换-->
-    <form>
-        <div class="myStyle_10"></div>
-        <div class="myStyle_9 myStyle_8"
-             style="padding: 10px 30px;">
-            <div class="row">
-                <!--姓名-->
-                <div class="text-left col-md-2">
-                    <h4 class="myStyle_12">章鱼哥</h4>
-                </div>
-                <!--性别-->
-                <div class="text-left col-md-1 col-lg-pull-1">
-                    <h5 class="myStyle_13">男</h5>
-                </div>
-                <!--年龄-->
-                <div class="text-left col-md-1 col-lg-pull-1">
-                    <h5 class="myStyle_13">20岁</h5>
-                </div>
-            </div>
-            <div class="row">
-                <!--联系方式-->
-                <div class="text-left col-md-4">
-                    <h5 class="myStyle_11"><span class="glyphicon glyphicon-earphone">：18302161037</span></h5>
-                </div>
-                <div class="text-right" style="padding-right: 15px">
-                    <button class="btn btn-info btn-lg" data-toggle="dropdown" type="button">查看个人简历</button>
-                </div>
-            </div>
-            <div class="row">
-                <!--联系方式-->
-                <div class="text-left col-md-4">
-                    <h5 class="myStyle_11"><span class="glyphicon glyphicon-envelope"></span>：161310614@mail.dhu.edu.cn
-                    </h5>
-                </div>
-            </div>
-        </div>
-    </form>
+    <div id="result">
+    </div>
 </div>
 <div class="myStyle_6"></div>
 <div class="myStyle_7"></div>
