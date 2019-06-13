@@ -25,6 +25,7 @@ public class EmployerController {
     @Autowired
     private CompanyService companyService;
 
+    @ResponseBody
     @RequestMapping("/employerLog")
     public JSONResult employerLogin(@RequestBody EmployerDomain employerDomain,HttpServletRequest request){
         HttpSession session=request.getSession();
@@ -32,11 +33,13 @@ public class EmployerController {
         employerService.login(employerDomain);
         return new JSONResult("success");
     }
+    @ResponseBody
     @RequestMapping("/employerReg")
     public JSONResult employerRegister(@RequestBody EmployerDomain employerDomain){
         employerService.register(employerDomain);
         return new JSONResult("success");
     }
+    @ResponseBody
     @RequestMapping("/companyReg")
     public JSONResult companyRegister(HttpServletRequest request,@RequestBody CompanyDomain companyDomain){
         companyService.insertCompany(companyDomain);
@@ -65,6 +68,7 @@ public class EmployerController {
      *@param: EmployerDomain，tel不可修改
      *@return: void
     */
+    @ResponseBody
     @RequestMapping("/employerAlter")
     public JSONResult employerAlter(@RequestBody EmployerDomain employerDomain){
         employerService.updateEmployer(employerDomain);

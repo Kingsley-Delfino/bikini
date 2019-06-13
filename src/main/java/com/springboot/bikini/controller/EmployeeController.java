@@ -99,8 +99,10 @@ public class EmployeeController {
      *@param: employeedomain
      *@return: null
     */
+    @ResponseBody
     @RequestMapping("/employeeReg")
     public JSONResult employerRegister(@RequestBody EmployeeDomain employeeDomain){
+        System.out.println(employeeDomain.toString()+"!!!!!!!!!!!!!!!!!!");
         employeeService.register(employeeDomain);
         return new JSONResult("success");
     }
@@ -109,6 +111,7 @@ public class EmployeeController {
      *@param: employeedomain
      *@return: null
     */
+    @ResponseBody
     @RequestMapping("/employeeAlter")
     public JSONResult employeeAlter(@RequestBody EmployeeDomain employeeDomain){
         employeeService.updateEmployee(employeeDomain);
